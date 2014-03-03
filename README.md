@@ -89,6 +89,9 @@ You can also adjust the rendering using the templates:
 $helper = Netzmacht\FormHelper\Helper::getInstance();
 list($label, $container, $errors) = $helper->generate($this);
 
+// display all error which occured at an element
+$errors->setTemplateName('formhelper_error_all');
+
 // wrapping element can be a string with %s placeholder or an Netzmacht\FormHelper\Html\Node object
 $wrapper = '<div class="form-element">%s</div>';
 $container->add('wrapper', $wrapper, $container::POSITION_WRAPPER);
