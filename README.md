@@ -78,24 +78,6 @@ $GLOBALS['TL_EVENTS'][Netzmacht\FormHelper\Event\Events::GENERATE][] = function(
 	if($form->id == 9 && $widget->type == 'textarea') {
 		$element->setAttribute('rows', 50);
 	}
-
-	// set options
-	if($element->getAttribute('name') == 'street' && $element instanceof Netzmacht\FormHelper\Html\Element\Select) {
-		$streets = array(
-			array(
-				'value' => 'Hauptstraße',
-				'label' => 'Haupstraße',
-				'default' => false
-			),
-			array(
-				'value' => 'Kirchweg',
-				'label' => 'Kirchweg',
-				'default' => true
-			)
-		);
-
-		$element->setOptions($streets);
-	}
 }
 ```
 
