@@ -1,0 +1,6 @@
+<?php
+
+$helper = \Netzmacht\FormHelper\Helper::getInstance();
+$layout = $helper->getMessageLayout($this);
+
+echo $this->getTemplate($layout);

@@ -1,0 +1,36 @@
+<?php
+
+/** @var Netzmacht\FormHelper\Transfer\Container $container */
+$container = $this->container;
+$attributes = $container->getAttributes()->generate();
+?>
+
+<?php if($attributes): ?>
+<div <?php echo $attributes; ?>>
+<?php endif; ?>
+
+<?php
+
+// generate before placed elements
+foreach($this->before as $child) {
+	echo $container->generateChild($child);
+}
+
+$element = $container->generateElement();
+
+// generate wrappers
+foreach($this->wrappers as $child) {
+	$element = $this->generateWrapper($child, $element);
+}
+
+echo $element;
+
+// generate before placed elements
+foreach($this->after as $child) {
+	echo $container->generateChild($child);
+}
+
+?>
+<?php if($attributes): ?>
+</div>
+<?php endif; ?>

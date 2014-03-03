@@ -1,0 +1,9 @@
+<?php
+/** @var \Widget $widget */
+$widget = $this->widget;
+?>
+<ul class="errors">
+<?php foreach($widget->getErrors() as $error): ?>
+	<li><?php echo $error; ?></li>
+<?php endforeach; ?>
+</ul>

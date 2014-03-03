@@ -1,0 +1,36 @@
+{
+    "name":"netzmacht/contao-form-helpers",
+    "description":"Library for supporting customized Contao form rendering",
+    "keywords":["contao", "form", "helper"],
+    "type":"contao-module",
+    "license":"LGPL-3.0+",
+    "authors":[
+        {
+            "name":"David Molineus",
+            "email":"mail@netzmacht.de",
+            "homepage":"http://www.netzmacht.de",
+            "role":"Project leader"
+        }
+    ],
+    "support":{
+        "email":"mail@netzmacht.de",
+        "issues":"https://github.com/netzmacht/contao-form-helpers/issues",
+        "source":"https://github.com/netzmacht/contao-form-helpers"
+    },
+    "require":{
+        "php":">=5.4",
+        "contao/core":">=3.1",
+        "contao-coummunity-alliance/cdependency-container":"~1.0",
+        "contao-community-alliance/event-dispatcher":"~1.0"
+    },
+    "autoload": {
+        "psr-0": { "Netzmacht\\FormHelper\\": "src/" }
+    },
+    "extra":{
+        "contao": {
+            "sources":{
+                "module": "system/modules/formHelper",
+            }
+        }
+    }
+}

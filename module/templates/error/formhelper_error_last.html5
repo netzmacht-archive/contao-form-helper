@@ -1,0 +1,3 @@
+<?php if($this->errors): ?>
+<p class="error"><?php echo $this->errors[0]; ?></p>
+<?php endif; ?>

@@ -1,0 +1,8 @@
+<?php
+
+$helper = \Netzmacht\FormHelper\Helper::getInstance();
+list($label, $container, $errors) = $helper->generate($this);
+
+$layout = $helper->getLayout($this);
+
+include $layout;

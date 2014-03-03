@@ -1,0 +1,6 @@
+<?php
+echo $label; ?>
+<?php
+echo $container;
+echo $errors;
+?><br>
