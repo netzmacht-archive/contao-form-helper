@@ -1,11 +1,12 @@
 <?php
-
 /** @var Netzmacht\FormHelper\Transfer\Container $container */
 $container = $this->container;
-$attributes = $container->getAttributes()->generate();
+$attributes = $container->getAttributes();
+$buffer = '';
+
 ?>
 
-<?php if($attributes): ?>
+<?php if($container->getRenderContainer()): ?>
 <div <?php echo $attributes; ?>>
 <?php endif; ?>
 
@@ -13,24 +14,19 @@ $attributes = $container->getAttributes()->generate();
 
 // generate before placed elements
 foreach($this->before as $child) {
-	echo $container->generateChild($child);
+	$buffer .= $container->generateChild($child);
 }
 
-$element = $container->generateElement();
-
-// generate wrappers
-foreach($this->wrappers as $child) {
-	$element = $this->generateWrapper($child, $element);
-}
-
-echo $element;
+$buffer .= $container->generateElement();
 
 // generate before placed elements
 foreach($this->after as $child) {
-	echo $container->generateChild($child);
+	$buffer .= $container->generateChild($child);
 }
 
+echo $buffer;
+
 ?>
-<?php if($attributes): ?>
+<?php if($container->getRenderContainer()): ?>
 </div>
 <?php endif; ?>

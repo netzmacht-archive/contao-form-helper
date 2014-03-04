@@ -45,7 +45,7 @@ class Attributes implements GenerateInterface, \IteratorAggregate
 	 */
 	function __construct(array $attributes=array())
 	{
-		$this->attributes = $attributes;
+		$this->attributes = array_merge(array('class' => array()), $attributes);
 	}
 
 
