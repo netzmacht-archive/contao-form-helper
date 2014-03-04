@@ -26,24 +26,19 @@ class Helper
 	protected $dispatcher;
 
 	/**
-	 * @var \Database
+	 * @var FormLocator
 	 */
-	protected $database;
-
-	/**
-	 * @var \Database\Result[]
-	 */
-	protected $forms = array();
+	protected $forms;
 
 
 	/**
 	 * @param EventDispatcherInterface $dispatcher
-	 * @param \Database $database
+	 * @param $forms
 	 */
-	function __construct(EventDispatcherInterface $dispatcher, \Database $database)
+	function __construct(EventDispatcherInterface $dispatcher, FormLocator $forms)
 	{
 		$this->dispatcher = $dispatcher;
-		$this->database   = $database;
+		$this->forms      = $forms;
 	}
 
 
@@ -62,7 +57,7 @@ class Helper
 	 */
 	public function getLayout(\Widget $widget)
 	{
-		$form  = $this->getForm($widget->pid);
+		$form  = $this->forms->getForm($widget->pid);
 		$event = new SelectLayoutEvent($widget, $form);
 		$this->dispatcher->dispatch(Events::SELECT_LAYOUT, $event);
 
@@ -92,7 +87,7 @@ class Helper
 	 */
 	public function generate(\Widget $widget)
 	{
-		$form      = $this->getForm($widget->pid);
+		$form      = $this->forms->getForm($widget->pid);
 		$label     = new Label();
 		$container = new Container(new Attributes());
 		$errors    = new Errors($widget->getErrors(), new Attributes());
@@ -109,24 +104,6 @@ class Helper
 		}
 
 		return array($label, $container, $errors);
-	}
-
-
-	/**
-	 * @param $id
-	 * @return \Database\Result
-	 */
-	protected function getForm($id)
-	{
-		if(!isset($this->forms[$id])) {
-			$result = $this->database
-				->prepare('SELECT * FROM tl_form WHERE id=?')
-				->execute($id);
-
-			$this->forms[$id] = $result;
-		}
-
-		return $this->forms[$id];
 	}
 
 }

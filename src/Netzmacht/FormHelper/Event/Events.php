@@ -20,4 +20,6 @@ class Events
 
 	const CREATE_ELEMENT        = 'form-helper.crete-element';
 
+	const VALIDATE              = 'form-helper.validate';
+
 }

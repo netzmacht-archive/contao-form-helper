@@ -264,6 +264,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 
 		if($widget->mandatory) {
 			$mandatory = $label->createElement('span', array('class' => array('mandatory')));
+			$mandatory->addChild(sprintf('<span class="invisible">%s</span>', $GLOBALS['TL_LANG']['MSC']['mandatory']));
 			$mandatory->addChild('*');
 
 			$label->addChild($mandatory);
