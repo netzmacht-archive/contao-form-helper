@@ -29,8 +29,6 @@ abstract class Options extends Node
 	{
 		$this->options = $options;
 		$this->children = array();
-
-		$this->addChildren($this->buildChildren($options));
 	}
 
 
@@ -63,12 +61,5 @@ abstract class Options extends Node
 	{
 		return $this->value;
 	}
-
-
-	/**
-	 * @param array $options
-	 * @return string
-	 */
-	abstract protected function buildChildren(array $options);
 
 } 

@@ -8,9 +8,12 @@
 
 namespace Netzmacht\FormHelper\Html\Element;
 
+use Netzmacht\FormHelper\TemplateInterface;
+use Netzmacht\FormHelper\Transfer\TemplateTrait;
 
-class Checkboxes extends Options
+class Checkboxes extends Options implements TemplateInterface
 {
+	use TemplateTrait;
 
 	/**
 	 * @param array $attributes
@@ -18,58 +21,22 @@ class Checkboxes extends Options
 	function __construct($attributes = array())
 	{
 		parent::__construct('fieldset', $attributes);
+
+		$this->template = 'formhelper_element_checkboxes';
 	}
 
+
 	/**
-	 * @param array $options
-	 * @return array
+	 * @return string|void
 	 */
-	protected function buildChildren(array $options)
+	public function generate()
 	{
-		$children = array();
-		$group = $this;
-		$index = 0;
+		$template = new \FrontendTemplate($this->template);
+		$template->options = $this->options;
+		$template->attributes = $this->getAttributes();
+		$template->tag = $this->getTag();
 
-		foreach($options as $name => $value) {
-			// group
-			if(isset($value['group']) && $value['group']) {
-				$headline = $this->createElement('legend');
-				$headline->addChild($value['label']);
-
-				$group = $this->createElement('fieldset');
-				$group->addClass('checkbox_container');
-				$group->addChild($headline);
-
-				$this->addChild($group);
-			}
-			else {
-				$option = $this
-					->createElement('input', array('type' => 'checkbox'))
-					->setAttribute('name', $this->getAttribute('name') . '[]')
-					->setId($this->getId() . '_' . $index)
-					->setAttribute('value', $value['value']);
-
-				if(in_array($value['value'], $this->value)) {
-					$option->setAttribute('checked', true);
-				}
-
-				$container = $this->createElement('span');
-
-				$label = $this->createElement('label');
-				$label->setAttribute('for', $option->getId());
-				$label->addChild($value['label']);
-
-				$container->addChild($option);
-				$container->addChild(' ');
-				$container->addChild($label);
-
-				$group->addChild($container);
-			}
-
-			$index++;
-		}
-
-		return $children;
+		return $template->parse();
 	}
 
 } 
