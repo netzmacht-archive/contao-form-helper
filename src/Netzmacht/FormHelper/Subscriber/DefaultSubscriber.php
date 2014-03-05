@@ -206,8 +206,10 @@ class DefaultSubscriber implements EventSubscriberInterface
 		$container = $event->getContainer();
 		$element   = $container->getElement();
 		$label     = $event->getLabel();
+		$errors    = $event->getErrors();
 
 		$this->presetLabel($label, $widget);
+		$errors->addClass('error');
 
 		if($element) {
 			$element->setId('ctrl_' . $widget->id);

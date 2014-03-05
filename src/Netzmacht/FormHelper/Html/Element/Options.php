@@ -2,9 +2,14 @@
 
 namespace Netzmacht\FormHelper\Html\Element;
 
+use Netzmacht\FormHelper\Html\Element;
+use Netzmacht\FormHelper\TemplateInterface;
+use Netzmacht\FormHelper\Transfer\TemplateTrait;
 
-abstract class Options extends Node
+
+abstract class Options extends Element implements TemplateInterface
 {
+	use TemplateTrait;
 
 	/**
 	 * @var string
@@ -60,6 +65,20 @@ abstract class Options extends Node
 	public function getValue()
 	{
 		return $this->value;
+	}
+
+
+	/**
+	 * @return string|void
+	 */
+	public function generate()
+	{
+		$template             = new \FrontendTemplate($this->template);
+		$template->options    = $this->options;
+		$template->attributes = $this->getAttributes();
+		$template->tag        = $this->getTag();
+
+		return $template->parse();
 	}
 
 } 
