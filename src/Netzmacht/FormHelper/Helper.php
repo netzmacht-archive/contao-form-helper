@@ -83,7 +83,7 @@ class Helper
 
 	/**
 	 * @param \Widget $widget
-	 * @return array()
+	 * @return array|false
 	 */
 	public function generate(\Widget $widget)
 	{
@@ -93,17 +93,24 @@ class Helper
 		$errors    = new Errors($widget->getErrors(), new Attributes());
 
 		$events = array(Events::BUILD_ELEMENT, Events::PRE_GENERATE, Events::GENERATE);
+		$visible = true;
 
 		foreach($events as $eventName) {
 			$event = new GenerateEvent($widget, $form);
 			$event->setLabel($label);
 			$event->setErrors($errors);
 			$event->setContainer($container);
+			$event->setVisible($visible);
 
 			$this->dispatcher->dispatch($eventName, $event);
+			$visible = $event->isVisible();
 		}
 
-		return array($label, $container, $errors);
+		if($visible) {
+			return array($label, $container, $errors);
+		}
+
+		return false;
 	}
 
 }

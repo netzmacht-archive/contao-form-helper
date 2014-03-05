@@ -192,6 +192,21 @@ class Container implements GenerateInterface, TemplateInterface, ElementContaine
 
 
 	/**
+	 * @param $name
+	 * @return mixed
+	 * @throws \Exception
+	 */
+	public function getPosition($name)
+	{
+		if($this->has($name)) {
+			return $this->position[$name];
+		}
+
+		throw new \Exception(sprintf('Unkown child with name "%s"', $name));
+	}
+
+
+	/**
 	 * @param string
 	 * @return array
 	 */
@@ -225,6 +240,38 @@ class Container implements GenerateInterface, TemplateInterface, ElementContaine
 		}
 
 		return null;
+	}
+
+
+	/**
+	 * Rearrange order of assigned elements
+	 * @param array $order Can be a list of element names or an reset of position as well
+	 * @return $this
+	 */
+	public function rearrange(array $order)
+	{
+		$position = $this->position;
+		$this->position = array();
+
+		// rearrange order
+		foreach($order as $item => $pos) {
+			if(!is_string($item)) {
+				$item = $pos;
+				$pos = $position[$item];
+			}
+
+			if(isset($position[$item])) {
+				$this->position[$item] = $pos;
+				unset($position[$item]);
+			}
+		}
+
+		// apply old orders of not mentioned elements
+		foreach($position as $item => $pos) {
+			$this->position[$item] = $pos;
+		}
+
+		return $this;
 	}
 
 

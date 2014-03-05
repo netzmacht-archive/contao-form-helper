@@ -24,6 +24,11 @@ class GenerateEvent extends WidgetEvent
 	 */
 	protected $container;
 
+	/**
+	 * @var bool
+	 */
+	protected $visible = true;
+
 
 	/**
 	 * @param \Netzmacht\FormHelper\Transfer\Container $container
@@ -76,6 +81,25 @@ class GenerateEvent extends WidgetEvent
 	public function getLabel()
 	{
 		return $this->label;
+	}
+
+
+	/**
+	 * @param boolean $visible
+	 */
+	public function setVisible($visible)
+	{
+		$this->visible = (bool) $visible;
+		return;
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	public function isVisible()
+	{
+		return $this->visible;
 	}
 
 } 
