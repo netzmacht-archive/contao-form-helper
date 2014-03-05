@@ -2,8 +2,10 @@
 
 namespace Netzmacht\FormHelper;
 
+use Netzmacht\FormHelper\Event\BuildElementEvent;
 use Netzmacht\FormHelper\Event\Events;
 use Netzmacht\FormHelper\Event\GenerateEvent;
+use Netzmacht\FormHelper\Event\PreGenerateEvent;
 use Netzmacht\FormHelper\Event\SelectLayoutEvent;
 use Netzmacht\FormHelper\Event\SelectMessageLayoutEvent;
 use Netzmacht\FormHelper\Html\Attributes;
@@ -92,21 +94,35 @@ class Helper
 		$container = new Container(new Attributes());
 		$errors    = new Errors($widget->getErrors(), new Attributes());
 
-		$events = array(Events::BUILD_ELEMENT, Events::PRE_GENERATE, Events::GENERATE);
-		$visible = true;
+		// build element event
+		$event = new BuildElementEvent($widget, $form);
+		$this->dispatcher->dispatch(Events::BUILD_ELEMENT, $event);
 
-		foreach($events as $eventName) {
-			$event = new GenerateEvent($widget, $form);
-			$event->setLabel($label);
-			$event->setErrors($errors);
-			$event->setContainer($container);
-			$event->setVisible($visible);
+		$element = $event->getElement();
 
-			$this->dispatcher->dispatch($eventName, $event);
-			$visible = $event->isVisible();
+		// no element given by build event. generate default form widget instead
+		if(!$element) {
+			$element = $widget->generate();
 		}
 
-		if($visible) {
+		// pre generate
+		$container->setElement($element);
+		$event = new PreGenerateEvent($widget, $form);
+		$event->setLabel($label);
+		$event->setErrors($errors);
+		$event->setContainer($container);
+
+		$this->dispatcher->dispatch(Events::PRE_GENERATE, $event);
+
+		// generate
+		$event = new GenerateEvent($widget, $form);
+		$event->setLabel($label);
+		$event->setErrors($errors);
+		$event->setContainer($container);
+
+		$this->dispatcher->dispatch(Events::GENERATE, $event);
+
+		if($event->isVisible()) {
 			return array($label, $container, $errors);
 		}
 

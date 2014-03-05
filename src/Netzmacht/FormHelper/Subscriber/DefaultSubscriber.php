@@ -2,6 +2,7 @@
 
 namespace Netzmacht\FormHelper\Subscriber;
 
+use Netzmacht\FormHelper\Event\BuildElementEvent;
 use Netzmacht\FormHelper\Event\CreateElementEvent;
 use Netzmacht\FormHelper\Event\Events;
 use Netzmacht\FormHelper\Event\GenerateEvent;
@@ -76,7 +77,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 
 
 	/**
-	 * @param CreateElementEvent $event
+	 * @param BuildElementEvent $event
 	 */
 	public function createElement(CreateElementEvent $event)
 	{
@@ -137,12 +138,11 @@ class DefaultSubscriber implements EventSubscriberInterface
 
 
 	/**
-	 * @param GenerateEvent $event
+	 * @param BuildElementEvent $event
 	 */
-	public function buildElement(GenerateEvent $event)
+	public function buildElement(BuildElementEvent $event)
 	{
 		$widget    = $event->getWidget();
-		$container = $event->getContainer();
 		$element   = null;
 
 		switch($widget->type) {
@@ -186,14 +186,14 @@ class DefaultSubscriber implements EventSubscriberInterface
 			case 'textarea':
 			case 'select':
 				$element = Element::createElement($widget->type);
-				$element->setAttribute('name', $widget->name);
+
 				break;
 
 			default:
 				return;
 		}
 
-		$container->setElement($element);
+		$event->setElement($element);
 	}
 
 
@@ -211,7 +211,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 		$this->presetLabel($label, $widget);
 		$errors->addClass('error');
 
-		if($element) {
+		if($element && $element instanceof Element) {
 			$element->setId('ctrl_' . $widget->id);
 			$element->addClass($widget->type);
 
