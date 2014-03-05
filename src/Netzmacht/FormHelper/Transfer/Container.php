@@ -226,7 +226,7 @@ class Container implements GenerateInterface, TemplateInterface, ElementContaine
 
 	/**
 	 * @param $name
-	 * @return GenerateInterface|string
+	 * @return Element|string
 	 */
 	public function remove($name)
 	{

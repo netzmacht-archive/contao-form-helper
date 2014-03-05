@@ -6,6 +6,7 @@ use Netzmacht\FormHelper\Event\BuildElementEvent;
 use Netzmacht\FormHelper\Event\CreateElementEvent;
 use Netzmacht\FormHelper\Event\Events;
 use Netzmacht\FormHelper\Event\GenerateEvent;
+use Netzmacht\FormHelper\Event\PreGenerateEvent;
 use Netzmacht\FormHelper\Event\SelectLayoutEvent;
 use Netzmacht\FormHelper\Html\Element;
 use Netzmacht\FormHelper\Transfer\Label;
@@ -77,7 +78,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 
 
 	/**
-	 * @param BuildElementEvent $event
+	 * @param CreateElementEvent $event
 	 */
 	public function createElement(CreateElementEvent $event)
 	{
@@ -198,9 +199,9 @@ class DefaultSubscriber implements EventSubscriberInterface
 
 
 	/**
-	 * @param GenerateEvent $event
+	 * @param PreGenerateEvent $event
 	 */
-	public function setDefaults(GenerateEvent $event)
+	public function setDefaults(PreGenerateEvent $event)
 	{
 		$widget    = $event->getWidget();
 		$container = $event->getContainer();

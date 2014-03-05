@@ -12,7 +12,7 @@ class Select extends Options
 	 */
 	function __construct($attributes = array())
 	{
-		parent::__construct('fieldset', $attributes);
+		parent::__construct('select', $attributes);
 
 		$this->template = 'formhelper_element_select';
 	}

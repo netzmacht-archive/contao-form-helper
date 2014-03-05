@@ -103,6 +103,10 @@ class Helper
 		// no element given by build event. generate default form widget instead
 		if(!$element) {
 			$element = $widget->generate();
+			$label   = $widget->generateLabel();
+			$errors  = $widget->getErrorAsHTML();
+
+			return array($label, $element, $errors);
 		}
 
 		// pre generate
