@@ -1,7 +1,5 @@
 <?php
 
-\NamespaceClassLoader::add('Netzmacht', 'system/modules/formHelper');
-
 \TemplateLoader::addFile('formhelper_element_container', 'system/modules/formHelper/templates/element');
 \TemplateLoader::addFile('formhelper_element_default', 'system/modules/formHelper/templates/element');
 \TemplateLoader::addFile('formhelper_element_checkboxes', 'system/modules/formHelper/templates/element');
