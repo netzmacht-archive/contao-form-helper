@@ -234,7 +234,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 			$submit->setAttribute('type', 'submit');
 			$submit->setAttribute('value', $widget->slabel);
 
-			$container->add('submit', $submit);
+			$container->addChild('submit', $submit);
 		}
 	}
 
@@ -250,7 +250,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 		if($widget->type == 'captcha') {
 			/** @var \FormCaptcha $widget */
 			$question = $widget->generateQuestion();
-			$container->add('question', $question);
+			$container->addChild('question', $question);
 		}
 	}
 

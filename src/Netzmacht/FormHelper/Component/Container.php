@@ -164,7 +164,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 	 * @param string $position
 	 * @return $this
 	 */
-	public function add($name, $child, $position=Container::POSITION_AFTER)
+	public function addChild($name, $child, $position=Container::POSITION_AFTER)
 	{
 		$this->children[$name] = $child;
 		$this->position[$name] = $position;
@@ -178,9 +178,9 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 	 * @return GenerateInterface|string
 	 * @throws
 	 */
-	public function get($name)
+	public function getChild($name)
 	{
-		if($this->has($name)) {
+		if($this->hasChild($name)) {
 			return $this->children[$name];
 		}
 
@@ -193,9 +193,9 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 	 * @return mixed
 	 * @throws \Exception
 	 */
-	public function getPosition($name)
+	public function getChildPosition($name)
 	{
-		if($this->has($name)) {
+		if($this->hasChild($name)) {
 			return $this->position[$name];
 		}
 
@@ -207,7 +207,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 	 * @param string
 	 * @return array
 	 */
-	public function getByPosition($destination)
+	public function getChildByPosition($destination)
 	{
 		$before = array();
 
@@ -225,10 +225,10 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 	 * @param $name
 	 * @return Element|string
 	 */
-	public function remove($name)
+	public function removeChild($name)
 	{
-		if($this->has($name)) {
-			$child = $this->get($name);
+		if($this->hasChild($name)) {
+			$child = $this->getChild($name);
 
 			unset($this->children[$name]);
 			unset($this->position[$name]);
@@ -245,7 +245,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 	 * @param array $order Can be a list of element names or an reset of position as well
 	 * @return $this
 	 */
-	public function rearrange(array $order)
+	public function rearrangeChildren(array $order)
 	{
 		$position = $this->position;
 		$this->position = array();
@@ -276,7 +276,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 	 * @param $name
 	 * @return bool
 	 */
-	public function has($name)
+	public function hasChild($name)
 	{
 		return isset($this->children[$name]);
 	}
@@ -289,8 +289,8 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 	{
 		if($this->template) {
 			$template = new \FrontendTemplate($this->template);
-			$template->before  = $this->getByPosition(static::POSITION_BEFORE);
-			$template->after   = $this->getByPosition(static::POSITION_AFTER);
+			$template->before  = $this->getChildByPosition(static::POSITION_BEFORE);
+			$template->after   = $this->getChildByPosition(static::POSITION_AFTER);
 			$template->container = $this;
 
 			if($this->wrapper) {
@@ -303,9 +303,9 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 			return $template->parse();
 		}
 
-		$buffer  = $this->generateByPosition(static::POSITION_BEFORE);
+		$buffer  = $this->generateChildren(static::POSITION_BEFORE);
 		$buffer .= $this->generateElement();
-		$buffer .= $this->generateByPosition(static::POSITION_AFTER);
+		$buffer .= $this->generateChildren(static::POSITION_AFTER);
 
 		if($this->renderContainer) {
 			return sprintf('<div %s>%s</div>', $this->attributes, $buffer);
@@ -328,11 +328,11 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 	 * @param $position
 	 * @return string
 	 */
-	public function generateByPosition($position)
+	public function generateChildren($position)
 	{
 		$buffer = '';
 
-		foreach($this->getByPosition($position) as $child) {
+		foreach($this->getChildByPosition($position) as $child) {
 			$buffer .= $this->generateChild($child);
 		}
 
