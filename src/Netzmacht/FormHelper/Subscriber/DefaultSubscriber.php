@@ -71,7 +71,10 @@ class DefaultSubscriber implements EventSubscriberInterface
 			Events::SELECT_LAYOUT             => array('selectLayout', 1000),
 			Events::BUILD_ELEMENT             => array('buildElement', 1000),
 			Events::PRE_GENERATE              => array('setDefaults', 1000),
-			Events::GENERATE                  => array('generateCaptcha', 1000),
+			Events::GENERATE                  => array(
+				array('generateCaptcha', 1000),
+				array('generatePasswordConfirmation')
+			),
 			Events::CREATE_ELEMENT            => array('createElement', -1000),
 		);
 	}
@@ -251,6 +254,35 @@ class DefaultSubscriber implements EventSubscriberInterface
 			/** @var \FormCaptcha $widget */
 			$question = $widget->generateQuestion();
 			$container->addChild('question', $question);
+		}
+	}
+
+
+	/**
+	 * @param GenerateEvent $event
+	 */
+	public function generatePasswordConfirmation(GenerateEvent $event)
+	{
+		$widget    = $event->getWidget();
+
+		if($widget instanceof \FormPassword) {
+			$container = $event->getContainer();
+			$element   = $container->getElement();
+			$label     = $event->getLabel();
+
+			$repeatId    = $element->getId() . '_confirm';
+			$repeatLabel = Element::create('label', array('class' => $label->getAttribute('class')))
+				->addChild(sprintf($GLOBALS['TL_LANG']['MSC']['confirmation'], $widget->label))
+				->setAttribute('for', $repeatId);
+
+			/** @var Element $repeat */
+			$repeat = clone $element;
+			$repeat->setId($repeatId)
+				->setAttribute('name', $repeat->getAttribute('name') . '_confirm')
+				->setAttribute('value', '');
+
+			$container->addChild('repeat', $repeat);
+			$container->addChild('repeatLabel', $repeatLabel);
 		}
 	}
 

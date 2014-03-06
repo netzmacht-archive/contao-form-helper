@@ -14,6 +14,7 @@
 \TemplateLoader::addFile('form_captcha', 'system/modules/formHelper/templates/widget');
 \TemplateLoader::addFile('form_checkbox', 'system/modules/formHelper/templates/widget');
 \TemplateLoader::addFile('form_headline', 'system/modules/formHelper/templates/widget');
+\TemplateLoader::addFile('form_password', 'system/modules/formHelper/templates/widget');
 \TemplateLoader::addFile('form_radio', 'system/modules/formHelper/templates/widget');
 \TemplateLoader::addFile('form_submit', 'system/modules/formHelper/templates/widget');
 
