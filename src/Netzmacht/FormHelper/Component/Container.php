@@ -308,7 +308,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 		$buffer .= $this->generateChildren(static::POSITION_AFTER);
 
 		if($this->renderContainer) {
-			return sprintf('<div %s>%s</div>', $this->attributes, $buffer);
+			return sprintf('<div %s>%s%s%s</div>%s', $this->attributes, PHP_EOL, $buffer, PHP_EOL, PHP_EOL);
 		}
 
 		return $buffer;

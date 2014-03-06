@@ -14,7 +14,7 @@ class Standalone extends Element
 	public function generate()
 	{
 		return sprintf(
-			'<%s %s>',
+			'<%s %s>' . PHP_EOL,
 			$this->tag,
 			$this->attributes->generate()
 		);

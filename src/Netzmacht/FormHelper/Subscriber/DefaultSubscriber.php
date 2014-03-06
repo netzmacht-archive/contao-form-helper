@@ -181,8 +181,9 @@ class DefaultSubscriber implements EventSubscriberInterface
 				$element->setAttribute('name', $widget->name);
 				break;
 
-			case 'text':
+			case 'password':
 			case 'submit':
+			case 'text':
 				$element = Element::create('input', array('type' => $widget->type));
 				$element->setAttribute('name', $widget->name);
 				break;
@@ -362,7 +363,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 			$element->setAttribute('required', true);
 		}
 
-		$transform = array('tabindex', 'accesskey', 'maxlength', 'placeholder', 'value', 'size');
+		$transform = array('tabindex', 'accesskey', 'maxlength', 'placeholder', 'value');
 
 		foreach($transform as $attribute) {
 			if($widget->$attribute) {
@@ -370,6 +371,9 @@ class DefaultSubscriber implements EventSubscriberInterface
 			}
 		}
 
+		if($widget instanceof \FormFileUpload && $widget->size) {
+			$element->setAttribute('size', $widget->size);
+		}
 	}
 
 
