@@ -1,5 +1,5 @@
 {
-    "name":"netzmacht/contao-form-helpers",
+    "name":"netzmacht/contao-form-helper",
     "description":"Library for supporting customized Contao form rendering",
     "keywords":["contao", "form", "helper"],
     "type":"contao-module",
