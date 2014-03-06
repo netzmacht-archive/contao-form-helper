@@ -1,6 +1,6 @@
 <?php
 
-namespace Netzmacht\FormHelper\Transfer;
+namespace Netzmacht\FormHelper\Component;
 
 use Netzmacht\FormHelper\Html\Element\Node;
 

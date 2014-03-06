@@ -14,11 +14,11 @@ foreach($this->options as $option):
 			echo $group;
 		}
 
-		$group = Element::createElement('optgroup');
+		$group = Element::create('optgroup');
 		$group->setAttribute('label', $option['label']);
 
 	else:
-		$child = Element::createElement('option')
+		$child = Element::create('option')
 			->setAttribute('value', $option['value'])
 			->addChild($option['label']);
 

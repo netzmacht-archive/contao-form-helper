@@ -9,7 +9,7 @@ use Netzmacht\FormHelper\Event\GenerateEvent;
 use Netzmacht\FormHelper\Event\PreGenerateEvent;
 use Netzmacht\FormHelper\Event\SelectLayoutEvent;
 use Netzmacht\FormHelper\Html\Element;
-use Netzmacht\FormHelper\Transfer\Label;
+use Netzmacht\FormHelper\Component\Label;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class DefaultSubscriber implements EventSubscriberInterface
@@ -149,44 +149,44 @@ class DefaultSubscriber implements EventSubscriberInterface
 		switch($widget->type) {
 			case 'explanation':
 			case 'headline':
-				$element = Element::createElement('div');
+				$element = Element::create('div');
 				$element->addChild($widget->text);
 				break;
 
 			case 'html':
-				$element = Element::createElement('div');
+				$element = Element::create('div');
 				$element->addChild($widget->html);
 				break;
 
 			case 'checkbox':
-				$element = Element::createElement('checkboxes');
+				$element = Element::create('checkboxes');
 				$element->setAttribute('name', $widget->name);
 				break;
 
 			case 'radio':
-				$element = Element::createElement('radios');
+				$element = Element::create('radios');
 				$element->setAttribute('name', $widget->name);
 				break;
 
 			case 'captcha':
-				$element = Element::createElement('input', array('type' => 'text'));
+				$element = Element::create('input', array('type' => 'text'));
 				$element->setAttribute('name', $widget->name);
 				break;
 
 			case 'upload':
-				$element = Element::createElement('input', array('type' => 'file'));
+				$element = Element::create('input', array('type' => 'file'));
 				$element->setAttribute('name', $widget->name);
 				break;
 
 			case 'text':
 			case 'submit':
-				$element = Element::createElement('input', array('type' => $widget->type));
+				$element = Element::create('input', array('type' => $widget->type));
 				$element->setAttribute('name', $widget->name);
 				break;
 
 			case 'textarea':
 			case 'select':
-				$element = Element::createElement($widget->type);
+				$element = Element::create($widget->type);
 
 				break;
 
@@ -230,7 +230,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 
 		if($widget->addSubmit && $widget->type != 'submit') {
 
-			$submit = Element::createElement('input');
+			$submit = Element::create('input');
 			$submit->setAttribute('type', 'submit');
 			$submit->setAttribute('value', $widget->slabel);
 
@@ -266,7 +266,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 		}
 
 		if($widget->mandatory) {
-			$mandatory = $label->createElement('span', array('class' => array('mandatory')));
+			$mandatory = $label->create('span', array('class' => array('mandatory')));
 			$mandatory->addChild(sprintf('<span class="invisible">%s</span>', $GLOBALS['TL_LANG']['MSC']['mandatory']));
 			$mandatory->addChild('*');
 

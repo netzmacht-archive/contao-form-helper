@@ -2,6 +2,7 @@
 
 namespace Netzmacht\FormHelper\Html;
 
+use Netzmacht\FormHelper\Component;
 use Netzmacht\FormHelper\Event\CreateElementEvent;
 use Netzmacht\FormHelper\Event\Events;
 use Netzmacht\FormHelper\GenerateInterface;
@@ -14,10 +15,8 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  * Class Node
  * @package Netzmacht\FormHelper\Html
  */
-abstract class Element implements GenerateInterface
+abstract class Element extends Component implements GenerateInterface
 {
-	use AttributesTrait;
-
 	/**
 	 * @var string
 	 */
@@ -30,13 +29,8 @@ abstract class Element implements GenerateInterface
 	 */
 	function __construct($tag, $attributes=array())
 	{
-		$default = array(
-			'class' => array()
-		);
+		parent::__construct($attributes);
 
-		$attributes = array_merge($default, $attributes);
-
-		$this->attributes = new Attributes($attributes);
 		$this->tag = $tag;
 	}
 
@@ -55,7 +49,7 @@ abstract class Element implements GenerateInterface
 	 * @param array $attributes
 	 * @return Standalone|Node
 	 */
-	public static function createElement($tag, array $attributes=array())
+	public static function create($tag, array $attributes=array())
 	{
 		/** @var EventDispatcherInterface $dispatcher */
 		$dispatcher = $GLOBALS['container']['event-dispatcher'];
@@ -68,23 +62,15 @@ abstract class Element implements GenerateInterface
 
 
 	/**
-	 * @param $value
+	 * @param Node $parent
+	 * @param string $position
 	 * @return $this
 	 */
-	public function setId($value)
+	public function appendTo(Node $parent, $position=Node::POSITION_LAST)
 	{
-		$this->setAttribute('id', $value);
+		$parent->addChild($this, $position);
 
 		return $this;
-	}
-
-
-	/**
-	 * @return mixed
-	 */
-	public function getId()
-	{
-		return $this->getAttribute('id');
 	}
 
 

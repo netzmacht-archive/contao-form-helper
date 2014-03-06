@@ -69,6 +69,31 @@ class Node extends Element
 
 
 	/**
+	 * @param $child
+	 * @return int|false
+	 */
+	public function getChildPosition($child)
+	{
+		return array_search($child, $this->children);
+	}
+
+
+	/**
+	 * @param $tag
+	 * @param array $attributes
+	 * @param string $position
+	 * @return Node|Standalone
+	 */
+	public function createChild($tag, $attributes=array(), $position=Node::POSITION_LAST)
+	{
+		$child = Element::create($tag, $attributes);
+		$this->addChild($child, $position);
+
+		return $child;
+	}
+
+
+	/**
 	 * @return array
 	 */
 	public function getChildren()

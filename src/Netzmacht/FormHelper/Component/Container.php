@@ -1,18 +1,14 @@
 <?php
 
-namespace Netzmacht\FormHelper\Transfer;
+namespace Netzmacht\FormHelper\Component;
 
 use Netzmacht\FormHelper\ElementContainerInterface;
 use Netzmacht\FormHelper\GenerateInterface;
-use Netzmacht\FormHelper\Html\Attributes;
-use Netzmacht\FormHelper\Html\AttributesTrait;
 use Netzmacht\FormHelper\Html\Element;
 use Netzmacht\FormHelper\TemplateInterface;
 
-class Container implements GenerateInterface, TemplateInterface, ElementContainerInterface
+class Container extends TemplateComponent implements GenerateInterface, TemplateInterface, ElementContainerInterface
 {
-	use TemplateTrait;
-	use AttributesTrait;
 
 	const POSITION_BEFORE = 'before';
 	const POSITION_AFTER = 'after';
@@ -49,12 +45,13 @@ class Container implements GenerateInterface, TemplateInterface, ElementContaine
 
 
 	/**
-	 * @param Attributes $attributes
+	 * @param array $attributes
 	 */
-	function __construct(Attributes $attributes)
+	function __construct(array $attributes=array())
 	{
+		parent::__construct($attributes);
+
 		$this->renderContainer = false;
-		$this->attributes = $attributes;
 	}
 
 

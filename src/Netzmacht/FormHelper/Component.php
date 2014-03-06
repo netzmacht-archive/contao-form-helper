@@ -1,20 +1,25 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: david
- * Date: 03.03.14
- * Time: 20:36
- */
 
-namespace Netzmacht\FormHelper\Html;
+namespace Netzmacht\FormHelper;
 
+use Netzmacht\FormHelper\Html\Attributes;
 
-trait AttributesTrait
+class Component
 {
 	/**
 	 * @var Attributes
 	 */
 	protected $attributes;
+
+
+	/**
+	 * @param array $attributes
+	 */
+	function __construct(array $attributes = array())
+	{
+		$attributes = array_merge(array('class' => array()), $attributes);
+		$this->attributes = new Attributes($attributes);
+	}
 
 
 	/**

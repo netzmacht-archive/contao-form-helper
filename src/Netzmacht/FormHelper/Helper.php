@@ -9,9 +9,9 @@ use Netzmacht\FormHelper\Event\PreGenerateEvent;
 use Netzmacht\FormHelper\Event\SelectLayoutEvent;
 use Netzmacht\FormHelper\Event\SelectMessageLayoutEvent;
 use Netzmacht\FormHelper\Html\Attributes;
-use Netzmacht\FormHelper\Transfer\Container;
-use Netzmacht\FormHelper\Transfer\Errors;
-use Netzmacht\FormHelper\Transfer\Label;
+use Netzmacht\FormHelper\Component\Container;
+use Netzmacht\FormHelper\Component\Errors;
+use Netzmacht\FormHelper\Component\Label;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class Helper
@@ -91,8 +91,8 @@ class Helper
 	{
 		$form      = $this->forms->getForm($widget->pid);
 		$label     = new Label();
-		$container = new Container(new Attributes());
-		$errors    = new Errors($widget->getErrors(), new Attributes());
+		$container = new Container();
+		$errors    = new Errors($widget->getErrors());
 
 		// build element event
 		$event = new BuildElementEvent($widget, $form);

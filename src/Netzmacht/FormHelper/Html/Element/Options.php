@@ -4,12 +4,10 @@ namespace Netzmacht\FormHelper\Html\Element;
 
 use Netzmacht\FormHelper\Html\Element;
 use Netzmacht\FormHelper\TemplateInterface;
-use Netzmacht\FormHelper\Transfer\TemplateTrait;
 
 
 abstract class Options extends Element implements TemplateInterface
 {
-	use TemplateTrait;
 
 	/**
 	 * @var string
@@ -17,14 +15,19 @@ abstract class Options extends Element implements TemplateInterface
 	const CONTAINER_TAG = 'div';
 
 	/**
-	 * @var
+	 * @var mixed
 	 */
 	protected $value;
 
 	/**
-	 * @var
+	 * @var array
 	 */
 	protected $options;
+
+	/**
+	 * @var string
+	 */
+	protected $template;
 
 
 	/**
@@ -80,5 +83,27 @@ abstract class Options extends Element implements TemplateInterface
 
 		return $template->parse();
 	}
+
+
+	/**
+	 * @param string $name
+	 * @return $this
+	 */
+	public function setTemplateName($name)
+	{
+		$this->template = $name;
+
+		return $this->template;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getTemplateName()
+	{
+		return $this->template;
+	}
+
 
 } 

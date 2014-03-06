@@ -48,7 +48,7 @@ Events
 
 Events are dispatched by the (Contao Event dispatcher)[https://github.com/contao-community-alliance/event-dispatcher].
 Each event names are stored in `Netzmacht\FormHelper\Event\Events`:
- * `CREATE_ELEMENT` is fired as an factory event for creating Html elements by `Netzmacht\FormHelper\Html\Element::createElement`
+ * `CREATE_ELEMENT` is fired as an factory event for creating Html elements by `Netzmacht\FormHelper\Html\Element::create`
  * `Events::BUILD_ELEMENT` is fired when creating the Html element of the given widget
  * `Events::PRE_GENERATE` is fired after creating the element
  * `Events::GENERATE` is fired after pregenerating

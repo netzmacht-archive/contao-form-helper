@@ -1,10 +1,12 @@
 <?php
 
-namespace Netzmacht\FormHelper\Transfer;
+namespace Netzmacht\FormHelper\Component;
 
-trait TemplateTrait
+use Netzmacht\FormHelper\Component;
+use Netzmacht\FormHelper\TemplateInterface;
+
+class TemplateComponent extends Component implements TemplateInterface
 {
-
 	/**
 	 * @var string
 	 */

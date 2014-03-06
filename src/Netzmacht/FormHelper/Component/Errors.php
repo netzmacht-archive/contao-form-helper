@@ -1,16 +1,11 @@
 <?php
 
-namespace Netzmacht\FormHelper\Transfer;
+namespace Netzmacht\FormHelper\Component;
 
 use Netzmacht\FormHelper\GenerateInterface;
-use Netzmacht\FormHelper\Html\Attributes;
-use Netzmacht\FormHelper\Html\AttributesTrait;
-use Netzmacht\FormHelper\TemplateInterface;
 
-class Errors implements GenerateInterface, TemplateInterface
+class Errors extends TemplateComponent implements GenerateInterface
 {
-	use AttributesTrait;
-	use TemplateTrait;
 
 	/**
 	 * @var array
@@ -20,12 +15,13 @@ class Errors implements GenerateInterface, TemplateInterface
 
 	/**
 	 * @param array $errors
-	 * @param Attributes $attributes
+	 * @param array $attributes
 	 */
-	function __construct(array $errors, Attributes $attributes)
+	function __construct(array $errors, array $attributes=array())
 	{
+		parent::__construct($attributes);
+
 		$this->errors     = $errors;
-		$this->attributes = $attributes;
 		$this->template   = 'formhelper_error_last';
 	}
 

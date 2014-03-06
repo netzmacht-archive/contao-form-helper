@@ -2,9 +2,9 @@
 
 namespace Netzmacht\FormHelper\Event;
 
-use Netzmacht\FormHelper\Transfer\Label;
-use Netzmacht\FormHelper\Transfer\Errors;
-use Netzmacht\FormHelper\Transfer\Container;
+use Netzmacht\FormHelper\Component\Label;
+use Netzmacht\FormHelper\Component\Errors;
+use Netzmacht\FormHelper\Component\Container;
 
 class PreGenerateEvent extends WidgetEvent
 {
@@ -26,7 +26,7 @@ class PreGenerateEvent extends WidgetEvent
 
 
 	/**
-	 * @param \Netzmacht\FormHelper\Transfer\Container $container
+	 * @param \Netzmacht\FormHelper\Component\Container $container
 	 */
 	public function setContainer($container)
 	{
@@ -35,7 +35,7 @@ class PreGenerateEvent extends WidgetEvent
 
 
 	/**
-	 * @return \Netzmacht\FormHelper\Transfer\Container
+	 * @return \Netzmacht\FormHelper\Component\Container
 	 */
 	public function getContainer()
 	{
@@ -44,7 +44,7 @@ class PreGenerateEvent extends WidgetEvent
 
 
 	/**
-	 * @param \Netzmacht\FormHelper\Transfer\Errors $errors
+	 * @param \Netzmacht\FormHelper\Component\Errors $errors
 	 */
 	public function setErrors($errors)
 	{
@@ -53,7 +53,7 @@ class PreGenerateEvent extends WidgetEvent
 
 
 	/**
-	 * @return \Netzmacht\FormHelper\Transfer\Errors
+	 * @return \Netzmacht\FormHelper\Component\Errors
 	 */
 	public function getErrors()
 	{
@@ -62,7 +62,7 @@ class PreGenerateEvent extends WidgetEvent
 
 
 	/**
-	 * @param \Netzmacht\FormHelper\Transfer\Label $label
+	 * @param \Netzmacht\FormHelper\Component\Label $label
 	 */
 	public function setLabel($label)
 	{
@@ -71,7 +71,7 @@ class PreGenerateEvent extends WidgetEvent
 
 
 	/**
-	 * @return \Netzmacht\FormHelper\Transfer\Label
+	 * @return \Netzmacht\FormHelper\Component\Label
 	 */
 	public function getLabel()
 	{
