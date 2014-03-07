@@ -2,6 +2,7 @@
 
 namespace Netzmacht\FormHelper;
 
+use Netzmacht\FormHelper\Component\StaticHtml;
 use Netzmacht\FormHelper\Event\BuildElementEvent;
 use Netzmacht\FormHelper\Event\Events;
 use Netzmacht\FormHelper\Event\GenerateEvent;
@@ -100,17 +101,14 @@ class Helper
 
 		$element = $event->getElement();
 
-		// no element given by build event. generate default form widget instead
+		// no element given by build event. generate form widget instead
 		if(!$element) {
-			$element = $widget->generate();
-			$label   = $widget->generateLabel();
-			$errors  = $widget->getErrorAsHTML();
-
-			return array($label, $element, $errors);
+			$element = new StaticHtml($widget->generate());
 		}
 
-		// pre generate
 		$container->setElement($element);
+
+		// pre generate
 		$event = new PreGenerateEvent($widget, $form);
 		$event->setLabel($label);
 		$event->setErrors($errors);

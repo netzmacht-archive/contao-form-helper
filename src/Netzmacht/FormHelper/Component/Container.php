@@ -154,6 +154,19 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 
 
 	/**
+	 * @return bool
+	 */
+	public function hasStaticElement()
+	{
+		if(!$this->element || $this->element instanceof StaticHtml) {
+			return true;
+		}
+
+		return false;
+	}
+
+
+	/**
 	 * @param $name
 	 * @param $child
 	 * @param string $position

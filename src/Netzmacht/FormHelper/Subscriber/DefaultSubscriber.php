@@ -216,7 +216,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 		$this->presetLabel($label, $widget);
 		$errors->addClass('error');
 
-		if($element && $element instanceof Element) {
+		if(!$container->hasStaticElement()) {
 			$element->setId('ctrl_' . $widget->id);
 			$element->addClass($widget->type);
 
@@ -231,9 +231,12 @@ class DefaultSubscriber implements EventSubscriberInterface
 				$this->presetSubmit($element, $widget);
 			}
 		}
+		else {
+			$label->setAttribute('for', 'ctrl_' . $widget->id);
+		}
 
+		// add extra submit button
 		if($widget->addSubmit && $widget->type != 'submit') {
-
 			$submit = Element::create('input');
 			$submit->setAttribute('type', 'submit');
 			$submit->setAttribute('value', $widget->slabel);
@@ -264,7 +267,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 	 */
 	public function generatePasswordConfirmation(GenerateEvent $event)
 	{
-		$widget    = $event->getWidget();
+		$widget = $event->getWidget();
 
 		if($widget instanceof \FormPassword) {
 			$container = $event->getContainer();
