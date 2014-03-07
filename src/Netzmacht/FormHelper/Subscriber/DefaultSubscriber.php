@@ -216,7 +216,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 		$this->presetLabel($label, $widget);
 		$errors->addClass('error');
 
-		if(!$container->hasStaticElement()) {
+		if($container->hasDynamicElement()) {
 			$element->setId('ctrl_' . $widget->id);
 			$element->addClass($widget->type);
 

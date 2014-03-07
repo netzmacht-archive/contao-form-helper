@@ -9,7 +9,6 @@ use Netzmacht\FormHelper\Event\GenerateEvent;
 use Netzmacht\FormHelper\Event\PreGenerateEvent;
 use Netzmacht\FormHelper\Event\SelectLayoutEvent;
 use Netzmacht\FormHelper\Event\SelectMessageLayoutEvent;
-use Netzmacht\FormHelper\Html\Attributes;
 use Netzmacht\FormHelper\Component\Container;
 use Netzmacht\FormHelper\Component\Errors;
 use Netzmacht\FormHelper\Component\Label;
