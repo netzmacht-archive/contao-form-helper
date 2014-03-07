@@ -171,7 +171,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 	 */
 	public function hasDynamicElement()
 	{
-		if(!$this->element && $this->element instanceof Element) {
+		if(is_object($this->element) && $this->element instanceof Element) {
 			return true;
 		}
 
