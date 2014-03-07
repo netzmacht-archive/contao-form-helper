@@ -3,7 +3,7 @@
 namespace Netzmacht\FormHelper;
 
 
-interface ElementContainerInterface
+interface ElementAwareInterface
 {
 
 	/**

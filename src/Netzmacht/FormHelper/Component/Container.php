@@ -2,12 +2,12 @@
 
 namespace Netzmacht\FormHelper\Component;
 
-use Netzmacht\FormHelper\ElementContainerInterface;
+use Netzmacht\FormHelper\ElementAwareInterface;
 use Netzmacht\FormHelper\GenerateInterface;
 use Netzmacht\FormHelper\Html\Element;
 use Netzmacht\FormHelper\TemplateInterface;
 
-class Container extends TemplateComponent implements GenerateInterface, TemplateInterface, ElementContainerInterface
+class Container extends TemplateComponent implements GenerateInterface, TemplateInterface, ElementAwareInterface
 {
 
 	const POSITION_BEFORE = 'before';
@@ -29,7 +29,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 	protected $position = array();
 
 	/**
-	 * @var ElementContainerInterface
+	 * @var ElementAwareInterface
 	 */
 	protected $wrapper;
 
@@ -74,12 +74,11 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 
 
 	/**
-	 * @param ElementContainerInterface $wrapper
+	 * @param ElementAwareInterface $wrapper
 	 * @return $this
 	 */
-	public function setWrapper(ElementContainerInterface $wrapper)
+	public function setWrapper(ElementAwareInterface $wrapper)
 	{
-		$wrapper->setElement($this);
 		$this->wrapper = $wrapper;
 
 		return $this;
@@ -120,10 +119,6 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 	public function setElement($element)
 	{
 		$this->element = $element;
-
-		if($this->wrapper) {
-			$this->wrapper->setElement($element);
-		}
 
 		return $this;
 	}
