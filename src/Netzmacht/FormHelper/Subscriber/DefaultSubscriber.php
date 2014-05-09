@@ -196,7 +196,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 			case 'textarea':
 			case 'select':
 				$element = Element::create($widget->type);
-
+				$element->setAttribute('name', $widget->name);
 				break;
 
 			default:
