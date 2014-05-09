@@ -172,8 +172,13 @@ class DefaultSubscriber implements EventSubscriberInterface
 				break;
 
 			case 'captcha':
+				// generate question to fetch the name of the captcha element
+				// see #1
+				$widget->generateQuestion();
+				$name    = \Session::getInstance()->get('captcha_' . $widget->id);
+
 				$element = Element::create('input', array('type' => 'text'));
-				$element->setAttribute('name', $widget->name);
+				$element->setAttribute('name', $name['key']);
 				break;
 
 			case 'upload':
