@@ -172,12 +172,12 @@ class DefaultSubscriber implements EventSubscriberInterface
 				break;
 
 			case 'captcha':
-				// generate question to fetch the name of the captcha element
-				// see #1
+				// generate question to fetch the name of the captcha element, see #1
 				$widget->generateQuestion();
-				$name    = \Session::getInstance()->get('captcha_' . $widget->id);
 
+				$name    = \Session::getInstance()->get('captcha_' . $widget->id);
 				$element = Element::create('input', array('type' => 'text'));
+
 				$element->setAttribute('name', $name['key']);
 				break;
 
@@ -189,6 +189,10 @@ class DefaultSubscriber implements EventSubscriberInterface
 			case 'password':
 			case 'submit':
 			case 'text':
+			case 'digit':
+			case 'email':
+			case 'tel':
+			case 'url':
 				$element = Element::create('input', array('type' => $widget->type));
 				$element->setAttribute('name', $widget->name);
 				break;
@@ -221,7 +225,8 @@ class DefaultSubscriber implements EventSubscriberInterface
 		$this->presetLabel($label, $widget);
 		$errors->addClass('error');
 
-		if($container->hasDynamicElement()) {
+		// ensure element can be edited
+		if($element instanceof Element) {
 			$element->setId('ctrl_' . $widget->id);
 			$element->addClass($widget->type);
 
