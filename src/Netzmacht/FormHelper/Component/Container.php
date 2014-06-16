@@ -168,6 +168,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 
 	/**
 	 * @return bool
+	 * @deprecated just use $element instanceof Element in your coe
 	 */
 	public function hasDynamicElement()
 	{
