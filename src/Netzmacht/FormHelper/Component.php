@@ -155,4 +155,12 @@ class Component
 		return $this->getAttribute('id');
 	}
 
+
+	/**
+	 *
+	 */
+	public function __clone()
+	{
+		$this->attributes = clone $this->attributes;
+	}
 } 
