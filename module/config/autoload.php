@@ -24,8 +24,8 @@
 
 if(version_compare(VERSION, '3.3', '>=')) {
 	\TemplateLoader::addFile('formhelper_layout_row', 'system/modules/formHelper/templates/layout');
-	\TemplateLoader::addFile('form_textfield', 'system/modules/formHelper/templates/layout');
-	\TemplateLoader::addFile('form_textarea', 'system/modules/formHelper/templates/layout');
-	\TemplateLoader::addFile('form_select', 'system/modules/formHelper/templates/layout');
-	\TemplateLoader::addFile('form_upload', 'system/modules/formHelper/templates/layout');
+	\TemplateLoader::addFile('form_textfield', 'system/modules/formHelper/templates/widget');
+	\TemplateLoader::addFile('form_textarea', 'system/modules/formHelper/templates/widget');
+	\TemplateLoader::addFile('form_select', 'system/modules/formHelper/templates/widget');
+	\TemplateLoader::addFile('form_upload', 'system/modules/formHelper/templates/widget');
 }
