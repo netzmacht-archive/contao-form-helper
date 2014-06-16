@@ -35,15 +35,17 @@ class DefaultSubscriber implements EventSubscriberInterface
 		'param'
 	);
 
+
 	/**
 	 * @var array
 	 */
-	protected $noLabel = array('html', 'explanation', 'headline');
+	protected $noLabel = array('explanation', 'headline', 'html', 'submit');
 
 	/**
 	 * @var
 	 */
 	protected $form;
+
 
 	/**
 	 * Returns an array of event names this subscriber wants to listen to.
