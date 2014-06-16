@@ -21,3 +21,7 @@
 \TemplateLoader::addFile('formhelper_layout_tableless', 'system/modules/formHelper/templates/layout');
 \TemplateLoader::addFile('formhelper_layout_table', 'system/modules/formHelper/templates/layout');
 \TemplateLoader::addFile('formhelper_layout_table_nocolumns', 'system/modules/formHelper/templates/layout');
+
+if(version_compare(VERSION, '3.3', '>=')) {
+	\TemplateLoader::addFile('formhelper_layout_row', 'system/modules/formHelper/templates/layout');
+}
