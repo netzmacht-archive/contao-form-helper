@@ -126,7 +126,10 @@ class DefaultSubscriber implements EventSubscriberInterface
 		$widget = $event->getWidget();
 		$form   = $event->getForm();
 
-		if($form && $form->tableless) {
+		if(version_compare(VERSION, '3.3', '>=')) {
+			$event->setLayout('row');
+		}
+		elseif($form && $form->tableless) {
 			$event->setLayout('tableless');
 		}
 		else {
