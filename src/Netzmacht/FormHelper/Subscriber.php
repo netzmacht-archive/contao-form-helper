@@ -232,7 +232,7 @@ class Subscriber implements EventSubscriberInterface
 	{
 		$widget = $event->getWidget();
 
-		if($widget instanceof \FormPassword) {
+		if(!$widget instanceof \FormPassword) {
 			return;
 		}
 
