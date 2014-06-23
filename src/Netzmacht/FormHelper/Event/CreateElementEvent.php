@@ -2,7 +2,7 @@
 
 namespace Netzmacht\FormHelper\Event;
 
-use Netzmacht\FormHelper\Html\Element;
+use Netzmacht\Html\Element;
 use Symfony\Component\EventDispatcher\Event;
 
 class CreateElementEvent extends Event

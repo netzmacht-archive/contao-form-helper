@@ -2,7 +2,7 @@
 
 namespace Netzmacht\FormHelper\Event;
 
-use Netzmacht\FormHelper\Html\Element;
+use Netzmacht\Html\Element;
 
 class BuildElementEvent extends WidgetEvent
 {
