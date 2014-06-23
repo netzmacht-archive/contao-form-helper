@@ -2,9 +2,9 @@
 
 namespace Netzmacht\FormHelper\Component;
 
-use Netzmacht\FormHelper\GenerateInterface;
+use Netzmacht\Html\CastsToString;
 
-class StaticHtml implements GenerateInterface
+class StaticHtml implements CastsToString
 {
 
 	/**

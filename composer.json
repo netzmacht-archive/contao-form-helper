@@ -14,25 +14,26 @@
     ],
     "support":{
         "email":"mail@netzmacht.de",
-        "issues":"https://github.com/netzmacht/contao-form-helpers/issues",
-        "source":"https://github.com/netzmacht/contao-form-helpers"
+        "issues":"https://github.com/netzmacht/contao-form-helper/issues",
+        "source":"https://github.com/netzmacht/contao-form-helper"
     },
     "require":{
         "php":">=5.3",
-        "contao/core":">=3.1,<4.0",
+        "contao/core":">=3.1,<3.4",
         "contao-community-alliance/dependency-container":"~1.0",
-        "contao-community-alliance/event-dispatcher":"~1.0"
+        "contao-community-alliance/event-dispatcher":"~1.0",
+        "netzmacht/html": "~1.0.0"
     },
     "autoload": {
         "psr-0": { "Netzmacht\\FormHelper\\": "src/" }
     },
     "extra":{
         "branch-alias": {
-            "dev-master": "0.1.x-dev"
+            "dev-master": "0.2.x-dev"
         },
         "contao": {
             "sources":{
-                "module": "system/modules/formHelper"
+                "module": "system/modules/form-helper"
             }
         }
     }

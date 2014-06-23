@@ -2,9 +2,7 @@
 
 namespace Netzmacht\FormHelper\Component;
 
-use Netzmacht\FormHelper\GenerateInterface;
-
-class Errors extends TemplateComponent implements GenerateInterface
+class Errors extends TemplateComponent
 {
 
 	/**

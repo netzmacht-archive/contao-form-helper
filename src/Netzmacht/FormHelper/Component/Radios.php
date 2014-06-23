@@ -1,8 +1,9 @@
 <?php
 
-namespace Netzmacht\FormHelper\Html\Element;
+namespace Netzmacht\FormHelper\Component;
 
-class Checkboxes extends Options
+
+class Radios extends Options
 {
 	/**
 	 * @param array $attributes
@@ -11,7 +12,7 @@ class Checkboxes extends Options
 	{
 		parent::__construct('fieldset', $attributes);
 
-		$this->template = 'formhelper_element_checkboxes';
+		$this->template = 'formhelper_element_radios';
 	}
 
 } 

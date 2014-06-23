@@ -1,10 +1,10 @@
 <<?php echo $this->tag; ?> <?php echo $this->attributes; ?>>
 <?php
 
-use Netzmacht\FormHelper\Html\Element;
-use Netzmacht\FormHelper\Html\Element\Checkboxes;
+use Netzmacht\Html\Element;
+use Netzmacht\FormHelper\Component\Checkboxes;
 
-/** @var Checkboxes $element */
+/** @var \Netzmacht\FormHelper\Component\Checkboxes $element */
 $group = null;
 $index = 0;
 

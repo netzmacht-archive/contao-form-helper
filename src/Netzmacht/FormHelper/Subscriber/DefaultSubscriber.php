@@ -2,14 +2,19 @@
 
 namespace Netzmacht\FormHelper\Subscriber;
 
+use Netzmacht\FormHelper\Component\Checkboxes;
+use Netzmacht\FormHelper\Component\Options;
+use Netzmacht\FormHelper\Component\Radios;
+use Netzmacht\FormHelper\Component\Select;
 use Netzmacht\FormHelper\Event\BuildElementEvent;
 use Netzmacht\FormHelper\Event\CreateElementEvent;
 use Netzmacht\FormHelper\Event\Events;
 use Netzmacht\FormHelper\Event\GenerateEvent;
 use Netzmacht\FormHelper\Event\PreGenerateEvent;
 use Netzmacht\FormHelper\Event\SelectLayoutEvent;
-use Netzmacht\FormHelper\Html\Element;
 use Netzmacht\FormHelper\Component\Label;
+use Netzmacht\Html\Element;
+use Netzmacht\Html\Element\Node;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class DefaultSubscriber implements EventSubscriberInterface
@@ -101,19 +106,19 @@ class DefaultSubscriber implements EventSubscriberInterface
 		}
 
 		elseif($tag == 'select') {
-			$element = new Element\Select($attributes);
+			$element = new Select($attributes);
 		}
 
 		elseif($tag == 'checkboxes') {
-			$element = new Element\Checkboxes($attributes);
+			$element = new Checkboxes($attributes);
 		}
 
 		elseif($tag == 'radios') {
-			$element = new Element\Radios($attributes);
+			$element = new Radios($attributes);
 		}
 
 		else {
-			$element = new Element\Node($tag, $attributes);
+			$element = new Node($tag, $attributes);
 		}
 
 		$event->setElement($element);
@@ -238,7 +243,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 			$label->setAttribute('for', $element->getId());
 			$this->presetAttributes($element, $widget);
 
-			if($element instanceof Element\Options && $widget->options) {
+			if($element instanceof Options && $widget->options) {
 				$this->presetOptions($element, $widget);
 			}
 
@@ -288,9 +293,11 @@ class DefaultSubscriber implements EventSubscriberInterface
 			$container = $event->getContainer();
 			$element   = $container->getElement();
 			$label     = $event->getLabel();
+			$id        = $element instanceof Element ? $element->getId() : ('ctrl_' . $widget->id);
 
-			$repeatId    = $element->getId() . '_confirm';
-			$repeatLabel = Element::create('label', array('class' => $label->getAttribute('class')))
+			$repeatId    = $id . '_confirm';
+			$repeatLabel = Element::create('label')
+				->setAttribute('class', $label->getAttribute('class'))
 				->addChild(sprintf($GLOBALS['TL_LANG']['MSC']['confirmation'], $widget->label))
 				->setAttribute('for', $repeatId);
 
@@ -396,10 +403,10 @@ class DefaultSubscriber implements EventSubscriberInterface
 
 
 	/**
-	 * @param Element\Options $element
+	 * @param Options $element
 	 * @param \Widget $widget
 	 */
-	protected function presetOptions(Element\Options $element, \Widget $widget)
+	protected function presetOptions(Options $element, \Widget $widget)
 	{
 		$element->setValue($widget->value);
 		$element->setOptions($widget->options);

@@ -2,7 +2,7 @@
 
 namespace Netzmacht\FormHelper\Component;
 
-use Netzmacht\FormHelper\Html\Element\Node;
+use Netzmacht\Html\Element\Node;
 
 class Label extends Node
 {

@@ -3,11 +3,11 @@
 namespace Netzmacht\FormHelper\Component;
 
 use Netzmacht\FormHelper\ElementAwareInterface;
-use Netzmacht\FormHelper\GenerateInterface;
-use Netzmacht\FormHelper\Html\Element;
-use Netzmacht\FormHelper\TemplateInterface;
+use Netzmacht\Html\CastsToString;
+use Netzmacht\Html\Element;
 
-class Container extends TemplateComponent implements GenerateInterface, TemplateInterface, ElementAwareInterface
+
+class Container extends TemplateComponent
 {
 
 	const POSITION_BEFORE = 'before';
@@ -95,15 +95,6 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 
 
 	/**
-	 * @return \Netzmacht\FormHelper\Html\Attributes
-	 */
-	public function getAttributes()
-	{
-		return $this->attributes;
-	}
-
-
-	/**
 	 * @return array
 	 */
 	public function getChildren()
@@ -113,7 +104,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 
 
 	/**
-	 * @param GenerateInterface|string $element
+	 * @param CastsToString|string $element
 	 * @return $this
 	 */
 	public function setElement($element)
@@ -125,7 +116,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 
 
 	/**
-	 * @return GenerateInterface|Element|string
+	 * @return CastsToString|string
 	 */
 	public function getElement()
 	{
@@ -154,33 +145,6 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 
 
 	/**
-	 * @return bool
-	 */
-	public function hasStaticElement()
-	{
-		if(!$this->element || $this->element instanceof StaticHtml) {
-			return true;
-		}
-
-		return false;
-	}
-
-
-	/**
-	 * @return bool
-	 * @deprecated just use $element instanceof Element in your coe
-	 */
-	public function hasDynamicElement()
-	{
-		if(is_object($this->element) && $this->element instanceof Element) {
-			return true;
-		}
-
-		return false;
-	}
-
-
-	/**
 	 * @param $name
 	 * @param $child
 	 * @param string $position
@@ -197,7 +161,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 
 	/**
 	 * @param $name
-	 * @return GenerateInterface|string
+	 * @return CastsToString|string
 	 * @throws
 	 */
 	public function getChild($name)
@@ -245,7 +209,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 
 	/**
 	 * @param $name
-	 * @return Element|string
+	 * @return CastsToString|string
 	 */
 	public function removeChild($name)
 	{
@@ -355,7 +319,7 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 		$buffer = '';
 
 		foreach($this->getChildByPosition($position) as $child) {
-			$buffer .= $this->generateChild($child);
+			$buffer .= (string) $child;
 		}
 
 		return $buffer;
@@ -383,27 +347,6 @@ class Container extends TemplateComponent implements GenerateInterface, Template
 		}
 
 		return $element;
-	}
-
-
-	/**
-	 * @param string|GenerateInterface $child
-	 * @return string;
-	 */
-	public function generateChild($child)
-	{
-		if(is_string($child)) {
-			return $child;
-		}
-
-		try {
-			return (string) $child;
-		}
-		catch(\Exception $e) {
-			// TODO: How to handle exception
-		}
-
-		return '';
 	}
 
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Netzmacht\FormHelper\Html\Element;
+namespace Netzmacht\FormHelper\Component;
 
-use Netzmacht\FormHelper\Html\Element;
+use Netzmacht\Html\Element;
 use Netzmacht\FormHelper\TemplateInterface;
 
 
@@ -104,6 +104,5 @@ abstract class Options extends Element implements TemplateInterface
 	{
 		return $this->template;
 	}
-
 
 } 
