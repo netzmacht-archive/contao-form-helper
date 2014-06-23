@@ -172,12 +172,12 @@ class DefaultSubscriber implements EventSubscriberInterface
 				break;
 
 			case 'checkbox':
-				$element = Element::create('checkboxes');
+				$element = new Checkboxes();
 				$element->setAttribute('name', $widget->name);
 				break;
 
 			case 'radio':
-				$element = Element::create('radios');
+				$element = new Radios();
 				$element->setAttribute('name', $widget->name);
 				break;
 
@@ -208,8 +208,12 @@ class DefaultSubscriber implements EventSubscriberInterface
 				break;
 
 			case 'textarea':
-			case 'select':
 				$element = Element::create($widget->type);
+				$element->setAttribute('name', $widget->name);
+				break;
+
+			case 'select':
+				$element = new Select();
 				$element->setAttribute('name', $widget->name);
 				break;
 
