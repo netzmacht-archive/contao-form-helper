@@ -78,7 +78,7 @@ abstract class Options extends Element implements TemplateInterface
 	{
 		$template             = new \FrontendTemplate($this->template);
 		$template->options    = $this->options;
-		$template->attributes = $this->getAttributes();
+		$template->element    = $this;
 		$template->tag        = $this->getTag();
 
 		return $template->parse();
