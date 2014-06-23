@@ -2,10 +2,10 @@
 
 namespace Netzmacht\FormHelper;
 
-use Netzmacht\Html\Attributes;
+use Netzmacht\Html\Element;
 
 
-class Component extends Attributes
+class Component extends Element
 {
 
 } 
