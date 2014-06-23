@@ -239,6 +239,10 @@ class DefaultSubscriber implements EventSubscriberInterface
 		$this->presetLabel($label, $widget);
 		$errors->addClass('error');
 
+		if($element instanceof HasLabel) {
+			$element->setLabel(clone $label);
+		}
+
 		// ensure element can be edited
 		if($element instanceof Element) {
 			$element->setId('ctrl_' . $widget->id);
@@ -257,10 +261,6 @@ class DefaultSubscriber implements EventSubscriberInterface
 		}
 		else {
 			$label->setAttribute('for', 'ctrl_' . $widget->id);
-		}
-
-		if($element instanceof HasLabel) {
-			$element->setLabel($label);
 		}
 
 		// add extra submit button
