@@ -39,8 +39,8 @@ class Errors extends TemplateComponent
 	 */
 	public function getError($index=0)
 	{
-		if(isset($this->errors[0])) {
-			return $this->errors[0];
+		if(isset($this->errors[$index])) {
+			return $this->errors[$index];
 		}
 
 		return '';
