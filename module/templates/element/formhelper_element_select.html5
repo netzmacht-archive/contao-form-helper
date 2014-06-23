@@ -1,4 +1,4 @@
-<<?php echo $this->tag; ?> <?php echo $this->element->generateAttibutes(); ?>>
+<<?php echo $this->tag; ?> <?php echo $this->element->generateAttributes(); ?>>
 <?php
 
 use Netzmacht\Html\Element;
