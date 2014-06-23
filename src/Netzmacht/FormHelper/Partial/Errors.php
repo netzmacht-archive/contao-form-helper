@@ -62,8 +62,7 @@ class Errors extends TemplateComponent
 	public function generate()
 	{
 		$template = new \FrontendTemplate($this->template);
-		$template->errors = $this->errors;
-		$template->attributes = $this->attributes;
+		$template->errors = $this;
 
 		return $template->parse();
 	}
