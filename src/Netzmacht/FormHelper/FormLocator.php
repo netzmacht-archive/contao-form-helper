@@ -14,11 +14,6 @@ class FormLocator
 	static protected $formTable = 'tl_form';
 
 	/**
-	 * @var Registry
-	 */
-	protected $registry;
-
-	/**
 	 * @var \Database
 	 */
 	protected $database;
@@ -30,12 +25,10 @@ class FormLocator
 
 
 	/**
-	 * @param $registry
 	 * @param $database
 	 */
-	function __construct($registry, $database)
+	function __construct(\Database $database)
 	{
-		$this->registry = $registry;
 		$this->database = $database;
 	}
 
