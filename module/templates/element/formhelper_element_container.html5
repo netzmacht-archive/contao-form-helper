@@ -1,5 +1,5 @@
 <?php
-/** @var Netzmacht\FormHelper\Transfer\Container $container */
+/** @var Netzmacht\FormHelper\Partial\Container $container */
 $container = $this->container;
 $attributes = $container->getAttributes();
 $buffer = '';
@@ -14,14 +14,14 @@ $buffer = '';
 
 // generate before placed elements
 foreach($this->before as $child) {
-	$buffer .= $container->generateChild($child);
+	$buffer .= $child;
 }
 
 $buffer .= $container->generateElement();
 
 // generate before placed elements
 foreach($this->after as $child) {
-	$buffer .= $container->generateChild($child);
+	$buffer .= $child;
 }
 
 echo $buffer;
