@@ -1,3 +1,3 @@
 <?php
 
-$GLOBALS['TL_EVENT_SUBSCRIBERS'][] = 'Netzmacht\FormHelper\Subscriber\DefaultSubscriber';
+$GLOBALS['TL_EVENT_SUBSCRIBERS'][] = 'Netzmacht\FormHelper\Subscriber';

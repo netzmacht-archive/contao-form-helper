@@ -1,12 +1,12 @@
 <?php
 
-namespace Netzmacht\FormHelper\Component;
+namespace Netzmacht\FormHelper\Element;
 
 use Netzmacht\Html\Element;
-use Netzmacht\FormHelper\TemplateInterface;
+use Netzmacht\FormHelper\HasTemplate;
 
 
-abstract class Options extends Element implements TemplateInterface
+abstract class Options extends Element implements HasTemplate
 {
 
 	/**

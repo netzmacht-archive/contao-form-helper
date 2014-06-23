@@ -9,8 +9,9 @@
  *
  */
 
-namespace Netzmacht\FormHelper\Component;
+namespace Netzmacht\FormHelper\Element;
 
+use Netzmacht\FormHelper\Partial\Label;
 
 interface HasLabel
 {

@@ -3,18 +3,20 @@
 namespace Netzmacht\FormHelper;
 
 
-interface ElementAwareInterface
+use Netzmacht\Html\CastsToString;
+
+interface HasElement
 {
 
 	/**
-	 * @param GenerateInterface|string $element
+	 * @param CastsToString|string $element
 	 * @return $this
 	 */
 	public function setElement($element);
 
 
 	/**
-	 * @return GenerateInterface|string
+	 * @return CastsToString|string
 	 */
 	public function getElement();
 

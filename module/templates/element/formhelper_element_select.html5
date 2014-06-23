@@ -2,7 +2,7 @@
 <?php
 
 use Netzmacht\Html\Element;
-use Netzmacht\FormHelper\Component\Checkboxes;
+use Netzmacht\FormHelper\Partial\Checkboxes;
 
 /** @var Checkboxes $element */
 $group = null;

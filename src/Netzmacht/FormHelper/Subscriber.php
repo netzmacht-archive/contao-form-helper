@@ -1,25 +1,25 @@
 <?php
 
-namespace Netzmacht\FormHelper\Subscriber;
+namespace Netzmacht\FormHelper;
 
-use Netzmacht\FormHelper\Component\Checkboxes;
-use Netzmacht\FormHelper\Component\HasLabel;
-use Netzmacht\FormHelper\Component\Options;
-use Netzmacht\FormHelper\Component\Radios;
-use Netzmacht\FormHelper\Component\Select;
-use Netzmacht\FormHelper\Component\StaticHtml;
+use Netzmacht\FormHelper\Element\Select;
+use Netzmacht\FormHelper\Element\Checkboxes;
+use Netzmacht\FormHelper\Element\HasLabel;
+use Netzmacht\FormHelper\Element\Options;
+use Netzmacht\FormHelper\Element\Radios;
+use Netzmacht\FormHelper\Element\StaticHtml;
 use Netzmacht\FormHelper\Event\BuildElementEvent;
-use Netzmacht\FormHelper\Event\CreateElementEvent;
 use Netzmacht\FormHelper\Event\Events;
 use Netzmacht\FormHelper\Event\GenerateEvent;
 use Netzmacht\FormHelper\Event\PreGenerateEvent;
 use Netzmacht\FormHelper\Event\SelectLayoutEvent;
-use Netzmacht\FormHelper\Component\Label;
+use Netzmacht\FormHelper\Partial\Container;
+use Netzmacht\FormHelper\Partial\Label;
 use Netzmacht\Html\Element;
-use Netzmacht\Html\Element\Node;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class DefaultSubscriber implements EventSubscriberInterface
+
+class Subscriber implements EventSubscriberInterface
 {
 
 	/**
@@ -46,12 +46,17 @@ class DefaultSubscriber implements EventSubscriberInterface
 	/**
 	 * @var array
 	 */
-	protected $noLabel = array('explanation', 'headline', 'html', 'submit');
+	private static $noColumns = array(
+		'explanation',
+		'html',
+		'headline'
+	);
+
 
 	/**
-	 * @var
+	 * @var array
 	 */
-	protected $form;
+	protected $noLabel = array('explanation', 'headline', 'html', 'submit');
 
 
 	/**
@@ -84,45 +89,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 				array('generateCaptcha', 1000),
 				array('generatePasswordConfirmation')
 			),
-			Events::CREATE_ELEMENT            => array('createElement', -1000),
 		);
-	}
-
-
-	/**
-	 * @param CreateElementEvent $event
-	 */
-	public function createElement(CreateElementEvent $event)
-	{
-		// only create if no element is set
-		if($event->getElement()) {
-			return;
-		}
-
-		$tag        = $event->getTag();
-		$attributes = $event->getAttributes();
-
-
-		if(in_array($tag, static::$standalone)) {
-			$element = new Element\Standalone($tag, $attributes);
-		}
-
-		elseif($tag == 'select') {
-			$element = new Select($attributes);
-		}
-
-		elseif($tag == 'checkboxes') {
-			$element = new Checkboxes($attributes);
-		}
-
-		elseif($tag == 'radios') {
-			$element = new Radios($attributes);
-		}
-		else {
-			$element = new Node($tag, $attributes);
-		}
-
-		$event->setElement($element);
 	}
 
 
@@ -137,17 +104,15 @@ class DefaultSubscriber implements EventSubscriberInterface
 		if(version_compare(VERSION, '3.3', '>=')) {
 			$event->setLayout('row');
 		}
+		// form can be null if form is not created from form generator
 		elseif($form && $form->tableless) {
 			$event->setLayout('tableless');
 		}
+		elseif(in_array($widget->type, static::$noColumns)) {
+			$event->setLayout('table_nocolumns');
+		}
 		else {
-			$noColumns = array('explanation', 'html', 'headline');
-			if(in_array($widget->type, $noColumns)) {
-				$event->setLayout('table_nocolumns');
-			}
-			else {
-				$event->setLayout('table');
-			}
+			$event->setLayout('table');
 		}
 	}
 
@@ -184,6 +149,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 
 			case 'captcha':
 				// generate question to fetch the name of the captcha element, see #1
+				/** @var \FormCaptcha $widget */
 				$widget->generateQuestion();
 
 				$name    = \Session::getInstance()->get('captcha_' . $widget->id);
@@ -237,41 +203,9 @@ class DefaultSubscriber implements EventSubscriberInterface
 		$label     = $event->getLabel();
 		$errors    = $event->getErrors();
 
-		$this->presetLabel($label, $widget);
-		$errors->addClass('error');
-
-		// ensure element can be edited
-		if($element instanceof Element) {
-			$element->setId('ctrl_' . $widget->id);
-			$element->addClass($widget->type);
-
-			$label->setAttribute('for', $element->getId());
-			$this->presetAttributes($element, $widget);
-
-			if($element instanceof Options && $widget->options) {
-				$this->presetOptions($element, $widget);
-			}
-
-			if($widget->type == 'submit') {
-				$this->presetSubmit($element, $widget);
-			}
-		}
-		else {
-			$label->setAttribute('for', 'ctrl_' . $widget->id);
-		}
-
-		// add extra submit button
-		if($widget->addSubmit && $widget->type != 'submit') {
-			$submit = Element::create('input');
-			$submit->setAttribute('type', 'submit');
-			$submit->setAttribute('value', $widget->slabel);
-
-			$container->addChild('submit', $submit);
-		}
-
-		if($element instanceof HasLabel) {
-			$element->setLabel(new StaticHtml($widget->label));
-		}
+		$this->presetErrors($errors);
+		$this->presetLabel($label, $widget, $element);
+		$this->presetElement($container, $element, $widget);
 	}
 
 
@@ -299,45 +233,55 @@ class DefaultSubscriber implements EventSubscriberInterface
 		$widget = $event->getWidget();
 
 		if($widget instanceof \FormPassword) {
-			$container = $event->getContainer();
-			$element   = $container->getElement();
-			$label     = $event->getLabel();
-			$id        = $element instanceof Element ? $element->getId() : ('ctrl_' . $widget->id);
-
-			$repeatId    = $id . '_confirm';
-			$repeatLabel = Element::create('label')
-				->setAttribute('class', $label->getAttribute('class'))
-				->addChild(sprintf($GLOBALS['TL_LANG']['MSC']['confirmation'], $widget->label))
-				->setAttribute('for', $repeatId);
-
-			/** @var Element $repeat */
-			$repeat = clone $element;
-			$repeat->setId($repeatId)
-				->setAttribute('name', $repeat->getAttribute('name') . '_confirm')
-				->setAttribute('value', '');
-
-			$container->addChild('repeat', $repeat);
-			$container->addChild('repeatLabel', $repeatLabel);
+			return;
 		}
+
+		$container = $event->getContainer();
+		$element   = $container->getElement();
+		$label     = $event->getLabel();
+		$id        = $element instanceof Element ? $element->getId() : ('ctrl_' . $widget->id);
+
+		$repeatId    = $id . '_confirm';
+		$repeatLabel = Element::create('label')
+			->setAttribute('class', $label->getAttribute('class'))
+			->addChild(sprintf($GLOBALS['TL_LANG']['MSC']['confirmation'], $widget->label))
+			->setAttribute('for', $repeatId);
+
+		/** @var Element $repeat */
+		$repeat = clone $element;
+		$repeat->setId($repeatId)
+			->setAttribute('name', $repeat->getAttribute('name') . '_confirm')
+			->setAttribute('value', '');
+
+		$container->addChild('repeat', $repeat);
+		$container->addChild('repeatLabel', $repeatLabel);
 	}
 
 
 	/**
 	 * @param Label $label
 	 * @param \Widget $widget
+	 * @param $element
 	 */
-	protected function presetLabel(Label $label, \Widget $widget)
+	protected function presetLabel(Label $label, \Widget $widget, $element)
 	{
+		$label->setAttribute('for', 'ctrl_' . $widget->id);
+
 		if($widget->label) {
 			$label->addChild($widget->label);
 		}
 
 		if($widget->mandatory) {
-			$mandatory = $label->create('span', array('class' => array('mandatory')));
-			$mandatory->addChild(sprintf('<span class="invisible">%s</span>', $GLOBALS['TL_LANG']['MSC']['mandatory']));
-			$mandatory->addChild('*');
+			$mandatory = sprintf(
+				'<span class="mandatory"><span class="invisible">%s</span>*</span>',
+				$GLOBALS['TL_LANG']['MSC']['mandatory']
+			);
 
 			$label->addChild($mandatory);
+		}
+
+		if($element instanceof HasLabel) {
+			$element->setLabel(new StaticHtml($widget->label));
 		}
 
 		if(in_array($widget->type, $this->noLabel)) {
@@ -421,4 +365,46 @@ class DefaultSubscriber implements EventSubscriberInterface
 		$element->setOptions($widget->options);
 	}
 
-} 
+
+	/**
+	 * @param Element $errors
+	 */
+	private function presetErrors(Element $errors)
+	{
+		$errors->addClass('error');;
+	}
+
+
+	/**
+	 * @param \Netzmacht\FormHelper\Partial\Container $container
+	 * @param $element
+	 * @param $widget
+	 */
+	private function presetElement(Container $container, $element, $widget)
+	{
+		// unknown element type
+		if(!$element instanceof Element) {
+			return;
+		}
+
+		$element->setId('ctrl_' . $widget->id);
+		$element->addClass($widget->type);
+
+		$this->presetAttributes($element, $widget);
+
+		if($element instanceof Options && $widget->options) {
+			$this->presetOptions($element, $widget);
+		}
+
+		if($widget->type == 'submit') {
+			$this->presetSubmit($element, $widget);
+		}
+		elseif($widget->addSubmit && $widget->type != 'submit') {
+			$submit = Element::create('input');
+			$submit->setAttribute('type', 'submit');
+			$submit->setAttribute('value', $widget->slabel);
+
+			$container->addChild('submit', $submit);
+		}
+	}
+}

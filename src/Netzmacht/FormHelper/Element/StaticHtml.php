@@ -1,10 +1,12 @@
 <?php
 
-namespace Netzmacht\FormHelper\Component;
+namespace Netzmacht\FormHelper\Element;
 
 use Netzmacht\Html\CastsToString;
+use Netzmacht\Html\Element;
+use Netzmacht\Html\Element\Node;
 
-class StaticHtml implements CastsToString
+class StaticHtml implements CastsToString, CanBeAppended
 {
 
 	/**
@@ -28,6 +30,19 @@ class StaticHtml implements CastsToString
 	public function generate()
 	{
 		return $this->html;
+	}
+
+
+	/**
+	 * @param Node $parent
+	 * @param string $position
+	 * @return $this
+	 */
+	public function appendTo(Node $parent, $position = Node::POSITION_LAST)
+	{
+		$parent->addChild($this, $position);
+
+		return $this;
 	}
 
 

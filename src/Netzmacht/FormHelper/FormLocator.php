@@ -23,6 +23,11 @@ class FormLocator
 	 */
 	protected $database;
 
+	/**
+	 * @var array
+	 */
+	protected $forms = array();
+
 
 	/**
 	 * @param $registry
@@ -34,23 +39,21 @@ class FormLocator
 		$this->database = $database;
 	}
 
+
 	/**
 	 * @param $id
 	 * @return \Database\Result|mixed
 	 */
 	public function getForm($id)
 	{
-		if($this->registry->has(static::$formTable, $id)) {
-			return $this->registry->get(static::$formTable, $id);
+		if(!isset($this->forms[$id])) {
+			$this->forms[$id] = $this->database
+				->prepare(sprintf('SELECT * FROM %s WHERE id=?', static::$formTable))
+				->limit(1)
+				->execute($id);
 		}
 
-		$result = $this->database
-			->prepare(sprintf('SELECT * FROM %s WHERE id=?', static::$formTable))
-			->execute($id);
-
-		$this->registry->register('tl_form', $result, $id);
-
-		return $result;
+		return $this->forms[$id];
 	}
 
 } 

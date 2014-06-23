@@ -3,7 +3,7 @@
 namespace Netzmacht\FormHelper;
 
 
-interface TemplateInterface
+interface HasTemplate
 {
 
 	/**

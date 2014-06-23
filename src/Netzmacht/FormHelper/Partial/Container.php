@@ -1,8 +1,8 @@
 <?php
 
-namespace Netzmacht\FormHelper\Component;
+namespace Netzmacht\FormHelper\Partial;
 
-use Netzmacht\FormHelper\ElementAwareInterface;
+use Netzmacht\FormHelper\HasElement;
 use Netzmacht\Html\CastsToString;
 use Netzmacht\Html\Element;
 
@@ -29,7 +29,7 @@ class Container extends TemplateComponent
 	protected $position = array();
 
 	/**
-	 * @var ElementAwareInterface
+	 * @var HasElement
 	 */
 	protected $wrapper;
 
@@ -74,10 +74,10 @@ class Container extends TemplateComponent
 
 
 	/**
-	 * @param ElementAwareInterface $wrapper
+	 * @param HasElement $wrapper
 	 * @return $this
 	 */
-	public function setWrapper(ElementAwareInterface $wrapper)
+	public function setWrapper(HasElement $wrapper)
 	{
 		$this->wrapper = $wrapper;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Netzmacht\FormHelper\Component;
+namespace Netzmacht\FormHelper\Element;
 
 
 class Radios extends Options implements HasLabel

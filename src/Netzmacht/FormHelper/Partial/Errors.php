@@ -1,6 +1,6 @@
 <?php
 
-namespace Netzmacht\FormHelper\Component;
+namespace Netzmacht\FormHelper\Partial;
 
 class Errors extends TemplateComponent
 {

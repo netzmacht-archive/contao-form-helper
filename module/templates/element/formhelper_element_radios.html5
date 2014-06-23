@@ -3,9 +3,9 @@
 <?php
 
 use Netzmacht\Html\Element;
-use Netzmacht\FormHelper\Component\Checkboxes;
+use Netzmacht\FormHelper\Partial\Checkboxes;
 
-/** @var \Netzmacht\FormHelper\Component\Checkboxes $element */
+/** @var \Netzmacht\FormHelper\Partial\Checkboxes $element */
 $group = null;
 $index = 0;
 

@@ -1,10 +1,13 @@
 <?php
 
-namespace Netzmacht\FormHelper\Component;
+namespace Netzmacht\FormHelper\Partial;
 
-trait TemplateTrait
+use Netzmacht\FormHelper\Component;
+use Netzmacht\FormHelper\Partial;
+use Netzmacht\FormHelper\HasTemplate;
+
+class TemplateComponent extends Component implements HasTemplate
 {
-
 	/**
 	 * @var string
 	 */
