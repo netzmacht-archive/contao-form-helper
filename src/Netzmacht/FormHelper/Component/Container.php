@@ -294,7 +294,7 @@ class Container extends TemplateComponent
 		$buffer .= $this->generateChildren(static::POSITION_AFTER);
 
 		if($this->renderContainer) {
-			return sprintf('<div %s>%s%s%s</div>%s', $this->attributes, PHP_EOL, $buffer, PHP_EOL, PHP_EOL);
+			return sprintf('<div %s>%s%s%s</div>%s', $this->generateAttributes(), PHP_EOL, $buffer, PHP_EOL, PHP_EOL);
 		}
 
 		return $buffer;
