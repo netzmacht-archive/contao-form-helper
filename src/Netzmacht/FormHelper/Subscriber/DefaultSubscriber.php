@@ -7,6 +7,7 @@ use Netzmacht\FormHelper\Component\HasLabel;
 use Netzmacht\FormHelper\Component\Options;
 use Netzmacht\FormHelper\Component\Radios;
 use Netzmacht\FormHelper\Component\Select;
+use Netzmacht\FormHelper\Component\StaticHtml;
 use Netzmacht\FormHelper\Event\BuildElementEvent;
 use Netzmacht\FormHelper\Event\CreateElementEvent;
 use Netzmacht\FormHelper\Event\Events;
@@ -269,7 +270,7 @@ class DefaultSubscriber implements EventSubscriberInterface
 		}
 
 		if($element instanceof HasLabel) {
-			$element->setLabel(clone $label);
+			$element->setLabel(new StaticHtml($widget->label));
 		}
 	}
 
