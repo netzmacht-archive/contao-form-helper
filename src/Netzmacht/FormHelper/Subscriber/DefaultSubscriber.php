@@ -239,10 +239,6 @@ class DefaultSubscriber implements EventSubscriberInterface
 		$this->presetLabel($label, $widget);
 		$errors->addClass('error');
 
-		if($element instanceof HasLabel) {
-			$element->setLabel(clone $label);
-		}
-
 		// ensure element can be edited
 		if($element instanceof Element) {
 			$element->setId('ctrl_' . $widget->id);
@@ -270,6 +266,10 @@ class DefaultSubscriber implements EventSubscriberInterface
 			$submit->setAttribute('value', $widget->slabel);
 
 			$container->addChild('submit', $submit);
+		}
+
+		if($element instanceof HasLabel) {
+			$element->setLabel(clone $label);
 		}
 	}
 
