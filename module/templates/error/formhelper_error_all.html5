@@ -1,4 +1,4 @@
-<?php if($this->hasErrors()): ?>
+<?php if($this->errors->hasErrors()): ?>
 <ul <?php echo $this->errors->generateAttributes(); ?>>
 <?php foreach($this->errors->getErrors() as $error): ?>
 	<li><?php echo $error; ?></li>
