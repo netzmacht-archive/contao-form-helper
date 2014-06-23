@@ -3,6 +3,7 @@
 namespace Netzmacht\FormHelper\Subscriber;
 
 use Netzmacht\FormHelper\Component\Checkboxes;
+use Netzmacht\FormHelper\Component\HasLabel;
 use Netzmacht\FormHelper\Component\Options;
 use Netzmacht\FormHelper\Component\Radios;
 use Netzmacht\FormHelper\Component\Select;
@@ -116,7 +117,6 @@ class DefaultSubscriber implements EventSubscriberInterface
 		elseif($tag == 'radios') {
 			$element = new Radios($attributes);
 		}
-
 		else {
 			$element = new Node($tag, $attributes);
 		}
@@ -257,6 +257,10 @@ class DefaultSubscriber implements EventSubscriberInterface
 		}
 		else {
 			$label->setAttribute('for', 'ctrl_' . $widget->id);
+		}
+
+		if($element instanceof HasLabel) {
+			$element->setLabel($label);
 		}
 
 		// add extra submit button
