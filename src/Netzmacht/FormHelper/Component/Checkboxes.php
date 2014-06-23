@@ -40,4 +40,19 @@ class Checkboxes extends Options implements HasLabel
 		return $this->label;
 	}
 
+
+	/**
+	 * @return string|void
+	 */
+	public function generate()
+	{
+		$template             = new \FrontendTemplate($this->template);
+		$template->options    = $this->options;
+		$template->element    = $this;
+		$template->tag        = $this->getTag();
+		$template->label      = $this->label;
+
+		return $template->parse();
+	}
+
 } 
