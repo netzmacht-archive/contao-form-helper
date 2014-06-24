@@ -310,6 +310,12 @@ class Subscriber implements EventSubscriberInterface
 
 			$element->setAttribute('src', $path);
 			$element->setAttribute('title', $widget->slabel);
+
+			if($widget->imageSubmit) {
+				$element
+					->setAttribute('type', 'image')
+					->setAttribute('src', \FilesModel::findByPk($widget->singleSRC)->path);
+			}
 		}
 	}
 
