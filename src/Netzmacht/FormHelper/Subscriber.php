@@ -122,8 +122,16 @@ class Subscriber implements EventSubscriberInterface
 	 */
 	public function buildElement(BuildElementEvent $event)
 	{
-		$widget    = $event->getWidget();
-		$element   = null;
+		$widget  = $event->getWidget();
+		$element = null;
+
+		// widget generates an element
+		if($widget instanceof GeneratesAnElement) {
+			$element = $widget->generate();
+			$event->setElement($element);
+
+			return;
+		}
 
 		switch($widget->type) {
 			case 'explanation':
