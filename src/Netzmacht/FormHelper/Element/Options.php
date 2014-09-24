@@ -22,7 +22,7 @@ abstract class Options extends Element implements HasTemplate
 	/**
 	 * @var array
 	 */
-	protected $options;
+	protected $options = array();
 
 	/**
 	 * @var string
@@ -35,7 +35,7 @@ abstract class Options extends Element implements HasTemplate
 	 */
 	public function setOptions($options)
 	{
-		$this->options = $options;
+		$this->options = (array) $options;
 		$this->children = array();
 	}
 
