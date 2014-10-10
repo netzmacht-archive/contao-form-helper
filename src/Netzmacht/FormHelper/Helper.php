@@ -53,18 +53,25 @@ class Helper
 	}
 
 
-	/**
-	 * @param \Widget $widget
-	 * @return string
-	 */
-	public function getLayout(\Widget $widget)
+    /**
+     * @param \Widget $widget
+     * @param bool $asPath
+     * @throws \Exception
+     * @return string
+     */
+	public function getLayout(\Widget $widget, $asPath=true)
 	{
 		$form  = $this->forms->getForm($widget->pid);
 		$event = new SelectLayoutEvent($widget, $form);
 		$this->dispatcher->dispatch(Events::SELECT_LAYOUT, $event);
 
 		$layout = 'formhelper_layout_' . $event->getLayout();
-		return \Controller::getTemplate($layout);
+
+        if($asPath) {
+            return \Controller::getTemplate($layout);
+        }
+
+        return $layout;
 	}
 
 
