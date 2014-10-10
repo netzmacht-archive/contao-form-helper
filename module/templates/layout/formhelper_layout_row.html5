@@ -1,5 +1,3 @@
-<?php $this->extend('form_row'); ?>
-
 <?php $this->block('label'); ?>
 	<?php echo $label; ?>
 <?php $this->endblock(); ?>
