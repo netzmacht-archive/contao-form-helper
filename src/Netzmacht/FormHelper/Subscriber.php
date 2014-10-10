@@ -255,6 +255,15 @@ class Subscriber implements EventSubscriberInterface
 			->addChild(sprintf($GLOBALS['TL_LANG']['MSC']['confirmation'], $widget->label))
 			->setAttribute('for', $repeatId);
 
+		if($widget->mandatory) {
+			$mandatory = sprintf(
+				'<span class="mandatory"><span class="invisible">%s</span>*</span>',
+				$GLOBALS['TL_LANG']['MSC']['mandatory']
+			);
+
+			$repeatLabel->addChild($mandatory);
+		}
+
 		/** @var Element $repeat */
 		$repeat = clone $element;
 		$repeat->setId($repeatId)
