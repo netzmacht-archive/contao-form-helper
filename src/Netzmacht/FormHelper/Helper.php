@@ -4,7 +4,7 @@ namespace Netzmacht\FormHelper;
 
 use Netzmacht\Contao\FormHelper\Element\StaticHtml;
 use Netzmacht\FormHelper\Event\BuildElementEvent;
-use Netzmacht\FormHelper\Event\Events;
+use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\FormHelper\Event\GenerateEvent;
 use Netzmacht\FormHelper\Event\PreGenerateEvent;
 use Netzmacht\FormHelper\Event\SelectLayoutEvent;
