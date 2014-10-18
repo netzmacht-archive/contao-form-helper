@@ -12,7 +12,6 @@ class ViewEvent extends Event
      */
     private $view;
 
-
     /**
      * @param View $view
      */

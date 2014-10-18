@@ -46,7 +46,7 @@ class View
     private $errors;
 
     /**
-     * @param Widget $widget
+     * @param Widget     $widget
      * @param \FormModel $formModel
      */
     public function __construct(\Widget $widget, \FormModel $formModel = null)

@@ -23,7 +23,7 @@ class Helper
 
     /**
      * @param EventDispatcherInterface $eventDispatcher
-     * @param FormLocator $formLocator
+     * @param FormLocator              $formLocator
      */
     public function __construct(EventDispatcherInterface $eventDispatcher, FormLocator $formLocator)
     {
@@ -32,7 +32,7 @@ class Helper
     }
 
     /**
-     * @param \Widget $widget
+     * @param  \Widget $widget
      * @return string
      */
     public static function generate(\Widget $widget)
@@ -45,7 +45,7 @@ class Helper
     }
 
     /**
-     * @param \Widget $widget
+     * @param  \Widget $widget
      * @return View
      */
     public function createView(\Widget $widget)
@@ -63,8 +63,8 @@ class Helper
     }
 
     /**
-     * @param \Widget $widget
-     * @param $view
+     * @param  \Widget $widget
+     * @param  $view
      * @return \Netzmacht\Html\Element|\Netzmacht\Html\Element\StaticHtml
      */
     private function buildElement(\Widget $widget, $view)
@@ -84,7 +84,7 @@ class Helper
     }
 
     /**
-     * @param \Widget $widget
+     * @param  \Widget $widget
      * @param $form
      * @return View
      */

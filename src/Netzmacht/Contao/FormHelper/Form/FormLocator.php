@@ -8,17 +8,16 @@
 
 namespace Netzmacht\Contao\FormHelper\Form;
 
-
 class FormLocator
 {
 
-	/**
-	 * @param $id
-	 * @return \Database\Result|mixed
-	 */
-	public function getForm($id)
-	{
+    /**
+     * @param $id
+     * @return \Database\Result|mixed
+     */
+    public function getForm($id)
+    {
         return \FormModel::findByPk($id);
-	}
+    }
 
 }

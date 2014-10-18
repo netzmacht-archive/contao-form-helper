@@ -7,10 +7,10 @@ use Netzmacht\Html\Element;
 class BuildElementEvent extends ViewEvent
 {
 
-	/**
-	 * @var Element $element
-	 */
-	private $element;
+    /**
+     * @var Element $element
+     */
+    private $element;
 
     /**
      * @return \Widget
@@ -21,23 +21,22 @@ class BuildElementEvent extends ViewEvent
     }
 
     /**
-     * @param Element $element
+     * @param  Element $element
      * @return $this
      */
-	public function setElement(Element $element)
-	{
-		$this->element = $element;
+    public function setElement(Element $element)
+    {
+        $this->element = $element;
 
         return $this;
-	}
+    }
 
-	/**
-	 * @return Element mixed
-	 */
-	public function getElement()
-	{
-		return $this->element;
-	}
+    /**
+     * @return Element mixed
+     */
+    public function getElement()
+    {
+        return $this->element;
+    }
 
-
-} 
+}

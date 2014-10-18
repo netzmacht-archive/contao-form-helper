@@ -19,11 +19,11 @@ use Netzmacht\Html\Element\Node;
  */
 interface CanBeAppended
 {
-	/**
-	 * @param Node $parent
-	 * @param string $position
-	 * @return mixed
-	 */
-	public function appendTo(Node $parent, $position=Node::POSITION_LAST);
+    /**
+     * @param Node $parent
+     * @param string $position
+     * @return mixed
+     */
+    public function appendTo(Node $parent, $position=Node::POSITION_LAST);
 
-} 
+}

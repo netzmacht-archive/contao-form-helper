@@ -21,10 +21,9 @@ use Netzmacht\Html\Element;
  */
 interface GeneratesAnElement
 {
-
-	/**
-	 * @return Element
-	 */
-	public function generate();
+    /**
+     * @return Element
+     */
+    public function generate();
 
 }

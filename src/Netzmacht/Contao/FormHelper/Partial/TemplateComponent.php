@@ -8,26 +8,26 @@ use Netzmacht\Contao\FormHelper\HasTemplate;
 
 class TemplateComponent extends Component implements HasTemplate
 {
-	/**
-	 * @var string
-	 */
-	protected $template;
+    /**
+     * @var string
+     */
+    protected $template;
 
-	/**
-	 * @param string $name
-	 * @return $this
-	 */
-	public function setTemplateName($name)
-	{
-		$this->template = $name;
-	}
+    /**
+     * @param string $name
+     * @return $this
+     */
+    public function setTemplateName($name)
+    {
+        $this->template = $name;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getTemplateName()
-	{
-		return $this->template;
-	}
+    /**
+     * @return string
+     */
+    public function getTemplateName()
+    {
+        return $this->template;
+    }
 
-} 
+}
