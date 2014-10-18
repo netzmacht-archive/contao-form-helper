@@ -1,6 +1,6 @@
 <?php
 
-namespace Netzmacht\FormHelper;
+namespace Netzmacht\Contao\FormHelper;
 
 
 interface HasTemplate

@@ -2,7 +2,7 @@
 
 namespace Netzmacht\Contao\FormHelper\Partial;
 
-use Netzmacht\FormHelper\HasElement;
+use Netzmacht\Contao\FormHelper\HasElement;
 use Netzmacht\Html\CastsToString;
 use Netzmacht\Html\Element;
 

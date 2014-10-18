@@ -14,10 +14,5 @@ class Events
 
 	const GENERATE              = 'form-helper.generate-widget';
 
-	const SELECT_LAYOUT         = 'form-helper.select-widget-layout';
-
-	const SELECT_MESSAGE_LAYOUT = 'form-helper.select-message-layout';
-
-	const VALIDATE              = 'form-helper.validate';
-
+	const CREATE_VIEW           = 'form-helper.create-view';
 }

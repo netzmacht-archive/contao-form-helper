@@ -7,13 +7,6 @@ use Symfony\Component\EventDispatcher\Event;
 
 class ViewEvent extends Event
 {
-    const NAME = 'form-helper.create-view-event';
-
-    /**
-     * @var \Widget
-     */
-    private $widget;
-
     /**
      * @var View
      */
@@ -21,21 +14,11 @@ class ViewEvent extends Event
 
 
     /**
-     * @param \Widget $widget
      * @param View $view
      */
-    public function __construct(\Widget $widget, View $view)
+    public function __construct(View $view)
     {
-        $this->widget = $widget;
         $this->view   = $view;
-    }
-
-    /**
-     * @return \Widget
-     */
-    public function getWidget()
-    {
-        return $this->widget;
     }
 
     /**

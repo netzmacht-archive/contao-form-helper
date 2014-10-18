@@ -2,8 +2,11 @@
 
 namespace spec\Netzmacht\Contao\FormHelper;
 
-use Netzmacht\Contao\FormHelper\Event\CreateViewEvent;
+use Netzmacht\Contao\FormHelper\Event\BuildElementEvent;
+use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\Form\FormLocator;
+use Netzmacht\Html\Element;
+use Netzmacht\Html\Element\Node;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface as EventDispatcher;
@@ -19,7 +22,9 @@ class HelperSpec extends ObjectBehavior
 
     const HELPER_CLASS = 'Netzmacht\Contao\FormHelper\Helper';
 
-    const CREATE_VIEW_EVENT_CLASS = 'Netzmacht\Contao\FormHelper\Event\CreateViewEvent';
+    const VIEW_EVENT_CLASS = 'Netzmacht\Contao\FormHelper\Event\ViewEvent';
+
+    const BUILD_ELEMENT_EVENT_CLASS = 'Netzmacht\Contao\FormHelper\Event\BuildElementEvent';
 
     function let(EventDispatcher $eventDispatcher, FormLocator $formLocator)
     {
@@ -36,7 +41,23 @@ class HelperSpec extends ObjectBehavior
         $widget->getErrors()->willReturn(array());
 
         $eventDispatcher
-            ->dispatch(CreateViewEvent::NAME, Argument::type(self::CREATE_VIEW_EVENT_CLASS))
+            ->dispatch(Events::CREATE_VIEW, Argument::type(self::VIEW_EVENT_CLASS))
+            ->shouldBeCalled();
+
+        $eventDispatcher
+            ->dispatch(Events::BUILD_ELEMENT, Argument::type(self::BUILD_ELEMENT_EVENT_CLASS))
+            ->will(function($args) {
+                    /** @var BuildElementEvent $event */
+                    $event = $args[1];
+                    $event->setElement(new Node('input'));
+                });
+
+        $eventDispatcher
+            ->dispatch(Events::PRE_GENERATE, Argument::type(self::VIEW_EVENT_CLASS))
+            ->shouldBeCalled();
+
+        $eventDispatcher
+            ->dispatch(Events::GENERATE, Argument::type(self::VIEW_EVENT_CLASS))
             ->shouldBeCalled();
 
         $this->createView($widget)->shouldBeAnInstanceOf(self::VIEW_CLASS);

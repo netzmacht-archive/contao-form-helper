@@ -3,10 +3,10 @@
 namespace Netzmacht\FormHelper;
 
 use Netzmacht\Contao\FormHelper\Element\StaticHtml;
-use Netzmacht\FormHelper\Event\BuildElementEvent;
+use Netzmacht\Contao\FormHelper\Event\BuildElementEvent;
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\FormHelper\Event\GenerateEvent;
-use Netzmacht\FormHelper\Event\PreGenerateEvent;
+use Netzmacht\Contao\FormHelper\Event\PreGenerateEvent;
 use Netzmacht\FormHelper\Event\SelectLayoutEvent;
 use Netzmacht\FormHelper\Event\SelectMessageLayoutEvent;
 use Netzmacht\Contao\FormHelper\Partial\Container;

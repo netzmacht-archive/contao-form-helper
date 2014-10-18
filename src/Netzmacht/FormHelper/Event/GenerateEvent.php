@@ -3,6 +3,8 @@
 namespace Netzmacht\FormHelper\Event;
 
 
+use Netzmacht\Contao\FormHelper\Event\PreGenerateEvent;
+
 class GenerateEvent extends PreGenerateEvent
 {
 

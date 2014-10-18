@@ -8,10 +8,11 @@ use Netzmacht\Contao\FormHelper\Element\HasLabel;
 use Netzmacht\Contao\FormHelper\Element\Options;
 use Netzmacht\Contao\FormHelper\Element\Radios;
 use Netzmacht\Contao\FormHelper\Element\StaticHtml;
-use Netzmacht\FormHelper\Event\BuildElementEvent;
+use Netzmacht\Contao\FormHelper\Event\BuildElementEvent;
 use Netzmacht\Contao\FormHelper\Event\Events;
+use Netzmacht\Contao\FormHelper\GeneratesAnElement;
 use Netzmacht\FormHelper\Event\GenerateEvent;
-use Netzmacht\FormHelper\Event\PreGenerateEvent;
+use Netzmacht\Contao\FormHelper\Event\PreGenerateEvent;
 use Netzmacht\FormHelper\Event\SelectLayoutEvent;
 use Netzmacht\Contao\FormHelper\Partial\Container;
 use Netzmacht\Contao\FormHelper\Partial\Label;
@@ -118,7 +119,7 @@ class Subscriber implements EventSubscriberInterface
 
 
 	/**
-	 * @param BuildElementEvent $event
+	 * @param \Netzmacht\Contao\FormHelper\Event\BuildElementEvent $event
 	 */
 	public function buildElement(BuildElementEvent $event)
 	{
@@ -201,7 +202,7 @@ class Subscriber implements EventSubscriberInterface
 
 
 	/**
-	 * @param PreGenerateEvent $event
+	 * @param \Netzmacht\Contao\FormHelper\Event\PreGenerateEvent $event
 	 */
 	public function setDefaults(PreGenerateEvent $event)
 	{

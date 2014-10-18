@@ -3,7 +3,7 @@
 namespace Netzmacht\Contao\FormHelper\Element;
 
 use Netzmacht\Html\Element;
-use Netzmacht\FormHelper\HasTemplate;
+use Netzmacht\Contao\FormHelper\HasTemplate;
 
 
 abstract class Options extends Element implements HasTemplate

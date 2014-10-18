@@ -9,7 +9,7 @@
  *
  */
 
-namespace Netzmacht\FormHelper;
+namespace Netzmacht\Contao\FormHelper;
 
 use Netzmacht\Html\Element;
 
