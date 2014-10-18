@@ -41,14 +41,20 @@ class Helper
 
     /**
      * @param  \Widget $widget
-     * @return string
+     * @param  bool $return
+     * @return string|void
      */
-    public static function generate(\Widget $widget)
+    public static function generate(\Widget $widget, $return=false)
     {
         $helper = static::getInstance();
         $view   = $helper->createView($widget);
+        $buffer = $view->render();
 
-        return $view->render();
+        if ($return) {
+            return $buffer;
+        }
+
+        echo $buffer;
     }
 
     /**
@@ -67,14 +73,6 @@ class Helper
         $this->dispatchGenerate($view);
 
         return $view;
-    }
-
-    /**
-     * @param \Template $template
-     */
-    public function createMessageView(\Template $template)
-    {
-
     }
 
     /**
@@ -100,7 +98,7 @@ class Helper
 
     /**
      * @param  \Widget $widget
-     * @param $form
+     * @param  $form
      * @return View
      */
     private function buildView(\Widget $widget, $form)
