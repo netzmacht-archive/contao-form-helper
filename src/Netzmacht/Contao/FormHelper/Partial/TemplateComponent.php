@@ -2,7 +2,7 @@
 
 namespace Netzmacht\Contao\FormHelper\Partial;
 
-use Netzmacht\FormHelper\Component;
+use Netzmacht\Contao\FormHelper\Component;
 use Netzmacht\Contao\FormHelper\Partial;
 use Netzmacht\Contao\FormHelper\HasTemplate;
 
@@ -21,7 +21,6 @@ class TemplateComponent extends Component implements HasTemplate
 	{
 		$this->template = $name;
 	}
-
 
 	/**
 	 * @return string
