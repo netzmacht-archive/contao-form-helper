@@ -2,7 +2,7 @@
 
 namespace Netzmacht\FormHelper;
 
-use Netzmacht\FormHelper\Element\CanBeAppended;
+use Netzmacht\Contao\FormHelper\Element\CanBeAppended;
 use Netzmacht\Html\Element;
 
 

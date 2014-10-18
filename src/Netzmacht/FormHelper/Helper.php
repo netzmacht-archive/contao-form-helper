@@ -2,16 +2,16 @@
 
 namespace Netzmacht\FormHelper;
 
-use Netzmacht\FormHelper\Element\StaticHtml;
+use Netzmacht\Contao\FormHelper\Element\StaticHtml;
 use Netzmacht\FormHelper\Event\BuildElementEvent;
 use Netzmacht\FormHelper\Event\Events;
 use Netzmacht\FormHelper\Event\GenerateEvent;
 use Netzmacht\FormHelper\Event\PreGenerateEvent;
 use Netzmacht\FormHelper\Event\SelectLayoutEvent;
 use Netzmacht\FormHelper\Event\SelectMessageLayoutEvent;
-use Netzmacht\FormHelper\Partial\Container;
-use Netzmacht\FormHelper\Partial\Errors;
-use Netzmacht\FormHelper\Partial\Label;
+use Netzmacht\Contao\FormHelper\Partial\Container;
+use Netzmacht\Contao\FormHelper\Partial\Errors;
+use Netzmacht\Contao\FormHelper\Partial\Label;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class Helper

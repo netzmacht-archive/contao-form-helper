@@ -1,6 +1,6 @@
 <?php
 
-namespace Netzmacht\FormHelper\Partial;
+namespace Netzmacht\Contao\FormHelper\Partial;
 
 trait TemplateTrait
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Netzmacht\FormHelper\Element;
+namespace Netzmacht\Contao\FormHelper\Element;
 
 
 class Select extends Options

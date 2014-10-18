@@ -1,6 +1,6 @@
 <?php
 
-namespace Netzmacht\FormHelper\Element;
+namespace Netzmacht\Contao\FormHelper\Element;
 
 use Netzmacht\Html\CastsToString;
 use Netzmacht\Html\Element;

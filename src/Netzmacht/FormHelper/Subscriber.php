@@ -2,19 +2,19 @@
 
 namespace Netzmacht\FormHelper;
 
-use Netzmacht\FormHelper\Element\Select;
-use Netzmacht\FormHelper\Element\Checkboxes;
-use Netzmacht\FormHelper\Element\HasLabel;
-use Netzmacht\FormHelper\Element\Options;
-use Netzmacht\FormHelper\Element\Radios;
-use Netzmacht\FormHelper\Element\StaticHtml;
+use Netzmacht\Contao\FormHelper\Element\Select;
+use Netzmacht\Contao\FormHelper\Element\Checkboxes;
+use Netzmacht\Contao\FormHelper\Element\HasLabel;
+use Netzmacht\Contao\FormHelper\Element\Options;
+use Netzmacht\Contao\FormHelper\Element\Radios;
+use Netzmacht\Contao\FormHelper\Element\StaticHtml;
 use Netzmacht\FormHelper\Event\BuildElementEvent;
 use Netzmacht\FormHelper\Event\Events;
 use Netzmacht\FormHelper\Event\GenerateEvent;
 use Netzmacht\FormHelper\Event\PreGenerateEvent;
 use Netzmacht\FormHelper\Event\SelectLayoutEvent;
-use Netzmacht\FormHelper\Partial\Container;
-use Netzmacht\FormHelper\Partial\Label;
+use Netzmacht\Contao\FormHelper\Partial\Container;
+use Netzmacht\Contao\FormHelper\Partial\Label;
 use Netzmacht\Html\Element;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -399,7 +399,7 @@ class Subscriber implements EventSubscriberInterface
 
 
 	/**
-	 * @param \Netzmacht\FormHelper\Partial\Container $container
+	 * @param \Netzmacht\Contao\FormHelper\Partial\Container $container
 	 * @param $element
 	 * @param $widget
 	 */

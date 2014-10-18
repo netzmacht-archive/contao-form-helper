@@ -9,9 +9,9 @@
  *
  */
 
-namespace Netzmacht\FormHelper\Element;
+namespace Netzmacht\Contao\FormHelper\Element;
 
-use Netzmacht\FormHelper\Partial\Label;
+use Netzmacht\Contao\FormHelper\Partial\Label;
 
 interface HasLabel
 {

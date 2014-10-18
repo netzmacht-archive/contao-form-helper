@@ -1,6 +1,6 @@
 <?php
 
-namespace Netzmacht\FormHelper\Element;
+namespace Netzmacht\Contao\FormHelper\Element;
 
 use Netzmacht\Html\Element;
 use Netzmacht\FormHelper\HasTemplate;
