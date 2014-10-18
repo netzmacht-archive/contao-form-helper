@@ -224,7 +224,7 @@ class Container extends TemplateComponent
         foreach ($order as $item => $pos) {
             if (!is_string($item)) {
                 $item = $pos;
-                $pos = $position[$item];
+                $pos  = $position[$item];
             }
 
             if (isset($position[$item])) {

@@ -14,9 +14,9 @@ abstract class Options extends Element\Node implements HasTemplate
     const CONTAINER_TAG = 'div';
 
     /**
-     * @var mixed
+     * @var array
      */
-    protected $value;
+    protected $value = array();
 
     /**
      * @var array
@@ -30,11 +30,14 @@ abstract class Options extends Element\Node implements HasTemplate
 
     /**
      * @param mixed $options
+     * @return $this
      */
     public function setOptions($options)
     {
         $this->options  = (array) $options;
         $this->children = array();
+
+        return $this;
     }
 
     /**
@@ -47,6 +50,7 @@ abstract class Options extends Element\Node implements HasTemplate
 
     /**
      * @param mixed $value
+     * @return $this
      */
     public function setValue($value)
     {
@@ -58,6 +62,8 @@ abstract class Options extends Element\Node implements HasTemplate
         }
 
         $this->value = $value;
+
+        return $this;
     }
 
     /**
@@ -102,7 +108,7 @@ abstract class Options extends Element\Node implements HasTemplate
     {
         $this->template = $name;
 
-        return $this->template;
+        return $this;
     }
 
     /**
