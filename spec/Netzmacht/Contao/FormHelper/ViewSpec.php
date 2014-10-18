@@ -88,10 +88,11 @@ class ViewSpec extends ObjectBehavior
         $this->getLabel()->shouldHaveType(self::LABEL_CLASS);
     }
 
-    function it_has_a_message_layout()
+    function it_has_a_visibility_state()
     {
-        $this->setMessageLayout(static::MESSAGE_LAYOUT)->shouldReturn($this);
-        $this->getMessageLayout()->shouldReturn(static::MESSAGE_LAYOUT);
+        $this->isVisible()->shouldReturn(true);
+        $this->setVisible(false)->shouldReturn($this);
+        $this->isVisible()->shouldReturn(false);
     }
 
     function it_renders()

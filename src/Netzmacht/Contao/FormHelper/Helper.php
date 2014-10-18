@@ -32,13 +32,20 @@ class Helper
     }
 
     /**
+     * @return Helper
+     */
+    public static function getInstance()
+    {
+        return $GLOBALS['container']['form-helper'];
+    }
+
+    /**
      * @param  \Widget $widget
      * @return string
      */
     public static function generate(\Widget $widget)
     {
-        /** @var Helper $helper */
-        $helper = $GLOBALS['container']['form-helper'];
+        $helper = static::getInstance();
         $view   = $helper->createView($widget);
 
         return $view->render();
@@ -60,6 +67,14 @@ class Helper
         $this->dispatchGenerate($view);
 
         return $view;
+    }
+
+    /**
+     * @param \Template $template
+     */
+    public function createMessageView(\Template $template)
+    {
+
     }
 
     /**

@@ -46,9 +46,9 @@ class View
     private $errors;
 
     /**
-     * @var string
+     * @var bool
      */
-    private $messageLayout = 'default';
+    private $visible = true;
 
     /**
      * @param Widget     $widget
@@ -100,10 +100,34 @@ class View
     }
 
     /**
+     * @return bool
+     */
+    public function isVisible()
+    {
+        return $this->visible;
+    }
+
+    /**
+     * @param mixed $visible
+     * @return $this
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+
+    /**
      * @return string
      */
     public function render()
     {
+        if (!$this->isVisible()) {
+            return '';
+        }
+
         $name     = 'formhelper_layout_' . $this->getLayout();
         $template = new \FrontendTemplate($name);
 
@@ -157,22 +181,11 @@ class View
     }
 
     /**
-     * @param $messageLayout
-     * @return $this
+     * @param Label $label
      */
-    public function setMessageLayout($messageLayout)
+    public function setLabel(Label $label)
     {
-        $this->messageLayout = $messageLayout;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMessageLayout()
-    {
-        return $this->messageLayout;
+        $this->label = $label;
     }
 
 }
