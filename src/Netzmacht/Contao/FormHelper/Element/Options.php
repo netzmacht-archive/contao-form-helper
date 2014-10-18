@@ -50,7 +50,10 @@ abstract class Options extends Element\Node implements HasTemplate
      */
     public function setValue($value)
     {
-        if (!is_array($value)) {
+        if (!$value) {
+            $value = array();
+        }
+        elseif (!is_array($value)) {
             $value = array($value);
         }
 
@@ -58,10 +61,23 @@ abstract class Options extends Element\Node implements HasTemplate
     }
 
     /**
+     * @param bool $default
      * @return mixed
      */
-    public function getValue()
+    public function getValue($default=false)
     {
+        if($default && empty($this->value)) {
+            $value = array();
+
+            foreach($this->options as $option) {
+                if ($option['default']) {
+                    $value[] = $option['value'];
+                }
+            }
+
+            return $value;
+        }
+
         return $this->value;
     }
 
