@@ -27,6 +27,8 @@ class ViewSpec extends ObjectBehavior
 
     const LABEL_CLASS = 'Netzmacht\Contao\FormHelper\Partial\Label';
 
+    const MESSAGE_LAYOUT = 'message_layout';
+
     function let(\Widget $widget)
     {
         $widget->getErrors()->willReturn(array());
@@ -83,6 +85,12 @@ class ViewSpec extends ObjectBehavior
     function it_has_a_label()
     {
         $this->getLabel()->shouldHaveType(self::LABEL_CLASS);
+    }
+
+    function it_has_a_message_layout()
+    {
+        $this->setMessageLayout(static::MESSAGE_LAYOUT)->shouldReturn($this);
+        $this->getMessageLayout()->shouldReturn(static::MESSAGE_LAYOUT);
     }
 
     function it_renders()

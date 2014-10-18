@@ -46,6 +46,11 @@ class View
     private $errors;
 
     /**
+     * @var string
+     */
+    private $messageLayout;
+
+    /**
      * @param Widget     $widget
      * @param \FormModel $formModel
      */
@@ -138,4 +143,24 @@ class View
     {
         return $this->label;
     }
+
+    /**
+     * @param $messageLayout
+     * @return $this
+     */
+    public function setMessageLayout($messageLayout)
+    {
+        $this->messageLayout = $messageLayout;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessageLayout()
+    {
+        return $this->messageLayout;
+    }
+
 }
