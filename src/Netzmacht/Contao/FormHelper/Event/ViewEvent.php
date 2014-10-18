@@ -5,7 +5,7 @@ namespace Netzmacht\Contao\FormHelper\Event;
 use Netzmacht\Contao\FormHelper\View;
 use Symfony\Component\EventDispatcher\Event;
 
-class CreateViewEvent extends Event
+class ViewEvent extends Event
 {
     const NAME = 'form-helper.create-view-event';
 

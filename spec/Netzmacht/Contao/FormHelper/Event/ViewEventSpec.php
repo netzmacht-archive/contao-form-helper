@@ -2,7 +2,7 @@
 
 namespace spec\Netzmacht\Contao\FormHelper\Event;
 
-use Netzmacht\Contao\FormHelper\Event\CreateViewEvent;
+use Netzmacht\Contao\FormHelper\Event\ViewEvent;
 use Netzmacht\Contao\FormHelper\View;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -10,9 +10,9 @@ use Prophecy\Argument;
 /**
  * Class CreateViewEventSpec
  * @package spec\Netzmacht\Contao\FormHelper\Event
- * @mixin CreateViewEvent
+ * @mixin ViewEvent
  */
-class CreateViewEventSpec extends ObjectBehavior
+class ViewEventSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {

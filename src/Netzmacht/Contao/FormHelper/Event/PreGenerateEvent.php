@@ -1,10 +1,11 @@
 <?php
 
-namespace Netzmacht\FormHelper\Event;
+namespace Netzmacht\Contao\FormHelper\Event;
 
 use Netzmacht\Contao\FormHelper\Partial\Label;
 use Netzmacht\Contao\FormHelper\Partial\Errors;
 use Netzmacht\Contao\FormHelper\Partial\Container;
+use Netzmacht\FormHelper\Event\WidgetEvent;
 
 class PreGenerateEvent extends WidgetEvent
 {
