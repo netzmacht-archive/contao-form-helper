@@ -34,8 +34,8 @@ class CreateViewSubscriber implements EventSubscriberInterface
     {
         return array(
             Events::CREATE_VIEW => array(
-                'setLayout',
-                'setMessageLayout',
+                array('setLayout'),
+                array('setCssClasses'),
             ),
         );
     }
@@ -56,6 +56,24 @@ class CreateViewSubscriber implements EventSubscriberInterface
             $view->setLayout('table_nocolumns');
         } else {
             $view->setLayout('table');
+        }
+    }
+
+    /**
+     * @param ViewEvent $event
+     */
+    public function setCssClasses(ViewEvent $event)
+    {
+        $view       = $event->getView();
+        $widget     = $view->getWidget();
+        $attributes = $view->getAttributes();
+
+        $attributes
+            ->addClass('widget')
+            ->addClass('widget-' . $widget->type);
+
+        if ($widget->mandatory) {
+           $attributes->addClass('mandatory');
         }
     }
 

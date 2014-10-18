@@ -34,12 +34,12 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     {
         return array(
             Events::PRE_GENERATE => array(
-                'presetElement',
-                'presetAttributes',
-                'presetSubmit',
-                'presetOptions',
-                'presetLabel',
-                'presetErrors',
+                array('presetElement'),
+                array('presetAttributes'),
+                array('presetSubmit'),
+                array('presetOptions'),
+                array('presetLabel'),
+                array('presetErrors'),
             ),
         );
     }
@@ -60,10 +60,6 @@ class PreGenerateSubscriber implements EventSubscriberInterface
 
         $element->setId('ctrl_' . $widget->id);
         $element->addClass($widget->type);
-
-        if ($element instanceof Options && $widget->options) {
-            $this->presetOptions($element, $widget);
-        }
     }
 
     /**
@@ -120,8 +116,14 @@ class PreGenerateSubscriber implements EventSubscriberInterface
         $container = $view->getContainer();
         $element   = $container->getElement();
 
-        if ($widget->type == 'submit' && $widget->imageSubmit) {
+        if ($widget->type == 'submit') {
             if (!$element instanceof Element) {
+                return;
+            }
+
+            $element->setAttribute('value', $widget->slabel);
+
+            if (!$widget->imageSubmit) {
                 return;
             }
 
@@ -142,7 +144,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
                     ->setAttribute('src', \FilesModel::findByPk($widget->singleSRC)->path);
             }
 
-        } elseif ($widget->addSubmit && $widget->type != 'submit') {
+        } elseif ($widget->addSubmit) {
             $submit = Element::create('input');
             $submit->setAttribute('type', 'submit');
             $submit->setAttribute('value', $widget->slabel);

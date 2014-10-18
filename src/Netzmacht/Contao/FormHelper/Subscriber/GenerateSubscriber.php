@@ -14,6 +14,7 @@ namespace Netzmacht\Contao\FormHelper\Subscriber;
 
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\Event\ViewEvent;
+use Netzmacht\Contao\FormHelper\Partial\Label;
 use Netzmacht\Html\Element;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -45,6 +46,9 @@ class GenerateSubscriber implements EventSubscriberInterface
             /** @var \FormCaptcha $widget */
             $question = $widget->generateQuestion();
             $container->addChild('question', $question);
+
+            // make sure that submit button will be shown after question
+            $container->rearrangeChildren(array('question', 'submit'));
         }
     }
 
@@ -66,7 +70,8 @@ class GenerateSubscriber implements EventSubscriberInterface
         $id        = $element instanceof Element ? $element->getId() : ('ctrl_' . $widget->id);
 
         $repeatId    = $id . '_confirm';
-        $repeatLabel = Element::create('label')
+        $repeatLabel = new Label();
+        $repeatLabel
             ->setAttribute('class', $label->getAttribute('class'))
             ->addChild(sprintf($GLOBALS['TL_LANG']['MSC']['confirmation'], $widget->label))
             ->setAttribute('for', $repeatId);

@@ -1,8 +1,8 @@
 <?php
 /** @var Netzmacht\Contao\FormHelper\Partial\Container $container */
-$container = $this->container;
+$container  = $this->container;
 $attributes = $container->getAttributes();
-$buffer = '';
+$buffer     = '';
 
 ?>
 
