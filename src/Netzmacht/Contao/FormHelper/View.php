@@ -48,7 +48,7 @@ class View
     /**
      * @var string
      */
-    private $messageLayout;
+    private $messageLayout = 'default';
 
     /**
      * @param Widget     $widget
@@ -99,9 +99,21 @@ class View
         return $this->attributes;
     }
 
+    /**
+     * @return string
+     */
     public function render()
     {
-        return '';
+        $name     = 'formhelper_layout_' . $this->getLayout();
+        $template = new \FrontendTemplate($name);
+
+        $template->widget     = $this->widget;
+        $template->container  = $this->container;
+        $template->label      = $this->label;
+        $template->attributes = $this->attributes;
+        $template->errors     = $this->errors;
+
+        return $template->parse();
     }
 
     /**
