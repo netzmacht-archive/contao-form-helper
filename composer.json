@@ -27,7 +27,7 @@
     "require-dev":{
         "phpspec/phpspec": "2.1.x-dev",
         "netzmacht/contao-initialize-phpspec": "dev-master",
-        "netzmacht/contao-devtools": "dev-master"
+        "netzmacht/contao-devtools": "1.0.x-dev"
     },
     "autoload": {
         "psr-0": {

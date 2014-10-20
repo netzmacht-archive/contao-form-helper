@@ -7,5 +7,10 @@ php:
 
 install:
     - composer install --prefer-dist --dev
+
+before_script:
+    - "mkdir -p ~/.composer"
+    - cp .travis.composer.config.json ~/.composer/config.json
+
 script:
     - ant -keep-going
