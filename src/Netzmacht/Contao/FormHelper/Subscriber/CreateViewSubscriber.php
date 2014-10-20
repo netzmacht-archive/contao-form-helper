@@ -11,7 +11,6 @@
 
 namespace Netzmacht\Contao\FormHelper\Subscriber;
 
-
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\Event\ViewEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -73,8 +72,7 @@ class CreateViewSubscriber implements EventSubscriberInterface
             ->addClass('widget-' . $widget->type);
 
         if ($widget->mandatory) {
-           $attributes->addClass('mandatory');
+            $attributes->addClass('mandatory');
         }
     }
-
 }

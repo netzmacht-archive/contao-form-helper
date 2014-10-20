@@ -41,7 +41,7 @@ class BuildElementSubscriber implements EventSubscriberInterface
         $widget  = $event->getWidget();
         $element = null;
 
-        if($this->buildByWidget($event, $widget)) {
+        if ($this->buildByWidget($event, $widget)) {
             return;
         }
 
@@ -127,4 +127,4 @@ class BuildElementSubscriber implements EventSubscriberInterface
 
         return false;
     }
-} 
+}

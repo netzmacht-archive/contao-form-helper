@@ -6,7 +6,7 @@ $buffer     = '';
 
 ?>
 
-<?php if($container->getRenderContainer()): ?>
+<?php if($container->isRendered()): ?>
 <div <?php echo $attributes; ?>>
 <?php endif; ?>
 
@@ -27,6 +27,6 @@ foreach($this->after as $child) {
 echo $buffer;
 
 ?>
-<?php if($container->getRenderContainer()): ?>
+<?php if($container->isRendered()): ?>
 </div>
 <?php endif; ?>

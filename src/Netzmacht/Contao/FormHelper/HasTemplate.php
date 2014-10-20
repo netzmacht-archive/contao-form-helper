@@ -14,5 +14,4 @@ interface HasTemplate
      * @return string
      */
     public function getTemplateName();
-
 }

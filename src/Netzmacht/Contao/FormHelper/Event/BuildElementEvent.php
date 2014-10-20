@@ -38,5 +38,4 @@ class BuildElementEvent extends ViewEvent
     {
         return $this->element;
     }
-
 }

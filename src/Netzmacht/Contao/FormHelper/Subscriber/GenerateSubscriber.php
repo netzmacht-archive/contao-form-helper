@@ -67,9 +67,9 @@ class GenerateSubscriber implements EventSubscriberInterface
         $container = $view->getContainer();
         $element   = $container->getElement();
         $label     = $view->getLabel();
-        $id        = $element instanceof Element ? $element->getId() : ('ctrl_' . $widget->id);
+        $widgetId  = $element instanceof Element ? $element->getId() : ('ctrl_' . $widget->id);
 
-        $repeatId    = $id . '_confirm';
+        $repeatId    = $widgetId . '_confirm';
         $repeatLabel = new Label();
         $repeatLabel
             ->setAttribute('class', $label->getAttribute('class'))
@@ -94,4 +94,4 @@ class GenerateSubscriber implements EventSubscriberInterface
         $container->addChild('repeat', $repeat);
         $container->addChild('repeatLabel', $repeatLabel);
     }
-} 
+}

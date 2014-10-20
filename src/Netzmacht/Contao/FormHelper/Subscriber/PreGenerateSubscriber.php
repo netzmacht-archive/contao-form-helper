@@ -174,7 +174,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     public function presetErrors(ViewEvent $event)
     {
         $errors = $event->getView()->getErrors();
-        $errors->addClass('error');;
+        $errors->addClass('error');
     }
 
 
@@ -211,4 +211,4 @@ class PreGenerateSubscriber implements EventSubscriberInterface
             $label->hide();
         }
     }
-} 
+}

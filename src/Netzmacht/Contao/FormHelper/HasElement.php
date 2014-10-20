@@ -16,5 +16,4 @@ interface HasElement
      * @return CastsToString|string
      */
     public function getElement();
-
 }

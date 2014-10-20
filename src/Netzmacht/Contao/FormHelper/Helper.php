@@ -44,7 +44,7 @@ class Helper
      * @param  bool $return
      * @return string|void
      */
-    public static function generate(\Widget $widget, $return=false)
+    public static function generate(\Widget $widget, $return = false)
     {
         $helper = static::getInstance();
         $view   = $helper->createView($widget);
@@ -129,5 +129,4 @@ class Helper
         $event = new ViewEvent($view);
         $this->eventDispatcher->dispatch(Events::GENERATE, $event);
     }
-
 }

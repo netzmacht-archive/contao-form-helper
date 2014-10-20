@@ -187,5 +187,4 @@ class View
     {
         $this->label = $label;
     }
-
 }

@@ -45,7 +45,7 @@ class Container extends TemplateComponent
     /**
      * @param array $attributes
      */
-    public function __construct(array $attributes=array())
+    public function __construct(array $attributes = array())
     {
         parent::__construct($attributes);
 
@@ -63,7 +63,7 @@ class Container extends TemplateComponent
     /**
      * @return boolean
      */
-    public function getRenderContainer()
+    public function isRendered()
     {
         return $this->renderContainer;
     }
@@ -139,7 +139,7 @@ class Container extends TemplateComponent
      * @param string $position
      * @return $this
      */
-    public function addChild($name, $child, $position=Container::POSITION_AFTER)
+    public function addChild($name, $child, $position = Container::POSITION_AFTER)
     {
         $this->children[$name] = $child;
         $this->position[$name] = $position;
@@ -325,5 +325,4 @@ class Container extends TemplateComponent
 
         return $element;
     }
-
 }

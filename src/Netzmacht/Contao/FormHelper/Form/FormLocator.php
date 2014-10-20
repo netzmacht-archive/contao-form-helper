@@ -12,12 +12,11 @@ class FormLocator
 {
 
     /**
-     * @param $id
+     * @param $formId
      * @return \Database\Result|mixed
      */
-    public function getForm($id)
+    public function getForm($formId)
     {
-        return \FormModel::findByPk($id);
+        return \FormModel::findByPk($formId);
     }
-
 }

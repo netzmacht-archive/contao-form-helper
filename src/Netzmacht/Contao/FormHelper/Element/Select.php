@@ -3,9 +3,8 @@
 
 namespace Netzmacht\Contao\FormHelper\Element;
 
-class Select extends Options
+class Select extends MultipleValues
 {
-
     /**
      * @param array $attributes
      */
@@ -15,5 +14,4 @@ class Select extends Options
 
         $this->template = 'formhelper_element_select';
     }
-
 }

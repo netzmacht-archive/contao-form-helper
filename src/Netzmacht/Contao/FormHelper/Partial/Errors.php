@@ -14,7 +14,7 @@ class Errors extends TemplateComponent
      * @param array $errors
      * @param array $attributes
      */
-    public function __construct(array $errors, array $attributes=array())
+    public function __construct(array $errors, array $attributes = array())
     {
         parent::__construct($attributes);
 
@@ -34,7 +34,7 @@ class Errors extends TemplateComponent
      * @param $index
      * @return string
      */
-    public function getError($index=0)
+    public function getError($index = 0)
     {
         if (isset($this->errors[$index])) {
             return $this->errors[$index];
@@ -69,5 +69,4 @@ class Errors extends TemplateComponent
     {
         return $this->generate();
     }
-
 }

@@ -25,5 +25,4 @@ interface HasLabel
      * @return Label|string
      */
     public function getLabel();
-
 }

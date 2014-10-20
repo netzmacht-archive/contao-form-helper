@@ -6,7 +6,6 @@ use Netzmacht\Html\Element\Node;
 
 class Label extends Node
 {
-
     /**
      * @var bool
      */
@@ -62,5 +61,4 @@ class Label extends Node
 
         return '';
     }
-
 }

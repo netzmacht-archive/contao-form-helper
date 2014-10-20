@@ -29,5 +29,4 @@ class TemplateComponent extends Component implements HasTemplate
     {
         return $this->template;
     }
-
 }

@@ -24,6 +24,5 @@ interface CanBeAppended
      * @param string $position
      * @return mixed
      */
-    public function appendTo(Node $parent, $position=Node::POSITION_LAST);
-
+    public function appendTo(Node $parent, $position = Node::POSITION_LAST);
 }
