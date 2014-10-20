@@ -38,9 +38,6 @@
     },
     "prefer-stable": true,
     "minimum-stability": "dev",
-    "config": {
-        "bin-dir": "bin"
-    },
     "extra":{
         "branch-alias": {
             "dev-develop": "1.0.x-dev"
