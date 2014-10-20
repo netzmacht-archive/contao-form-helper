@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "48be56904b8c6e9887b942710aa2700e",
+    "hash": "a847eecc58a2e65d8500539439f45441",
     "packages": [
         {
             "name": "contao-community-alliance/backports-initialize-system",
@@ -1171,8 +1171,14 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "/media/Daten/Arbeit/Entwicklung/dev/contao-devtools",
-                "reference": "2bc8c346f06c72de2bd46da73d7f0001a4f72fb9"
+                "url": "https://github.com/netzmacht/contao-devtools.git",
+                "reference": "facb1979066df87adf04737db9cd96fd88ed6095"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/netzmacht/contao-devtools/zipball/facb1979066df87adf04737db9cd96fd88ed6095",
+                "reference": "facb1979066df87adf04737db9cd96fd88ed6095",
+                "shasum": ""
             },
             "require": {
                 "contao-community-alliance/build-system": "~1.0",
@@ -1188,9 +1194,10 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "1.0.x-dev"
+                    "dev-master": "1.0.x-dev"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "LGPL-3.0+"
             ],
@@ -1209,12 +1216,7 @@
                 "development",
                 "test"
             ],
-            "support": {
-                "email": "mail@netzmacht.de",
-                "issues": "https://github.com/netzmacht/contao-development/issues",
-                "source": "https://github.com/netzmacht/contao-development"
-            },
-            "time": "2014-10-20 10:40:43"
+            "time": "2014-10-20 11:37:09"
         },
         {
             "name": "netzmacht/contao-initialize-phpspec",
