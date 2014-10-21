@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e648b3009c16b3b4dd9e80c179b99ce0",
+    "hash": "a74ab5b8ef39a0aca8fb135cc65a3fe5",
     "packages": [
         {
             "name": "contao-community-alliance/backports-initialize-system",
@@ -1212,8 +1212,14 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "/media/Daten/Arbeit/Entwicklung/dev/contao-build-tools",
-                "reference": "3fb72616ed64deef5c046914c4cab81907cccb24"
+                "url": "https://github.com/netzmacht/contao-build-tools.git",
+                "reference": "5054602aacfdfa2f90997275713bb7aca9816cfe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/netzmacht/contao-build-tools/zipball/5054602aacfdfa2f90997275713bb7aca9816cfe",
+                "reference": "5054602aacfdfa2f90997275713bb7aca9816cfe",
+                "shasum": ""
             },
             "require": {
                 "contao-community-alliance/build-system": "~1.0",
@@ -1240,6 +1246,7 @@
                     "autoload.php"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "LGPL-3.0+"
             ],
@@ -1258,12 +1265,7 @@
                 "development",
                 "test"
             ],
-            "support": {
-                "email": "mail@netzmacht.de",
-                "issues": "https://github.com/netzmacht/contao-development/issues",
-                "source": "https://github.com/netzmacht/contao-development"
-            },
-            "time": "2014-10-21 07:23:48"
+            "time": "2014-10-21 07:51:11"
         },
         {
             "name": "pdepend/pdepend",
