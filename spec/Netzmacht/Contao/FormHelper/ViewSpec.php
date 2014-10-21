@@ -9,7 +9,6 @@ if(!defined('TL_MODE')) {
     define('TL_MODE', 'FE');
 }
 
-require_once dirname(dirname(dirname(dirname(__DIR__)))) . '/vendor/netzmacht/contao-initialize-phpspec/contao-initialize.php';
 
 /**
  * Class ViewSpec
@@ -34,6 +33,10 @@ class ViewSpec extends ObjectBehavior
     {
         $widget->getErrors()->willReturn(array());
         $this->beConstructedWith($widget);
+
+        if(!class_exists('FrontendTemplate', false)) {
+            class_alias('spec\Netzmacht\Contao\FormHelper\FrontendTemplate', 'FrontendTemplate');
+        }
     }
 
     function it_is_initializable()
@@ -98,12 +101,16 @@ class ViewSpec extends ObjectBehavior
     function it_renders()
     {
         $this->setLayout('table');
-        \TemplateLoader::addFiles(array(
-                'formhelper_layout_table' => '../../../module/templates/layout',
-                'formhelper_error_last' => '../../../module/templates/error',
-            ));
 
         $this->render()->shouldBeString();
     }
 
+}
+
+class FrontendTemplate
+{
+    function parse()
+    {
+        return '';
+    }
 }

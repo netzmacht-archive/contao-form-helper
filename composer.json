@@ -27,14 +27,16 @@
     "require-dev":{
         "phpspec/phpspec": "2.1.x-dev",
         "henrikbjorn/phpspec-code-coverage" : "~0.2",
-        "netzmacht/contao-initialize-phpspec": "dev-master",
-        "netzmacht/contao-devtools": "1.0.x-dev"
+        "netzmacht/contao-build-tools": "1.0.x-dev"
     },
     "autoload": {
         "psr-0": {
             "Netzmacht\\FormHelper\\": "src/",
             "Netzmacht\\Contao\\FormHelper\\": "src/"
         }
+    },
+    "config": {
+        "bin-dir": "bin"
     },
     "prefer-stable": true,
     "minimum-stability": "dev",

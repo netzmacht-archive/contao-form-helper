@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6751a6a9b04efe79e008fdd82ffd7280",
+    "hash": "e648b3009c16b3b4dd9e80c179b99ce0",
     "packages": [
         {
             "name": "contao-community-alliance/backports-initialize-system",
@@ -810,12 +810,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/TCPDF.git",
-                "reference": "ff8799164231d5c99a69bee276ce33bcb7f52a54"
+                "reference": "00f7613b211a1aab3ab02a30bd14bc488ff72b44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/ff8799164231d5c99a69bee276ce33bcb7f52a54",
-                "reference": "ff8799164231d5c99a69bee276ce33bcb7f52a54",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/00f7613b211a1aab3ab02a30bd14bc488ff72b44",
+                "reference": "00f7613b211a1aab3ab02a30bd14bc488ff72b44",
                 "shasum": ""
             },
             "require": {
@@ -865,7 +865,7 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2014-10-06 17:50:43"
+            "time": "2014-10-20 20:04:11"
         }
     ],
     "packages-dev": [
@@ -875,12 +875,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/contao-community-alliance/build-system.git",
-                "reference": "a9a6c4acc1bf51552d3737e2921069bd04dc5ade"
+                "reference": "ea0ff790d682a867555d28a6d4f9a2cbb8e0f1c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/contao-community-alliance/build-system/zipball/a9a6c4acc1bf51552d3737e2921069bd04dc5ade",
-                "reference": "a9a6c4acc1bf51552d3737e2921069bd04dc5ade",
+                "url": "https://api.github.com/repos/contao-community-alliance/build-system/zipball/ea0ff790d682a867555d28a6d4f9a2cbb8e0f1c9",
+                "reference": "ea0ff790d682a867555d28a6d4f9a2cbb8e0f1c9",
                 "shasum": ""
             },
             "suggest": {
@@ -912,7 +912,7 @@
                 }
             ],
             "description": "CCABS base system.",
-            "time": "2014-10-11 09:27:17"
+            "time": "2014-10-20 23:08:07"
         },
         {
             "name": "contao-community-alliance/build-system-logger",
@@ -1208,18 +1208,12 @@
             "time": "2014-07-04 11:53:55"
         },
         {
-            "name": "netzmacht/contao-devtools",
+            "name": "netzmacht/contao-build-tools",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/netzmacht/contao-devtools.git",
-                "reference": "facb1979066df87adf04737db9cd96fd88ed6095"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/netzmacht/contao-devtools/zipball/facb1979066df87adf04737db9cd96fd88ed6095",
-                "reference": "facb1979066df87adf04737db9cd96fd88ed6095",
-                "shasum": ""
+                "url": "/media/Daten/Arbeit/Entwicklung/dev/contao-build-tools",
+                "reference": "3fb72616ed64deef5c046914c4cab81907cccb24"
             },
             "require": {
                 "contao-community-alliance/build-system": "~1.0",
@@ -1238,7 +1232,14 @@
                     "dev-master": "1.0.x-dev"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload": {
+                "psr-0": {
+                    "Netzmacht\\Contao\\BuildTools\\": "src/"
+                },
+                "files": [
+                    "autoload.php"
+                ]
+            },
             "license": [
                 "LGPL-3.0+"
             ],
@@ -1257,38 +1258,12 @@
                 "development",
                 "test"
             ],
-            "time": "2014-10-20 11:37:09"
-        },
-        {
-            "name": "netzmacht/contao-initialize-phpspec",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/netzmacht/contao-initialize-phpspec.git",
-                "reference": "6964b96029097270d35dabd4b73f929a8a8177f3"
+            "support": {
+                "email": "mail@netzmacht.de",
+                "issues": "https://github.com/netzmacht/contao-development/issues",
+                "source": "https://github.com/netzmacht/contao-development"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/netzmacht/contao-initialize-phpspec/zipball/6964b96029097270d35dabd4b73f929a8a8177f3",
-                "reference": "6964b96029097270d35dabd4b73f929a8a8177f3",
-                "shasum": ""
-            },
-            "require": {
-                "contao/core": "~3.2"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL"
-            ],
-            "authors": [
-                {
-                    "name": "David Molineus",
-                    "email": "mail@netzmacht.de"
-                }
-            ],
-            "description": "Initialization of Contao for usage in test/spec environment",
-            "time": "2014-10-20 11:24:00"
+            "time": "2014-10-21 07:23:48"
         },
         {
             "name": "pdepend/pdepend",
@@ -2801,8 +2776,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "phpspec/phpspec": 20,
-        "netzmacht/contao-initialize-phpspec": 20,
-        "netzmacht/contao-devtools": 20
+        "netzmacht/contao-build-tools": 20
     },
     "prefer-stable": true,
     "platform": {
