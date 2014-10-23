@@ -8,11 +8,11 @@ namespace Netzmacht\Contao\FormHelper\Event;
  */
 class Events
 {
-    const BUILD_ELEMENT = 'form-helper.build-element';
+    const BUILD_ELEMENT = 'netzmacht.form-helper.build-element';
 
-    const PRE_GENERATE  = 'form-helper.pre-generate-widget';
+    const PRE_GENERATE  = 'netzmacht.form-helper.pre-generate-widget';
 
-    const GENERATE      = 'form-helper.generate-widget';
+    const GENERATE      = 'netzmacht.form-helper.generate-widget';
 
-    const CREATE_VIEW   = 'form-helper.create-view';
+    const CREATE_VIEW   = 'netzmacht.form-helper.create-view';
 }
