@@ -2,8 +2,7 @@ Contao Form Helper - Extended form rendering
 ==================
 
 [![Build Status](http://img.shields.io/travis/netzmacht/contao-form-helper/master.svg?style=flat-square)](https://travis-ci.org/netzmacht/contao-form-helper)
-[![Code quality](http://img.shields.io/scrutinizer/g/netzmacht/contao-form-helper.svg?style=flat-square)](https://scrutinizer-ci.com/g/netzmacht/contao-form-helper)
-[![Code coverage](http://img.shields.io/scrutinizer/coverage/g/netzmacht/contao-form-helper.svg?style=flat-square)](https://scrutinizer-ci.com/g/netzmacht/contao-form-helper)
+
 
 This library provides extended form widget rendering for Contao frontend form widgets. By default the rendering of
 Contao forms widgets are not very customizable because of inline html rendering. Adjust output can be quite difficult.
@@ -113,9 +112,8 @@ $errors->setTemplateName('formhelper_error_all');
 
 // wrapping element can be a string with %s placeholder or an Netzmacht\Html\Node object
 $wrapper = '<div class="form-element">%s</div>';
+
+$container = $view->getContainer();
 $container->add('wrapper', $wrapper, $container::POSITION_WRAPPER);
 
-<?php
-
-$layout = $helper->getLayout($this);
-echo $this->getTemplate($layout);
+echo $view->render();
