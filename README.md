@@ -2,7 +2,8 @@ Contao Form Helper - Extended form rendering
 ==================
 
 [![Build Status](http://img.shields.io/travis/netzmacht/contao-form-helper/develop.svg?style=flat-square)](https://travis-ci.org/netzmacht/contao-form-helper)
-
+[![License](http://img.shields.io/packagist/l/netzmacht/contao-form-helper.svg)](http://packagist.com/netzmacht/contao-form-helper)
+[![Downloads](http://img.shields.io/packagist/dt/netzmacht/contao-form-helper.svg)](http://packagist.com/netzmacht/contao-form-helper)
 
 This library provides extended form widget rendering for Contao frontend form widgets. By default the rendering of
 Contao forms widgets are not very customizable because of inline html rendering. Adjust output can be quite difficult.
