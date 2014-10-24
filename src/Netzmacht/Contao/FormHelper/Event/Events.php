@@ -39,5 +39,4 @@ class Events
      * The raised event is an instance of ViewEvent.
      */
     const GENERATE_VIEW      = 'form-helper.generate-view';
-
 }
