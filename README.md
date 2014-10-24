@@ -69,9 +69,9 @@ Events
 Events are dispatched by the (Contao Event dispatcher)[https://github.com/contao-community-alliance/event-dispatcher].
 Each event names are stored in `Netzmacht\Contao\FormHelper\Event\Events`:
  * `Events::CREATE_VIEW` is triggered first to create the view instance. The element is not available at this moment
- * `Events::BUILD_ELEMENT` is fired when creating the html element of the given widget
- * `Events::PRE_GENERATE` is fired after creating the element
- * `Events::GENERATE` is fired for generating the
+ * `Events::CREATE_ELEMENT` is fired when creating the html element of the given widget
+ * `Events::PRE_GENERATE_VIEW` is fired after creating the element
+ * `Events::GENERATE_VIEW` is fired for generating the
 
 Customizing widgets
 ----------
