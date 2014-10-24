@@ -33,7 +33,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            Events::PRE_GENERATE => array(
+            Events::PRE_GENERATE_VIEW => array(
                 array('presetElement'),
                 array('presetAttributes'),
                 array('presetSubmit'),

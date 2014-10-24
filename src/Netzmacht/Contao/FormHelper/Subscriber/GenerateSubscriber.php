@@ -26,7 +26,7 @@ class GenerateSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            Events::GENERATE => array(
+            Events::GENERATE_VIEW => array(
                 array('generateCaptcha', 1000),
                 array('generatePasswordConfirmation')
             )

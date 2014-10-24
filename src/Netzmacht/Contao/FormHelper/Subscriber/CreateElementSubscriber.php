@@ -21,7 +21,7 @@ use Netzmacht\Contao\FormHelper\GeneratesAnElement;
 use Netzmacht\Html\Element;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class BuildElementSubscriber implements EventSubscriberInterface
+class CreateElementSubscriber implements EventSubscriberInterface
 {
     /**
      * @{inheritdoc}
@@ -29,14 +29,14 @@ class BuildElementSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            Events::BUILD_ELEMENT => 'buildElement'
+            Events::CREATE_ELEMENT => 'createElement'
         );
     }
 
     /**
-     * @param BuildElementEvent $event
+     * @param CreateElementEvent $event
      */
-    public function buildElement(CreateElementEvent $event)
+    public function createElement(CreateElementEvent $event)
     {
         $widget  = $event->getWidget();
         $element = null;
