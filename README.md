@@ -1,7 +1,7 @@
 Contao Form Helper - Extended form rendering
 ==================
 
-[![Build Status](http://img.shields.io/travis/netzmacht/contao-form-helper/master.svg?style=flat-square)](https://travis-ci.org/netzmacht/contao-form-helper)
+[![Build Status](http://img.shields.io/travis/netzmacht/contao-form-helper/develop.svg?style=flat-square)](https://travis-ci.org/netzmacht/contao-form-helper)
 
 
 This library provides extended form widget rendering for Contao frontend form widgets. By default the rendering of
