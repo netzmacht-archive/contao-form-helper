@@ -2,6 +2,7 @@ Contao Form Helper - Extended form rendering
 ==================
 
 [![Build Status](http://img.shields.io/travis/netzmacht/contao-form-helper/develop.svg?style=flat-square)](https://travis-ci.org/netzmacht/contao-form-helper)
+[![Version](http://img.shields.io/packagist/v/netzmacht/contao-form-helper/develop.svg?style=flat-square)](http://packagist.com/packages/netzmacht/contao-form-helper)
 [![License](http://img.shields.io/packagist/l/netzmacht/contao-form-helper.svg?style=flat-square)](http://packagist.com/packages/netzmacht/contao-form-helper)
 [![Downloads](http://img.shields.io/packagist/dt/netzmacht/contao-form-helper.svg?style=flat-square)](http://packagist.com/packages/netzmacht/contao-form-helper)
 
