@@ -2,7 +2,7 @@
 
 namespace spec\Netzmacht\Contao\FormHelper\Event;
 
-use Netzmacht\Contao\FormHelper\Event\BuildElementEvent;
+use Netzmacht\Contao\FormHelper\Event\CreateElementEvent;
 use Netzmacht\Contao\FormHelper\View;
 use Netzmacht\Html\Element;
 use PhpSpec\ObjectBehavior;
@@ -11,13 +11,18 @@ use Prophecy\Argument;
 /**
  * Class BuildElementEventSpec
  * @package spec\Netzmacht\Contao\FormHelper\Event
- * @mixin BuildElementEvent
+ * @mixin CreateElementEvent
  */
-class BuildElementEventSpec extends ObjectBehavior
+class CreateElementEventSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Netzmacht\Contao\FormHelper\Event\BuildElementEvent');
+        $this->shouldHaveType('Netzmacht\Contao\FormHelper\Event\CreateElementEvent');
+    }
+
+    function it_extends_symfony_event()
+    {
+        $this->shouldHaveType('Symfony\Component\EventDispatcher\Event');
     }
 
     function let(View $view, \Widget $widget)

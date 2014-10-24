@@ -2,7 +2,7 @@
 
 namespace spec\Netzmacht\Contao\FormHelper;
 
-use Netzmacht\Contao\FormHelper\Event\BuildElementEvent;
+use Netzmacht\Contao\FormHelper\Event\CreateElementEvent;
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\Form\FormLocator;
 use Netzmacht\Html\Element;
@@ -24,7 +24,7 @@ class HelperSpec extends ObjectBehavior
 
     const VIEW_EVENT_CLASS = 'Netzmacht\Contao\FormHelper\Event\ViewEvent';
 
-    const BUILD_ELEMENT_EVENT_CLASS = 'Netzmacht\Contao\FormHelper\Event\BuildElementEvent';
+    const CREATE_ELEMENT_EVENT_CLASS = 'Netzmacht\Contao\FormHelper\Event\CreateElementEvent';
 
     function let(EventDispatcher $eventDispatcher, FormLocator $formLocator)
     {
@@ -45,19 +45,19 @@ class HelperSpec extends ObjectBehavior
             ->shouldBeCalled();
 
         $eventDispatcher
-            ->dispatch(Events::BUILD_ELEMENT, Argument::type(self::BUILD_ELEMENT_EVENT_CLASS))
+            ->dispatch(Events::CREATE_ELEMENT, Argument::type(self::CREATE_ELEMENT_EVENT_CLASS))
             ->will(function($args) {
-                    /** @var BuildElementEvent $event */
+                    /** @var CreateElementEvent $event */
                     $event = $args[1];
                     $event->setElement(new Node('input'));
                 });
 
         $eventDispatcher
-            ->dispatch(Events::PRE_GENERATE, Argument::type(self::VIEW_EVENT_CLASS))
+            ->dispatch(Events::PRE_GENERATE_VIEW, Argument::type(self::VIEW_EVENT_CLASS))
             ->shouldBeCalled();
 
         $eventDispatcher
-            ->dispatch(Events::GENERATE, Argument::type(self::VIEW_EVENT_CLASS))
+            ->dispatch(Events::GENERATE_VIEW, Argument::type(self::VIEW_EVENT_CLASS))
             ->shouldBeCalled();
 
         $this->createView($widget)->shouldBeAnInstanceOf(self::VIEW_CLASS);

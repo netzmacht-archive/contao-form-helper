@@ -4,7 +4,7 @@ namespace Netzmacht\Contao\FormHelper\Event;
 
 use Netzmacht\Html\Element;
 
-class BuildElementEvent extends ViewEvent
+class CreateElementEvent extends ViewEvent
 {
 
     /**

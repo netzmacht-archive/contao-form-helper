@@ -8,11 +8,36 @@ namespace Netzmacht\Contao\FormHelper\Event;
  */
 class Events
 {
-    const BUILD_ELEMENT = 'netzmacht.form-helper.build-element';
+    /**
+     * CREATE_VIEW event is raised first during generating the view. The event gets an default view instance and
+     * is configured during this event. The element is not available yet.
+     *
+     * The raised event is an instance of ViewEvent.
+     */
+    const CREATE_VIEW        = 'form-helper.create-view';
 
-    const PRE_GENERATE  = 'netzmacht.form-helper.pre-generate-widget';
+    /**
+     * CREATE_ELEMENT is raised after the view is created. It creates an form element instance which is used
+     * in the rendering process
+     *
+     * The raised event is an instance of CreateElementEvent.
+     */
+    const CREATE_ELEMENT     = 'form-helper.create-element';
 
-    const GENERATE      = 'netzmacht.form-helper.generate-widget';
+    /**
+     * PRE_GENERATE_VIEW is raised after the element is created. It's purpose is to setup the element with
+     * specific configuration
+     *
+     * The raised event is an instance of ViewEvent.
+     */
+    const PRE_GENERATE_VIEW  = 'form-helper.pre-generate-view';
 
-    const CREATE_VIEW   = 'netzmacht.form-helper.create-view';
+    /**
+     * GENERATE_VIEW is raised after PRE_GENERATE_VIEW. It's pupose is to make generating decisions on a
+     * fully configured view and element.
+     *
+     * The raised event is an instance of ViewEvent.
+     */
+    const GENERATE_VIEW      = 'form-helper.generate-view';
+
 }

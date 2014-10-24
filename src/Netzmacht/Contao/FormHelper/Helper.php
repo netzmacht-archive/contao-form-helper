@@ -2,7 +2,7 @@
 
 namespace Netzmacht\Contao\FormHelper;
 
-use Netzmacht\Contao\FormHelper\Event\BuildElementEvent;
+use Netzmacht\Contao\FormHelper\Event\CreateElementEvent;
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\Event\ViewEvent;
 use Netzmacht\Contao\FormHelper\Form\FormLocator;
@@ -83,8 +83,8 @@ class Helper
     private function buildElement(\Widget $widget, $view)
     {
         // build the element
-        $event = new BuildElementEvent($view);
-        $this->eventDispatcher->dispatch(Events::BUILD_ELEMENT, $event);
+        $event = new CreateElementEvent($view);
+        $this->eventDispatcher->dispatch(Events::CREATE_ELEMENT, $event);
 
         $element = $event->getElement();
 
@@ -118,7 +118,7 @@ class Helper
     private function dispatchPreGenerate(View $view)
     {
         $event = new ViewEvent($view);
-        $this->eventDispatcher->dispatch(Events::PRE_GENERATE, $event);
+        $this->eventDispatcher->dispatch(Events::PRE_GENERATE_VIEW, $event);
     }
 
     /**
@@ -127,6 +127,6 @@ class Helper
     public function dispatchGenerate(View $view)
     {
         $event = new ViewEvent($view);
-        $this->eventDispatcher->dispatch(Events::GENERATE, $event);
+        $this->eventDispatcher->dispatch(Events::GENERATE_VIEW, $event);
     }
 }

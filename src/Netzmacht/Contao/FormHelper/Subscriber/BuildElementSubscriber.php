@@ -15,7 +15,7 @@ namespace Netzmacht\Contao\FormHelper\Subscriber;
 use Netzmacht\Contao\FormHelper\Element\Checkboxes;
 use Netzmacht\Contao\FormHelper\Element\Radios;
 use Netzmacht\Contao\FormHelper\Element\Select;
-use Netzmacht\Contao\FormHelper\Event\BuildElementEvent;
+use Netzmacht\Contao\FormHelper\Event\CreateElementEvent;
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\GeneratesAnElement;
 use Netzmacht\Html\Element;
@@ -36,7 +36,7 @@ class BuildElementSubscriber implements EventSubscriberInterface
     /**
      * @param BuildElementEvent $event
      */
-    public function buildElement(BuildElementEvent $event)
+    public function buildElement(CreateElementEvent $event)
     {
         $widget  = $event->getWidget();
         $element = null;
@@ -116,7 +116,7 @@ class BuildElementSubscriber implements EventSubscriberInterface
      * @param $widget
      * @return bool
      */
-    private function buildByWidget(BuildElementEvent $event, $widget)
+    private function buildByWidget(CreateElementEvent $event, $widget)
     {
         if ($widget instanceof GeneratesAnElement) {
             $element = $widget->generate();
