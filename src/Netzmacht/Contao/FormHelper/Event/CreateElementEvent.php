@@ -4,15 +4,23 @@ namespace Netzmacht\Contao\FormHelper\Event;
 
 use Netzmacht\Html\Element;
 
+/**
+ * Class CreateElementEvent is raised when creating the element.
+ *
+ * @package Netzmacht\Contao\FormHelper\Event
+ */
 class CreateElementEvent extends ViewEvent
 {
-
     /**
-     * @var Element $element
+     * The created element.
+     *
+     * @var Element
      */
     private $element;
 
     /**
+     * Get the corresponding widget.
+     *
      * @return \Widget
      */
     public function getWidget()
@@ -21,7 +29,10 @@ class CreateElementEvent extends ViewEvent
     }
 
     /**
-     * @param  Element $element
+     * Set a created element.
+     *
+     * @param Element $element The created element.
+     *
      * @return $this
      */
     public function setElement(Element $element)
@@ -32,6 +43,8 @@ class CreateElementEvent extends ViewEvent
     }
 
     /**
+     * Get the created element.
+     *
      * @return Element mixed
      */
     public function getElement()

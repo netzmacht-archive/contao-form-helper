@@ -11,17 +11,24 @@
 
 namespace Netzmacht\Contao\FormHelper\Subscriber;
 
-
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\Event\ViewEvent;
 use Netzmacht\Contao\FormHelper\Partial\Label;
 use Netzmacht\Html\Element;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ * Class GenerateSubscriber renders the element. It is used for captcha and password confirmation elements which
+ * requires a special setup.
+ *
+ * @package Netzmacht\Contao\FormHelper\Subscriber
+ */
 class GenerateSubscriber implements EventSubscriberInterface
 {
     /**
-     * @{inheritdoc}
+     * Get all subscribed events.
+     *
+     * @return array
      */
     public static function getSubscribedEvents()
     {
@@ -34,7 +41,11 @@ class GenerateSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param ViewEvent $event
+     * Generate the captcha element.
+     *
+     * @param ViewEvent $event Event listened to.
+     *
+     * @return void
      */
     public function generateCaptcha(ViewEvent $event)
     {
@@ -53,7 +64,11 @@ class GenerateSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param ViewEvent $event
+     * Generate the password confirmation field.
+     *
+     * @param ViewEvent $event Event listened to.
+     *
+     * @return void
      */
     public function generatePasswordConfirmation(ViewEvent $event)
     {
@@ -73,14 +88,11 @@ class GenerateSubscriber implements EventSubscriberInterface
         $repeatLabel = new Label();
         $repeatLabel
             ->setAttribute('class', $label->getAttribute('class'))
-            ->addChild(sprintf($GLOBALS['TL_LANG']['MSC']['confirmation'], $widget->label))
+            ->addChild($this->createConfirmationLabel($widget))
             ->setAttribute('for', $repeatId);
 
         if ($widget->mandatory) {
-            $mandatory = sprintf(
-                '<span class="mandatory"><span class="invisible">%s</span>*</span>',
-                $GLOBALS['TL_LANG']['MSC']['mandatory']
-            );
+            $mandatory = $this->createMandatoryLabel();
 
             $repeatLabel->addChild($mandatory);
         }
@@ -93,5 +105,34 @@ class GenerateSubscriber implements EventSubscriberInterface
 
         $container->addChild('repeat', $repeat);
         $container->addChild('repeatLabel', $repeatLabel);
+    }
+
+    /**
+     * Create the mandatory label.
+     *
+     * @return string
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     */
+    private function createMandatoryLabel()
+    {
+        return sprintf(
+            '<span class="mandatory"><span class="invisible">%s</span>*</span>',
+            $GLOBALS['TL_LANG']['MSC']['mandatory']
+        );
+    }
+
+    /**
+     * Create the confirmation label.
+     *
+     * @param \Widget $widget The form widget.
+     *
+     * @return string
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     */
+    private function createConfirmationLabel(\Widget $widget)
+    {
+        return sprintf($GLOBALS['TL_LANG']['MSC']['confirmation'], $widget->label);
     }
 }

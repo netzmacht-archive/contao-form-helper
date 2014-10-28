@@ -4,15 +4,24 @@ namespace Netzmacht\Contao\FormHelper\Partial;
 
 use Netzmacht\Html\Element\Node;
 
+/**
+ * Class Label is used for the form element label.
+ *
+ * @package Netzmacht\Contao\FormHelper\Partial
+ */
 class Label extends Node
 {
     /**
+     * Visibility of label. Is visible by default.
+     *
      * @var bool
      */
     protected $visible = true;
 
     /**
-     * @param array $attributes
+     * Construct.
+     *
+     * @param array $attributes The default html attributes.
      */
     public function __construct($attributes = array())
     {
@@ -20,7 +29,7 @@ class Label extends Node
     }
 
     /**
-     * Hide label
+     * Hide the label.
      *
      * @return $this
      */
@@ -32,8 +41,9 @@ class Label extends Node
     }
 
     /**
-     * Show label
-     * @return $this;
+     * Show the label.
+     *
+     * @return $this
      */
     public function show()
     {
@@ -43,6 +53,8 @@ class Label extends Node
     }
 
     /**
+     * Consider if label is visible.
+     *
      * @return bool
      */
     public function isVisible()
@@ -51,6 +63,8 @@ class Label extends Node
     }
 
     /**
+     * Generate the label.
+     *
      * @return string
      */
     public function generate()

@@ -2,17 +2,25 @@
 
 namespace Netzmacht\Contao\FormHelper\Partial;
 
+/**
+ * Class Errors is used for render widget validation errors. It can render one or all errors.
+ *
+ * @package Netzmacht\Contao\FormHelper\Partial
+ */
 class Errors extends TemplateComponent
 {
-
     /**
+     * The validation errors.
+     *
      * @var array
      */
     protected $errors = array();
 
     /**
-     * @param array $errors
-     * @param array $attributes
+     * Construct.
+     *
+     * @param array $errors     The validation errors.
+     * @param array $attributes Default html attributes.
      */
     public function __construct(array $errors, array $attributes = array())
     {
@@ -23,6 +31,8 @@ class Errors extends TemplateComponent
     }
 
     /**
+     * Get all errors.
+     *
      * @return array
      */
     public function getErrors()
@@ -31,7 +41,10 @@ class Errors extends TemplateComponent
     }
 
     /**
-     * @param $index
+     * Get an error by the defined position.
+     *
+     * @param int $index The index of the error.
+     *
      * @return string
      */
     public function getError($index = 0)
@@ -44,6 +57,8 @@ class Errors extends TemplateComponent
     }
 
     /**
+     * Consider if any errors are set.
+     *
      * @return bool
      */
     public function hasErrors()
@@ -52,17 +67,21 @@ class Errors extends TemplateComponent
     }
 
     /**
+     * Generate the component.
+     *
      * @return string
      */
     public function generate()
     {
-        $template = new \FrontendTemplate($this->template);
+        $template         = new \FrontendTemplate($this->template);
         $template->errors = $this;
 
         return $template->parse();
     }
 
     /**
+     * Casts to string.
+     *
      * @return string
      */
     public function __toString()

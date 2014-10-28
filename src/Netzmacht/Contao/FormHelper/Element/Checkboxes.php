@@ -2,11 +2,18 @@
 
 namespace Netzmacht\Contao\FormHelper\Element;
 
+/**
+ * Class Checkboxes is used for the checkbox menu.
+ *
+ * @package Netzmacht\Contao\FormHelper\Element
+ */
 class Checkboxes extends MultipleValues
 {
 
     /**
-     * @param array $attributes
+     * Construct.
+     *
+     * @param array $attributes Html attributes.
      */
     public function __construct($attributes = array())
     {

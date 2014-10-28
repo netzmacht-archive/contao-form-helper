@@ -12,16 +12,27 @@
 namespace Netzmacht\Contao\FormHelper\Element;
 
 use Netzmacht\Contao\FormHelper\Partial\Label;
+use Netzmacht\Html\CastsToString;
 
+/**
+ * Class MultipleValues is a base class for widets with multiple values.
+ *
+ * @package Netzmacht\Contao\FormHelper\Element
+ */
 class MultipleValues extends Options implements HasLabel
 {
     /**
-     * @var Label|string
+     * The label.
+     *
+     * @var Label|CastsToString|string
      */
     private $label;
 
     /**
-     * @param Label|string $label
+     * Set the label.
+     *
+     * @param Label|string $label Assign a label.
+     *
      * @return $this
      */
     public function setLabel($label)
@@ -32,6 +43,8 @@ class MultipleValues extends Options implements HasLabel
     }
 
     /**
+     * Get the label.
+     *
      * @return Label|string
      */
     public function getLabel()
@@ -40,15 +53,17 @@ class MultipleValues extends Options implements HasLabel
     }
 
     /**
-     * @return string|void
+     * Generate the element.
+     *
+     * @return string
      */
     public function generate()
     {
-        $template             = new \FrontendTemplate($this->template);
-        $template->options    = $this->options;
-        $template->element    = $this;
-        $template->tag        = $this->getTag();
-        $template->label      = $this->label;
+        $template          = new \FrontendTemplate($this->template);
+        $template->options = $this->options;
+        $template->element = $this;
+        $template->tag     = $this->getTag();
+        $template->label   = $this->label;
 
         return $template->parse();
     }

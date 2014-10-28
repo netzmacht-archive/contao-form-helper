@@ -20,15 +20,24 @@ use Netzmacht\Html\Element;
 use Netzmacht\Html\Element\StaticHtml;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ * Class PreGenerateSubscriber sets default presets for Contao form widgets.
+ *
+ * @package Netzmacht\Contao\FormHelper\Subscriber
+ */
 class PreGenerateSubscriber implements EventSubscriberInterface
 {
     /**
+     * Elements with no label by default.
+     *
      * @var array
      */
     protected static $noLabel = array('explanation', 'headline', 'html', 'submit');
 
     /**
-     * @{inheritdoc}
+     * Get all subscribed events.
+     *
+     * @return array
      */
     public static function getSubscribedEvents()
     {
@@ -45,7 +54,11 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param ViewEvent $event
+     * Handle ViewEvent to preset all settings.
+     *
+     * @param ViewEvent $event Event listened to.
+     *
+     * @return void
      */
     public function presetElement(ViewEvent $event)
     {
@@ -63,7 +76,11 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param ViewEvent $event
+     * Preset all html attributes.
+     *
+     * @param ViewEvent $event Event listened to.
+     *
+     * @return void
      */
     public function presetAttributes(ViewEvent $event)
     {
@@ -76,38 +93,19 @@ class PreGenerateSubscriber implements EventSubscriberInterface
             return;
         }
 
-        if ($widget->class) {
-            $classes = trimsplit(' ', $widget->class);
-            $element->addClasses($classes);
-        }
-
-        if ($widget->value) {
-            if ($element->getTag() == 'textarea' && $element instanceof Element\Node) {
-                $element->addChild($widget->value);
-            } elseif ($element->getTag() == 'input') {
-                $element->setAttribute('value', $widget->value);
-            }
-        }
-
-        if ($widget->mandatory) {
-            $element->setAttribute('required', true);
-        }
-
-        $transform = array('tabindex', 'accesskey', 'maxlength', 'placeholder', 'value');
-
-        foreach ($transform as $attribute) {
-            if ($widget->$attribute) {
-                $element->setAttribute($attribute, $widget->$attribute);
-            }
-        }
-
-        if ($widget instanceof \FormFileUpload && $widget->size) {
-            $element->setAttribute('size', $widget->size);
-        }
+        $this->addClasses($widget, $element);
+        $this->addValue($widget, $element);
+        $this->setMandatoryAttribute($widget, $element);
+        $this->transformAttributes($widget, $element);
+        $this->setSizeAttribute($widget, $element);
     }
 
     /**
-     * @param ViewEvent $event
+     * Preset the submit button.
+     *
+     * @param ViewEvent $event Event listened to.
+     *
+     * @return void
      */
     public function presetSubmit(ViewEvent $event)
     {
@@ -154,7 +152,11 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param ViewEvent $event
+     * Preset all options.
+     *
+     * @param ViewEvent $event Event listened to.
+     *
+     * @return void
      */
     public function presetOptions(ViewEvent $event)
     {
@@ -169,7 +171,11 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param ViewEvent $event
+     * Preset error element.
+     *
+     * @param ViewEvent $event Element listened to.
+     *
+     * @return void
      */
     public function presetErrors(ViewEvent $event)
     {
@@ -179,7 +185,11 @@ class PreGenerateSubscriber implements EventSubscriberInterface
 
 
     /**
-     * @param ViewEvent $event
+     * Preset the label.
+     *
+     * @param ViewEvent $event Event listened to.
+     *
+     * @return void
      */
     public function presetLabel(ViewEvent $event)
     {
@@ -195,10 +205,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
         }
 
         if ($widget->mandatory) {
-            $mandatory = sprintf(
-                '<span class="mandatory"><span class="invisible">%s</span>*</span>',
-                $GLOBALS['TL_LANG']['MSC']['mandatory']
-            );
+            $mandatory = $this->generateMandatoryLabel();
 
             $label->addChild($mandatory);
         }
@@ -209,6 +216,105 @@ class PreGenerateSubscriber implements EventSubscriberInterface
 
         if (in_array($widget->type, static::$noLabel)) {
             $label->hide();
+        }
+    }
+
+    /**
+     * Generate the mandatory label.
+     *
+     * @return string
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     */
+    private function generateMandatoryLabel()
+    {
+        return sprintf(
+            '<span class="mandatory"><span class="invisible">%s</span>*</span>',
+            $GLOBALS['TL_LANG']['MSC']['mandatory']
+        );
+    }
+
+    /**
+     * Add css classes from a widget to the element.
+     *
+     * @param \Widget $widget  The form widget.
+     * @param Element $element The widget element.
+     *
+     * @return void
+     */
+    public function addClasses(\Widget $widget, Element $element)
+    {
+        if ($widget->class) {
+            $classes = trimsplit(' ', $widget->class);
+            $element->addClasses($classes);
+        }
+    }
+
+    /**
+     * Set the value to the widget. Depending on widget type it's added as child or as attribute.
+     *
+     * @param \Widget $widget  The form widget.
+     * @param Element $element The widget element.
+     *
+     * @return void
+     */
+    public function addValue($widget, Element $element)
+    {
+        if ($widget->value) {
+            if ($element->getTag() == 'textarea' && $element instanceof Element\Node) {
+                $element->addChild($widget->value);
+            } elseif ($element->getTag() == 'input') {
+                $element->setAttribute('value', $widget->value);
+            }
+        }
+    }
+
+    /**
+     * Set the mandatory attribute.
+     *
+     * @param \Widget $widget  The form widget.
+     * @param Element $element The widget element.
+     *
+     * @return void
+     */
+    public function setMandatoryAttribute($widget, Element $element)
+    {
+        if ($widget->mandatory) {
+            $element->setAttribute('required', true);
+        }
+    }
+
+    /**
+     * Transform widget attributes to element attributes.
+     *
+     * @param \Widget $widget  The form widget.
+     * @param Element $element The widget element.
+     *
+     * @return void
+     */
+    public function transformAttributes($widget, Element $element)
+    {
+        $transform = array('tabindex', 'accesskey', 'maxlength', 'placeholder', 'value');
+
+        foreach ($transform as $attribute) {
+            if ($widget->$attribute) {
+                $element->setAttribute($attribute, $widget->$attribute);
+            }
+        }
+    }
+
+    /**
+     * Set the size attribute for upload fields.
+     *
+     * @param \Widget $widget  The form widget.
+     * @param Element $element The widget element.
+     *
+     * @return void
+     */
+    public function setSizeAttribute($widget, Element $element)
+    {
+        if ($widget instanceof \FormFileUpload && $widget->size) {
+            $element->setAttribute('size', $widget->size);
         }
     }
 }

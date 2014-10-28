@@ -9,21 +9,32 @@ use Netzmacht\Contao\FormHelper\Form\FormLocator;
 use Netzmacht\Html\Element\StaticHtml;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+/**
+ * Class Helper is the main entry poing for generating form widget elements.
+ *
+ * @package Netzmacht\Contao\FormHelper
+ */
 class Helper
 {
     /**
+     * The event dispatcher.
+     *
      * @var EventDispatcherInterface
      */
     private $eventDispatcher;
 
     /**
+     * The form locator.
+     *
      * @var FormLocator
      */
     private $formLocator;
 
     /**
-     * @param EventDispatcherInterface $eventDispatcher
-     * @param FormLocator              $formLocator
+     * Construct.
+     *
+     * @param EventDispatcherInterface $eventDispatcher The event dispatcher.
+     * @param FormLocator              $formLocator     The form locator.
      */
     public function __construct(EventDispatcherInterface $eventDispatcher, FormLocator $formLocator)
     {
@@ -32,7 +43,11 @@ class Helper
     }
 
     /**
-     * @return Helper
+     * Get instance method is used to load the form helper from the dependency container.
+     *
+     * @return Helper The form helper instance.
+     *
+     * @SuppressWarnings(Superglobals)
      */
     public static function getInstance()
     {
@@ -40,8 +55,11 @@ class Helper
     }
 
     /**
-     * @param  \Widget $widget
-     * @param  bool $return
+     * Generate a widet.
+     *
+     * @param \Widget $widget The form widget.
+     * @param bool    $return If true the output won't be echoed. Instead it will be returned.
+     *
      * @return string|void
      */
     public static function generate(\Widget $widget, $return = false)
@@ -58,7 +76,10 @@ class Helper
     }
 
     /**
-     * @param  \Widget $widget
+     * Create a view for a widget.
+     *
+     * @param \Widget $widget The form wiedget.
+     *
      * @return View
      */
     public function createView(\Widget $widget)
@@ -76,11 +97,14 @@ class Helper
     }
 
     /**
-     * @param  \Widget $widget
-     * @param  $view
+     * Build the element.
+     *
+     * @param \Widget $widget The form widget.
+     * @param View    $view   The view instance.
+     *
      * @return \Netzmacht\Html\Element|\Netzmacht\Html\Element\StaticHtml
      */
-    private function buildElement(\Widget $widget, $view)
+    private function buildElement(\Widget $widget, View $view)
     {
         // build the element
         $event = new CreateElementEvent($view);
@@ -97,8 +121,11 @@ class Helper
     }
 
     /**
-     * @param  \Widget $widget
-     * @param  $form
+     * Build the widget view.
+     *
+     * @param \Widget         $widget The form widget.
+     * @param \FormModel|null $form   A form model if it's part of the form generator.
+     *
      * @return View
      */
     private function buildView(\Widget $widget, $form)
@@ -113,7 +140,11 @@ class Helper
     }
 
     /**
-     * @param $view
+     * Dispatch the pre generate event.
+     *
+     * @param View $view The widget view.
+     *
+     * @return void
      */
     private function dispatchPreGenerate(View $view)
     {
@@ -122,7 +153,11 @@ class Helper
     }
 
     /**
-     * @param View $view
+     * Dispatches the generate event.
+     *
+     * @param View $view The widget view.
+     *
+     * @return void
      */
     public function dispatchGenerate(View $view)
     {

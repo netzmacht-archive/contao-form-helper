@@ -2,46 +2,64 @@
 
 namespace Netzmacht\Contao\FormHelper\Element;
 
-use Netzmacht\Html\Element;
+use Netzmacht\Html\Element\Node;
 use Netzmacht\Contao\FormHelper\HasTemplate;
 
-abstract class Options extends Element\Node implements HasTemplate
+/**
+ * Class Options provides an option argument storing possible option values.
+ *
+ * @package Netzmacht\Contao\FormHelper\Element
+ */
+abstract class Options extends Node implements HasTemplate
 {
 
     /**
+     * Html tag of the wrapping element.
+     *
      * @var string
      */
     const CONTAINER_TAG = 'div';
 
     /**
+     * The current value.
+     *
      * @var array
      */
     protected $value = array();
 
     /**
+     * Possible value options.
+     *
      * @var array
      */
     protected $options = array();
 
     /**
+     * The Contao template name.
+     *
      * @var string
      */
     protected $template;
 
     /**
-     * @param mixed $options
+     * Set value options.
+     *
+     * @param mixed $options Options which have to be transformable to an array.
+     *
      * @return $this
      */
     public function setOptions($options)
     {
-        $this->options  = (array) $options;
+        $this->options  = (array)$options;
         $this->children = array();
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Get the options.
+     *
+     * @return array
      */
     public function getOptions()
     {
@@ -49,7 +67,10 @@ abstract class Options extends Element\Node implements HasTemplate
     }
 
     /**
-     * @param mixed $value
+     * Set the current value.
+     *
+     * @param mixed $value Current value.
+     *
      * @return $this
      */
     public function setValue($value)
@@ -66,7 +87,10 @@ abstract class Options extends Element\Node implements HasTemplate
     }
 
     /**
-     * @param bool $default
+     * Get the current value.
+     *
+     * @param bool $default If set to true the default value will be created.
+     *
      * @return mixed
      */
     public function getValue($default = false)
@@ -75,7 +99,7 @@ abstract class Options extends Element\Node implements HasTemplate
             $value = array();
 
             foreach ($this->options as $option) {
-                if ($option['default']) {
+                if (isset($option['default'])) {
                     $value[] = $option['value'];
                 }
             }
@@ -87,21 +111,28 @@ abstract class Options extends Element\Node implements HasTemplate
     }
 
     /**
+     * Generate the options element.
+     *
      * @return string|void
      */
     public function generate()
     {
-        $template             = new \FrontendTemplate($this->template);
-        $template->options    = $this->options;
-        $template->element    = $this;
-        $template->tag        = $this->getTag();
+        $template          = new \FrontendTemplate($this->template);
+        $template->options = $this->options;
+        $template->element = $this;
+        $template->tag     = $this->getTag();
 
         return $template->parse();
     }
 
     /**
-     * @param string $name
+     * Set the template name.
+     *
+     * @param string $name Name of a Contao template.
+     *
      * @return $this
+     *
+     * @SuppressWarnings(PHPCPD)
      */
     public function setTemplateName($name)
     {
@@ -111,7 +142,11 @@ abstract class Options extends Element\Node implements HasTemplate
     }
 
     /**
+     * Get the template name.
+     *
      * @return string
+     *
+     * @SuppressWarnings(PHPCPD)
      */
     public function getTemplateName()
     {

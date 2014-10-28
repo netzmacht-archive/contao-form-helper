@@ -8,51 +8,74 @@ use Netzmacht\Contao\FormHelper\Partial\Label;
 use Netzmacht\Html\Attributes;
 use Widget;
 
+/**
+ * Class View handles the widget rendering process.
+ *
+ * @package Netzmacht\Contao\FormHelper
+ */
 class View
 {
     /**
+     * The form widget.
+     *
      * @var Widget
      */
     private $widget;
 
     /**
+     * View attributes are used for a wrapping element.
+     *
      * @var Attributes
      */
     private $attributes;
 
     /**
+     * The chosen view layout.
+     *
      * @var string
      */
     private $layout;
 
     /**
+     * Form model if widget is part of the form generator.
+     *
      * @var \FormModel
      */
     private $formModel;
 
     /**
+     * The container component.
+     *
      * @var Container
      */
     private $container;
 
     /**
+     * The widget label.
+     *
      * @var Label
      */
     private $label;
 
     /**
+     * The widget error messages.
+     *
      * @var Errors
      */
     private $errors;
 
     /**
+     * State of visibility. A view can be hidden completely.
+     *
      * @var bool
      */
     private $visible = true;
 
     /**
-     * @param Widget     $widget
-     * @param \FormModel $formModel
+     * Construct.
+     *
+     * @param \Widget    $widget    The form widget.
+     * @param \FormModel $formModel Optional the corresponding form model.
      */
     public function __construct(\Widget $widget, \FormModel $formModel = null)
     {
@@ -65,6 +88,8 @@ class View
     }
 
     /**
+     * Get the form widget.
+     *
      * @return Widget
      */
     public function getWidget()
@@ -73,7 +98,10 @@ class View
     }
 
     /**
-     * @param $layout
+     * Set the view layout.
+     *
+     * @param string $layout The layout name.
+     *
      * @return $this
      */
     public function setLayout($layout)
@@ -84,6 +112,8 @@ class View
     }
 
     /**
+     * Get the layout name.
+     *
      * @return string
      */
     public function getLayout()
@@ -92,6 +122,8 @@ class View
     }
 
     /**
+     * Get the view attributes.
+     *
      * @return Attributes
      */
     public function getAttributes()
@@ -100,6 +132,8 @@ class View
     }
 
     /**
+     * Get the visible state of the view.
+     *
      * @return bool
      */
     public function isVisible()
@@ -108,18 +142,23 @@ class View
     }
 
     /**
-     * @param mixed $visible
+     * Set the visibile state.
+     *
+     * @param bool $visible The visible state.
+     *
      * @return $this
      */
     public function setVisible($visible)
     {
-        $this->visible = $visible;
+        $this->visible = (bool)$visible;
 
         return $this;
     }
 
 
     /**
+     * Render the view.
+     *
      * @return string
      */
     public function render()
@@ -141,6 +180,8 @@ class View
     }
 
     /**
+     * Get the form model.
+     *
      * @return \FormModel|null
      */
     public function getFormModel()
@@ -149,6 +190,8 @@ class View
     }
 
     /**
+     * Consider if a form model is given.
+     *
      * @return bool
      */
     public function hasFormModel()
@@ -157,6 +200,8 @@ class View
     }
 
     /**
+     * Get the container.
+     *
      * @return Container
      */
     public function getContainer()
@@ -165,6 +210,8 @@ class View
     }
 
     /**
+     * Get the view errors.
+     *
      * @return Errors
      */
     public function getErrors()
@@ -173,6 +220,8 @@ class View
     }
 
     /**
+     * Get the label.
+     *
      * @return Label
      */
     public function getLabel()
@@ -181,10 +230,16 @@ class View
     }
 
     /**
-     * @param Label $label
+     * Set the view label.
+     *
+     * @param Label $label The view label.
+     *
+     * @return $this
      */
     public function setLabel(Label $label)
     {
         $this->label = $label;
+
+        return $this;
     }
 }

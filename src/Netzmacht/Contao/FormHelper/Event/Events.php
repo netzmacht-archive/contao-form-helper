@@ -3,7 +3,8 @@
 namespace Netzmacht\Contao\FormHelper\Event;
 
 /**
- * Class Events
+ * Class Events stores the event names of the form helper. You can find the descriptions below.
+ *
  * @package Netzmacht\FormHelper\Event
  */
 class Events
@@ -14,7 +15,7 @@ class Events
      *
      * The raised event is an instance of ViewEvent.
      */
-    const CREATE_VIEW        = 'form-helper.create-view';
+    const CREATE_VIEW = 'form-helper.create-view';
 
     /**
      * CREATE_ELEMENT is raised after the view is created. It creates an form element instance which is used
@@ -22,7 +23,7 @@ class Events
      *
      * The raised event is an instance of CreateElementEvent.
      */
-    const CREATE_ELEMENT     = 'form-helper.create-element';
+    const CREATE_ELEMENT = 'form-helper.create-element';
 
     /**
      * PRE_GENERATE_VIEW is raised after the element is created. It's purpose is to setup the element with
@@ -30,7 +31,7 @@ class Events
      *
      * The raised event is an instance of ViewEvent.
      */
-    const PRE_GENERATE_VIEW  = 'form-helper.pre-generate-view';
+    const PRE_GENERATE_VIEW = 'form-helper.pre-generate-view';
 
     /**
      * GENERATE_VIEW is raised after PRE_GENERATE_VIEW. It's pupose is to make generating decisions on a
@@ -38,5 +39,5 @@ class Events
      *
      * The raised event is an instance of ViewEvent.
      */
-    const GENERATE_VIEW      = 'form-helper.generate-view';
+    const GENERATE_VIEW = 'form-helper.generate-view';
 }

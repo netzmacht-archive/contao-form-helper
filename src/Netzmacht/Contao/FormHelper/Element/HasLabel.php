@@ -13,15 +13,25 @@ namespace Netzmacht\Contao\FormHelper\Element;
 
 use Netzmacht\Contao\FormHelper\Partial\Label;
 
+/**
+ * Interface HasLabel describes components having a label.
+ *
+ * @package Netzmacht\Contao\FormHelper\Element
+ */
 interface HasLabel
 {
     /**
-     * @param Label|string $label
+     * Set the label.
+     *
+     * @param Label|string $label Can be a string or any CastsToString element.
+     *
      * @return mixed
      */
     public function setLabel($label);
 
     /**
+     * Get the current label of the element.
+     *
      * @return Label|string
      */
     public function getLabel();

@@ -2,10 +2,17 @@
 
 namespace Netzmacht\Contao\FormHelper\Element;
 
+/**
+ * Class Radios is used for radio menu.
+ *
+ * @package Netzmacht\Contao\FormHelper\Element
+ */
 class Radios extends MultipleValues
 {
     /**
-     * @param array $attributes
+     * Construct.
+     *
+     * @param array $attributes Default html attributes.
      */
     public function __construct($attributes = array())
     {

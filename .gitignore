@@ -1,3 +1,6 @@
 /vendor/
 /bin/
+
 coverage.xml
+
+composer.lock

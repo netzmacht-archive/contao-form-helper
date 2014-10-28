@@ -15,9 +15,16 @@ use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\Event\ViewEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ * Class CreateViewSubscriber subscribes the create view event is created the defualt view instance.
+ *
+ * @package Netzmacht\Contao\FormHelper\Subscriber
+ */
 class CreateViewSubscriber implements EventSubscriberInterface
 {
     /**
+     * Elements which won't have any columns by default.
+     *
      * @var array
      */
     private static $noColumns = array(
@@ -27,7 +34,9 @@ class CreateViewSubscriber implements EventSubscriberInterface
     );
 
     /**
-     * @{inheritdoc}
+     * Get all subscribed events.
+     *
+     * @return array
      */
     public static function getSubscribedEvents()
     {
@@ -40,7 +49,11 @@ class CreateViewSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param ViewEvent $event
+     * Select the view layout.
+     *
+     * @param ViewEvent $event Event listened to.
+     *
+     * @return void
      */
     public function setLayout(ViewEvent $event)
     {
@@ -59,7 +72,11 @@ class CreateViewSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param ViewEvent $event
+     * Set all css classes to the widget attributes.
+     *
+     * @param ViewEvent $event Event listened to.
+     *
+     * @return void
      */
     public function setCssClasses(ViewEvent $event)
     {

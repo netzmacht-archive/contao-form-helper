@@ -1,19 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: david
- * Date: 04.03.14
- * Time: 15:44
- */
+
 
 namespace Netzmacht\Contao\FormHelper\Form;
 
+/**
+ * Class FormLocator is loading the form models.
+ *
+ * @package Netzmacht\Contao\FormHelper\Form
+ */
 class FormLocator
 {
-
     /**
-     * @param $formId
-     * @return \Database\Result|mixed
+     * Load form model from database.
+     *
+     * @param int $formId The form id.
+     *
+     * @return \FormModel|null
      */
     public function getForm($formId)
     {

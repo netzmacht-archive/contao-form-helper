@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a74ab5b8ef39a0aca8fb135cc65a3fe5",
+    "hash": "99ff13d9ed748d616d1b9aacdf4af78e",
     "packages": [
         {
             "name": "contao-community-alliance/backports-initialize-system",
@@ -64,20 +64,21 @@
         },
         {
             "name": "contao-community-alliance/composer-plugin",
-            "version": "2.2.2",
+            "version": "2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/contao-community-alliance/composer-plugin.git",
-                "reference": "0bc66a20a895536833c302c6a1db37d4441cca21"
+                "reference": "a7e4a41526cbc426d8e28d2d9764975fccaffd00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/contao-community-alliance/composer-plugin/zipball/0bc66a20a895536833c302c6a1db37d4441cca21",
-                "reference": "0bc66a20a895536833c302c6a1db37d4441cca21",
+                "url": "https://api.github.com/repos/contao-community-alliance/composer-plugin/zipball/a7e4a41526cbc426d8e28d2d9764975fccaffd00",
+                "reference": "a7e4a41526cbc426d8e28d2d9764975fccaffd00",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "1.0.0"
+                "composer-plugin-api": "1.0.0",
+                "php": ">=5.3.2"
             },
             "conflict": {
                 "contao-community-alliance/composer": "<0.9-dev",
@@ -87,10 +88,10 @@
                 "contao-community-alliance/composer-installer": "1.7.1"
             },
             "require-dev": {
-                "bit3/php-coding-standard": "*",
                 "composer/composer": "dev-master",
-                "pdepend/pdepend": "1.1.*",
-                "phpunit/phpunit": ">=3.7.10,<4-dev"
+                "contao-community-alliance/build-system": "~1.0",
+                "contao-community-alliance/build-system-all-tasks": "~1.0",
+                "contao-community-alliance/coding-standard": "~1.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -111,7 +112,7 @@
             ],
             "description": "Composer plugin that provide contao integration and installer.",
             "homepage": "http://c-c-a.org/",
-            "time": "2014-07-22 21:27:29"
+            "time": "2014-10-24 10:30:50"
         },
         {
             "name": "contao-community-alliance/dependency-container",
@@ -333,12 +334,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/contao/php-diff.git",
-                "reference": "9928f73548f26c4b8627d78a3722e52f63efadbd"
+                "reference": "f84024ea2ca4f5142dc2ed54a8c457b9cb62cfcd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/contao/php-diff/zipball/9928f73548f26c4b8627d78a3722e52f63efadbd",
-                "reference": "9928f73548f26c4b8627d78a3722e52f63efadbd",
+                "url": "https://api.github.com/repos/contao/php-diff/zipball/f84024ea2ca4f5142dc2ed54a8c457b9cb62cfcd",
+                "reference": "f84024ea2ca4f5142dc2ed54a8c457b9cb62cfcd",
                 "shasum": ""
             },
             "type": "library",
@@ -358,7 +359,7 @@
                 }
             ],
             "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
-            "time": "2014-05-17 19:04:01"
+            "time": "2014-10-21 12:48:52"
         },
         {
             "name": "leafo/lessphp",
@@ -749,17 +750,17 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.5.5",
+            "version": "v2.5.6",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "f6281337bf5f985f585d1db6a83adb05ce531f46"
+                "reference": "804eb28dbbfba9ffdab21fe2066744906cea2212"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/f6281337bf5f985f585d1db6a83adb05ce531f46",
-                "reference": "f6281337bf5f985f585d1db6a83adb05ce531f46",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/804eb28dbbfba9ffdab21fe2066744906cea2212",
+                "reference": "804eb28dbbfba9ffdab21fe2066744906cea2212",
                 "shasum": ""
             },
             "require": {
@@ -802,7 +803,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-28 15:56:11"
+            "time": "2014-10-01 15:43:05"
         },
         {
             "name": "tecnick.com/tcpdf",
@@ -875,12 +876,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/contao-community-alliance/build-system.git",
-                "reference": "ea0ff790d682a867555d28a6d4f9a2cbb8e0f1c9"
+                "reference": "d33138ff72f47c9a15104708c82ae9f4224e5d51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/contao-community-alliance/build-system/zipball/ea0ff790d682a867555d28a6d4f9a2cbb8e0f1c9",
-                "reference": "ea0ff790d682a867555d28a6d4f9a2cbb8e0f1c9",
+                "url": "https://api.github.com/repos/contao-community-alliance/build-system/zipball/d33138ff72f47c9a15104708c82ae9f4224e5d51",
+                "reference": "d33138ff72f47c9a15104708c82ae9f4224e5d51",
                 "shasum": ""
             },
             "suggest": {
@@ -912,7 +913,7 @@
                 }
             ],
             "description": "CCABS base system.",
-            "time": "2014-10-20 23:08:07"
+            "time": "2014-10-22 17:55:30"
         },
         {
             "name": "contao-community-alliance/build-system-logger",
@@ -1113,6 +1114,48 @@
             "time": "2014-10-11 09:57:59"
         },
         {
+            "name": "contao-community-alliance/coding-standard",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/contao-community-alliance/coding-standard.git",
+                "reference": "d93fb7810678ffb4d161964521065cab65aefcee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/contao-community-alliance/coding-standard/zipball/d93fb7810678ffb4d161964521065cab65aefcee",
+                "reference": "d93fb7810678ffb4d161964521065cab65aefcee",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "suggest": {
+                "contao-community-alliance/build-system": "The Contao Community Alliance Build System (CCABS)"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Schiffler",
+                    "email": "c.schiffler@cyberspectrum.de",
+                    "homepage": "http://www.cyberspectrum.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "contao community alliance coding standard",
+            "homepage": "http://c-c-a.org/",
+            "time": "2014-10-17 12:13:37"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.0.4",
             "source": {
@@ -1213,12 +1256,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/netzmacht/contao-build-tools.git",
-                "reference": "5054602aacfdfa2f90997275713bb7aca9816cfe"
+                "reference": "bfc88f0686c3f16757de075184df491fb0ba2c5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/netzmacht/contao-build-tools/zipball/5054602aacfdfa2f90997275713bb7aca9816cfe",
-                "reference": "5054602aacfdfa2f90997275713bb7aca9816cfe",
+                "url": "https://api.github.com/repos/netzmacht/contao-build-tools/zipball/bfc88f0686c3f16757de075184df491fb0ba2c5b",
+                "reference": "bfc88f0686c3f16757de075184df491fb0ba2c5b",
                 "shasum": ""
             },
             "require": {
@@ -1265,7 +1308,7 @@
                 "development",
                 "test"
             ],
-            "time": "2014-10-21 07:51:11"
+            "time": "2014-10-23 10:56:20"
         },
         {
             "name": "pdepend/pdepend",
@@ -1898,16 +1941,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "6288ebbf6fa3ed2b2ff2d69c356fbaaf4f0971a7"
+                "reference": "0d9bf79554d2a999da194a60416c15cf461eb67d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6288ebbf6fa3ed2b2ff2d69c356fbaaf4f0971a7",
-                "reference": "6288ebbf6fa3ed2b2ff2d69c356fbaaf4f0971a7",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/0d9bf79554d2a999da194a60416c15cf461eb67d",
+                "reference": "0d9bf79554d2a999da194a60416c15cf461eb67d",
                 "shasum": ""
             },
             "require": {
@@ -1919,7 +1962,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -1944,7 +1987,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2014-10-07 09:23:16"
+            "time": "2014-10-22 06:38:05"
         },
         {
             "name": "sebastian/exporter",
@@ -2256,7 +2299,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v2.5.5",
+            "version": "v2.5.6",
             "target-dir": "Symfony/Component/Config",
             "source": {
                 "type": "git",
@@ -2304,17 +2347,17 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.5.5",
+            "version": "v2.5.6",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "ca053eaa031c93afb68a71e4eb1f4168dfd4a661"
+                "reference": "6f177fca24200a5b97aef5ce7a5c98124a0f0db0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/ca053eaa031c93afb68a71e4eb1f4168dfd4a661",
-                "reference": "ca053eaa031c93afb68a71e4eb1f4168dfd4a661",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/6f177fca24200a5b97aef5ce7a5c98124a0f0db0",
+                "reference": "6f177fca24200a5b97aef5ce7a5c98124a0f0db0",
                 "shasum": ""
             },
             "require": {
@@ -2355,21 +2398,21 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-25 09:53:56"
+            "time": "2014-10-05 13:57:04"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v2.5.5",
+            "version": "v2.5.6",
             "target-dir": "Symfony/Component/DependencyInjection",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/DependencyInjection.git",
-                "reference": "1f01a64c9047909e40700a14ee34e8c446300618"
+                "reference": "fb40e4ea115d331346fbbc4da8f42825e524c7a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/1f01a64c9047909e40700a14ee34e8c446300618",
-                "reference": "1f01a64c9047909e40700a14ee34e8c446300618",
+                "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/fb40e4ea115d331346fbbc4da8f42825e524c7a0",
+                "reference": "fb40e4ea115d331346fbbc4da8f42825e524c7a0",
                 "shasum": ""
             },
             "require": {
@@ -2412,11 +2455,11 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-27 08:35:39"
+            "time": "2014-10-01 05:50:18"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.5.5",
+            "version": "v2.5.6",
             "target-dir": "Symfony/Component/Filesystem",
             "source": {
                 "type": "git",
@@ -2463,17 +2506,17 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v2.5.5",
+            "version": "v2.5.6",
             "target-dir": "Symfony/Component/Finder",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Finder.git",
-                "reference": "d5033742b9a6206ef6d06e813870bca18e9205df"
+                "reference": "cf66df4e783e6aade319b273c9bcf9e42aa9b10f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/d5033742b9a6206ef6d06e813870bca18e9205df",
-                "reference": "d5033742b9a6206ef6d06e813870bca18e9205df",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/cf66df4e783e6aade319b273c9bcf9e42aa9b10f",
+                "reference": "cf66df4e783e6aade319b273c9bcf9e42aa9b10f",
                 "shasum": ""
             },
             "require": {
@@ -2506,21 +2549,21 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-27 08:35:39"
+            "time": "2014-10-01 05:50:18"
         },
         {
             "name": "symfony/process",
-            "version": "v2.5.5",
+            "version": "v2.5.6",
             "target-dir": "Symfony/Component/Process",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "8a1ec96c4e519cee0fb971ea48a1eb7369dda54b"
+                "reference": "9bbacbb3a7a27b17c0d51e2f126f59e0e588ad3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/8a1ec96c4e519cee0fb971ea48a1eb7369dda54b",
-                "reference": "8a1ec96c4e519cee0fb971ea48a1eb7369dda54b",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/9bbacbb3a7a27b17c0d51e2f126f59e0e588ad3a",
+                "reference": "9bbacbb3a7a27b17c0d51e2f126f59e0e588ad3a",
                 "shasum": ""
             },
             "require": {
@@ -2553,21 +2596,21 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-23 05:25:11"
+            "time": "2014-10-01 05:50:18"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.5.5",
+            "version": "v2.5.6",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "b1dbc53593b98c2d694ebf383660ac9134d30b96"
+                "reference": "2d9f527449cabfa8543dd7fa3a466d6ae83d6726"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/b1dbc53593b98c2d694ebf383660ac9134d30b96",
-                "reference": "b1dbc53593b98c2d694ebf383660ac9134d30b96",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/2d9f527449cabfa8543dd7fa3a466d6ae83d6726",
+                "reference": "2d9f527449cabfa8543dd7fa3a466d6ae83d6726",
                 "shasum": ""
             },
             "require": {
@@ -2600,7 +2643,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-22 09:14:18"
+            "time": "2014-10-01 05:50:18"
         },
         {
             "name": "theseer/fdomdocument",
