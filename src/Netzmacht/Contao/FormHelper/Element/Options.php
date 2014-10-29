@@ -50,7 +50,7 @@ abstract class Options extends Node implements HasTemplate
      */
     public function setOptions($options)
     {
-        $this->options  = (array)$options;
+        $this->options  = (array) $options;
         $this->children = array();
 
         return $this;

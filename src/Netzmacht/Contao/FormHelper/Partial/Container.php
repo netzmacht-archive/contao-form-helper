@@ -80,7 +80,7 @@ class Container extends TemplateComponent
      */
     public function setRenderContainer($renderContainer)
     {
-        $this->renderContainer = (bool)$renderContainer;
+        $this->renderContainer = (bool) $renderContainer;
 
         return $this;
     }
@@ -372,7 +372,7 @@ class Container extends TemplateComponent
         $buffer = '';
 
         foreach ($this->getChildByPosition($position) as $child) {
-            $buffer .= (string)$child;
+            $buffer .= (string) $child;
         }
 
         return $buffer;
@@ -392,12 +392,12 @@ class Container extends TemplateComponent
 
             $element = $template->parse();
         } else {
-            $element = (string)$this->element;
+            $element = (string) $this->element;
         }
 
         if ($this->wrapper) {
             $this->wrapper->setElement($element);
-            $element = (string)$this->wrapper;
+            $element = (string) $this->wrapper;
         }
 
         return $element;

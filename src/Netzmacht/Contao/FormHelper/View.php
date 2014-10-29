@@ -150,7 +150,7 @@ class View
      */
     public function setVisible($visible)
     {
-        $this->visible = (bool)$visible;
+        $this->visible = (bool) $visible;
 
         return $this;
     }
