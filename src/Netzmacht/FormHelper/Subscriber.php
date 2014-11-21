@@ -178,6 +178,7 @@ class Subscriber implements EventSubscriberInterface
 			case 'email':
 			case 'tel':
 			case 'url':
+			case 'number':
 				$element = Element::create('input', array('type' => $widget->type));
 				$element->setAttribute('name', $widget->name);
 				break;
