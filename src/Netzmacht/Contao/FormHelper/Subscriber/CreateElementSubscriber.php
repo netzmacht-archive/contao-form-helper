@@ -32,7 +32,7 @@ class CreateElementSubscriber implements EventSubscriberInterface
      *
      * @var array
      */
-    private $textBasedElements = array('password', 'submit', 'tesxt', 'digit', 'email', 'tel', 'url');
+    private $textBasedElements = array('password', 'submit', 'tesxt', 'digit', 'email', 'tel', 'url', 'number');
 
     /**
      * Get all subscribed events.
