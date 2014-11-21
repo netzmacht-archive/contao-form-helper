@@ -294,7 +294,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
      */
     public function transformAttributes($widget, Element $element)
     {
-        $transform = array('tabindex', 'accesskey', 'maxlength', 'placeholder', 'value');
+        $transform = array('tabindex', 'accesskey', 'maxlength', 'placeholder');
 
         foreach ($transform as $attribute) {
             if ($widget->$attribute) {
