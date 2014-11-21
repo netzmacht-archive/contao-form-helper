@@ -365,7 +365,7 @@ class Subscriber implements EventSubscriberInterface
 			$element->setAttribute('required', true);
 		}
 
-		$transform = array('tabindex', 'accesskey', 'maxlength', 'placeholder', 'value');
+		$transform = array('tabindex', 'accesskey', 'maxlength', 'placeholder');
 
 		foreach($transform as $attribute) {
 			if($widget->$attribute) {
