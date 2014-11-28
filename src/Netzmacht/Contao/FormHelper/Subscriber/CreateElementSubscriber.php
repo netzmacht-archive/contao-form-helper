@@ -42,7 +42,7 @@ class CreateElementSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            Events::CREATE_ELEMENT => 'createElement'
+            Events::CREATE_ELEMENT => 'handleCreateElement'
         );
     }
 
@@ -53,20 +53,21 @@ class CreateElementSubscriber implements EventSubscriberInterface
      *
      * @return void
      */
-    public function createElement(CreateElementEvent $event)
+    public function handleCreateElement(CreateElementEvent $event)
     {
         $widget = $event->getWidget();
+        $type   = $this->getWidgetType($widget);
 
-        if ($this->buildByWidget($event, $widget)) {
+        if ($this->buildByWidget($event, $widget) || ! $type) {
             return;
         }
 
-        $methodName = sprintf('create%sElement', ucfirst($widget->type));
+        $methodName = sprintf('create%sElement', ucfirst($type));
 
         if (method_exists($this, $methodName)) {
             $element = $this->$methodName($widget);
             $event->setElement($element);
-        } elseif (in_array($widget->type, $this->textBasedElements)) {
+        } elseif (in_array($type, $this->textBasedElements)) {
             $element = $this->createTextBasedElement($widget);
             $event->setElement($element);
         }
@@ -219,5 +220,37 @@ class CreateElementSubscriber implements EventSubscriberInterface
         $element->setAttribute('name', $widget->name);
 
         return $element;
+    }
+
+    /**
+     * Get widget type.
+     *
+     * @param \Widget $widget Current widget.
+     *
+     * @return string|null
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     */
+    private function getWidgetType($widget)
+    {
+        $widget->type = null;
+
+        // try to get widget type from class
+        if (!$widget->type) {
+            $elements    = array_flip($GLOBALS['TL_FFL']);
+            $widgetClass = get_class($widget);
+
+            if (isset($elements[$widgetClass])) {
+                $widget->type = $elements[$widgetClass];
+            } elseif (strpos($widgetClass, 'Contao\\') === 0) {
+                $widgetClass = substr($widgetClass, 7);
+
+                if (isset($elements[$widgetClass])) {
+                    $widget->type = $elements[$widgetClass];
+                }
+            }
+        }
+
+        return $widget->type;
     }
 }
