@@ -210,7 +210,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
             $label->addChild($mandatory);
         }
 
-        if ($element instanceof HasLabel) {
+        if ($element instanceof HasLabel && $widget->label) {
             $element->setLabel(new StaticHtml($widget->label));
         }
 
