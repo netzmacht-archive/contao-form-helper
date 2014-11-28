@@ -233,8 +233,6 @@ class CreateElementSubscriber implements EventSubscriberInterface
      */
     private function getWidgetType($widget)
     {
-        $widget->type = null;
-
         // try to get widget type from class
         if (!$widget->type) {
             $elements    = array_flip($GLOBALS['TL_FFL']);
