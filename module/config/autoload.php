@@ -22,8 +22,8 @@
 \TemplateLoader::addFile('formhelper_layout_table_nocolumns', 'system/modules/form-helper/templates/layout');
 
 if(version_compare(VERSION, '3.3', '>=')) {
-	\TemplateLoader::addFile('form_textfield', 'system/modules/form-helper/templates/widget');
-	\TemplateLoader::addFile('form_textarea', 'system/modules/form-helper/templates/widget');
-	\TemplateLoader::addFile('form_select', 'system/modules/form-helper/templates/widget');
-	\TemplateLoader::addFile('form_upload', 'system/modules/form-helper/templates/widget');
+    \TemplateLoader::addFile('form_textfield', 'system/modules/form-helper/templates/widget');
+    \TemplateLoader::addFile('form_textarea', 'system/modules/form-helper/templates/widget');
+    \TemplateLoader::addFile('form_select', 'system/modules/form-helper/templates/widget');
+    \TemplateLoader::addFile('form_upload', 'system/modules/form-helper/templates/widget');
 }

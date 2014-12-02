@@ -7,26 +7,26 @@ $buffer     = '';
 ?>
 
 <?php if($container->isRendered()): ?>
-<div <?php echo $attributes; ?>>
+    <div <?php echo $attributes; ?>>
 <?php endif; ?>
 
 <?php
 
 // generate before placed elements
 foreach($this->before as $child) {
-	$buffer .= $child;
+    $buffer .= $child;
 }
 
 $buffer .= $container->generateElement();
 
 // generate before placed elements
 foreach($this->after as $child) {
-	$buffer .= $child;
+    $buffer .= $child;
 }
 
 echo $buffer;
 
 ?>
 <?php if($container->isRendered()): ?>
-</div>
+    </div>
 <?php endif; ?>
