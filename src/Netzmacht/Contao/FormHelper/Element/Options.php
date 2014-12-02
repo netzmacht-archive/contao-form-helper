@@ -2,6 +2,7 @@
 
 namespace Netzmacht\Contao\FormHelper\Element;
 
+use Netzmacht\Html\Attributes;
 use Netzmacht\Html\Element\Node;
 use Netzmacht\Contao\FormHelper\HasTemplate;
 
@@ -40,6 +41,36 @@ abstract class Options extends Node implements HasTemplate
      * @var string
      */
     protected $template;
+
+    /**
+     * Child attributes.
+     *
+     * @var Attributes
+     */
+    protected $childAttributes;
+
+    /**
+     * Construct.
+     *
+     * @param string $tag        Element tag.
+     * @param array  $attributes Attributes.
+     */
+    function __construct($tag, $attributes = array())
+    {
+        parent::__construct($tag, $attributes);
+
+        $this->childAttributes = new Attributes();
+    }
+
+    /**
+     * Get child attributes.
+     *
+     * @return Attributes
+     */
+    public function getChildAttributes()
+    {
+        return $this->childAttributes;
+    }
 
     /**
      * Set value options.
@@ -117,10 +148,11 @@ abstract class Options extends Node implements HasTemplate
      */
     public function generate()
     {
-        $template          = new \FrontendTemplate($this->template);
-        $template->options = $this->options;
-        $template->element = $this;
-        $template->tag     = $this->getTag();
+        $template             = new \FrontendTemplate($this->template);
+        $template->options    = $this->options;
+        $template->element    = $this;
+        $template->tag        = $this->getTag();
+        $template->attributes = (array) $this->childAttributes->getAttributes();
 
         return $template->parse();
     }

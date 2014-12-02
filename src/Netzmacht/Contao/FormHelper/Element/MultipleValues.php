@@ -59,11 +59,12 @@ class MultipleValues extends Options implements HasLabel
      */
     public function generate()
     {
-        $template          = new \FrontendTemplate($this->template);
-        $template->options = $this->options;
-        $template->element = $this;
-        $template->tag     = $this->getTag();
-        $template->label   = $this->label;
+        $template             = new \FrontendTemplate($this->template);
+        $template->options    = $this->options;
+        $template->element    = $this;
+        $template->tag        = $this->getTag();
+        $template->label      = $this->label;
+        $template->attributes = (array) $this->childAttributes->getAttributes();
 
         return $template->parse();
     }

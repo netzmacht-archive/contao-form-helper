@@ -121,7 +121,7 @@ class CreateElementSubscriber implements EventSubscriberInterface
     public function createCheckboxElement($widget)
     {
         $element = new Checkboxes();
-        $element->setAttribute('name', $widget->name);
+        $element->getChildAttributes()->setAttribute('name', $widget->name . '[]');
 
         return $element;
     }
@@ -136,7 +136,7 @@ class CreateElementSubscriber implements EventSubscriberInterface
     public function createRadioElement($widget)
     {
         $element = new Radios();
-        $element->setAttribute('name', $widget->name);
+        $element->getChildAttributes()->setAttribute('name', $widget->name);
 
         return $element;
     }

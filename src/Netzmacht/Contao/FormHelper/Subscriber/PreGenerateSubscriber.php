@@ -12,10 +12,13 @@
 namespace Netzmacht\Contao\FormHelper\Subscriber;
 
 
+use Netzmacht\Contao\FormHelper\Element\Checkboxes;
 use Netzmacht\Contao\FormHelper\Element\HasLabel;
 use Netzmacht\Contao\FormHelper\Element\Options;
+use Netzmacht\Contao\FormHelper\Element\Radios;
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\Event\ViewEvent;
+use Netzmacht\Contao\FormHelper\Util\AttributesExtractor;
 use Netzmacht\Html\Element;
 use Netzmacht\Html\Element\StaticHtml;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -72,7 +75,15 @@ class PreGenerateSubscriber implements EventSubscriberInterface
         }
 
         $element->setId('ctrl_' . $widget->id);
-        $element->addClass($widget->type);
+
+        if ($element instanceof Radios) {
+            $element->addClass('radio_container');
+        } elseif ($element instanceof Checkboxes) {
+            $element->addClass('checkbox_container');
+        } else {
+            $element->addClass($widget->type);
+        }
+
     }
 
     /**
@@ -246,7 +257,12 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     {
         if ($widget->class) {
             $classes = trimsplit(' ', $widget->class);
-            $element->addClasses($classes);
+
+            if ($element instanceof Radios || $element instanceof Checkboxes) {
+                $element->getChildAttributes()->addClasses($classes);
+            } else {
+                $element->addClasses($classes);
+            }
         }
     }
 
@@ -280,7 +296,11 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     public function setMandatoryAttribute($widget, Element $element)
     {
         if ($widget->mandatory) {
-            $element->setAttribute('required', true);
+            if ($element instanceof Radios || $element instanceof Checkboxes) {
+                $element->getChildAttributes()->setAttribute('required', true);
+            } else {
+                $element->setAttribute('required', true);
+            }
         }
     }
 
@@ -294,12 +314,12 @@ class PreGenerateSubscriber implements EventSubscriberInterface
      */
     public function transformAttributes($widget, Element $element)
     {
-        $transform = array('tabindex', 'accesskey', 'maxlength', 'placeholder');
+        $attributes = AttributesExtractor::getAttributes($widget);
 
-        foreach ($transform as $attribute) {
-            if ($widget->$attribute) {
-                $element->setAttribute($attribute, $widget->$attribute);
-            }
+        if ($element instanceof Options) {
+            $element->getChildAttributes()->addAttributes($attributes);
+        } else {
+            $element->addAttributes($attributes);
         }
     }
 

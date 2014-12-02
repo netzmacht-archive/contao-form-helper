@@ -19,6 +19,7 @@ foreach($this->options as $option):
 
 	else:
 		$child = Element::create('option')
+            ->addAttributes($this->attributes)
 			->setAttribute('value', $option['value'])
 			->addChild($option['label']);
 
