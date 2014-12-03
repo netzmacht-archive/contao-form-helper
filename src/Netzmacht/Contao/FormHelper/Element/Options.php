@@ -55,7 +55,7 @@ abstract class Options extends Node implements HasTemplate
      * @param string $tag        Element tag.
      * @param array  $attributes Attributes.
      */
-    function __construct($tag, $attributes = array())
+    public function __construct($tag, $attributes = array())
     {
         parent::__construct($tag, $attributes);
 

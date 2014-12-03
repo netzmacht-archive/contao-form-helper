@@ -11,14 +11,19 @@
 
 namespace Netzmacht\Contao\FormHelper\Util;
 
-
+/**
+ * Class AttributesExtractor is an utility to extract widget attributes.
+ *
+ * @package Netzmacht\Contao\FormHelper\Util
+ */
 class AttributesExtractor
 {
     /**
-     * Get attributes from
-     * @param \Widget $widget
+     * Get attributes from the widget.
      *
-     * @return mixed
+     * @param \Widget $widget Form widget.
+     *
+     * @return array
      */
     public static function getAttributes(\Widget $widget)
     {
