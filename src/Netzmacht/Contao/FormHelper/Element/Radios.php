@@ -20,4 +20,12 @@ class Radios extends MultipleValues
 
         $this->template = 'formhelper_element_radios';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isElementCollection()
+    {
+        return true;
+    }
 }

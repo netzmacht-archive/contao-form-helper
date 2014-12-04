@@ -21,4 +21,12 @@ class Checkboxes extends MultipleValues
 
         $this->template = 'formhelper_element_checkboxes';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isElementCollection()
+    {
+        return true;
+    }
 }

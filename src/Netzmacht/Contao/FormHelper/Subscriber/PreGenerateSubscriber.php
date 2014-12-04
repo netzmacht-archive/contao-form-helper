@@ -14,6 +14,7 @@ namespace Netzmacht\Contao\FormHelper\Subscriber;
 
 use Netzmacht\Contao\FormHelper\Element\Checkboxes;
 use Netzmacht\Contao\FormHelper\Element\HasLabel;
+use Netzmacht\Contao\FormHelper\Element\MultipleValues;
 use Netzmacht\Contao\FormHelper\Element\Options;
 use Netzmacht\Contao\FormHelper\Element\Radios;
 use Netzmacht\Contao\FormHelper\Event\Events;
@@ -76,14 +77,11 @@ class PreGenerateSubscriber implements EventSubscriberInterface
 
         $element->setId('ctrl_' . $widget->id);
 
-        if ($element instanceof Radios) {
-            $element->addClass('radio_container');
-        } elseif ($element instanceof Checkboxes) {
-            $element->addClass('checkbox_container');
+        if ($element instanceof MultipleValues && $element->isElementCollection()) {
+            $element->addClass($widget->type . '_container');
         } else {
             $element->addClass($widget->type);
         }
-
     }
 
     /**
@@ -258,7 +256,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
         if ($widget->class) {
             $classes = trimsplit(' ', $widget->class);
 
-            if ($element instanceof Radios || $element instanceof Checkboxes) {
+            if ($element instanceof MultipleValues && $element->isElementCollection()) {
                 $element->getChildAttributes()->addClasses($classes);
             } else {
                 $element->addClasses($classes);
@@ -296,7 +294,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     public function setMandatoryAttribute($widget, Element $element)
     {
         if ($widget->mandatory) {
-            if ($element instanceof Radios || $element instanceof Checkboxes) {
+            if ($element instanceof MultipleValues && $element->isElementCollection()) {
                 $element->getChildAttributes()->setAttribute('required', true);
             } else {
                 $element->setAttribute('required', true);
@@ -316,7 +314,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     {
         $attributes = AttributesExtractor::getAttributes($widget);
 
-        if ($element instanceof Options) {
+        if ($element instanceof MultipleValues && $element->isElementCollection()) {
             $element->getChildAttributes()->addAttributes($attributes);
         } else {
             $element->addAttributes($attributes);

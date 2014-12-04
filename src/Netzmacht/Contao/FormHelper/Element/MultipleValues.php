@@ -53,6 +53,18 @@ class MultipleValues extends Options implements HasLabel
     }
 
     /**
+     * Consider if element is an element collection.
+     *
+     * Used to map contao widgets attributes to children instead of the element itself.
+     *
+     * @return bool
+     */
+    public function isElementCollection()
+    {
+        return false;
+    }
+
+    /**
      * Generate the element.
      *
      * @return string
