@@ -39,6 +39,13 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     protected static $noLabel = array('explanation', 'headline', 'html', 'submit');
 
     /**
+     * Elements with no value.
+     *
+     * @var array
+     */
+    protected static $noValue = array('password');
+
+    /**
      * Get all subscribed events.
      *
      * @return array
@@ -274,7 +281,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
      */
     public function addValue($widget, Element $element)
     {
-        if ($widget->value) {
+        if ($widget->value && !in_array($widget->type, static::$noValue)) {
             if ($element->getTag() == 'textarea' && $element instanceof Element\Node) {
                 $element->addChild($widget->value);
             } elseif ($element->getTag() == 'input') {
