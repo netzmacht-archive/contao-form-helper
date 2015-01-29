@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package    dev
+ * @package    contao-form-helper
  * @author     David Molineus <david.molineus@netzmacht.de>
  * @author     Tristan Lins <tristan@lins.io>
  * @copyright  2014 netzmacht creative David Molineus
