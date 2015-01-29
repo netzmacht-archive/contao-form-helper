@@ -1,32 +1,32 @@
 <?php
-/** @var Netzmacht\FormHelper\Partial\Container $container */
-$container = $this->container;
+/** @var Netzmacht\Contao\FormHelper\Partial\Container $container */
+$container  = $this->container;
 $attributes = $container->getAttributes();
-$buffer = '';
+$buffer     = '';
 
 ?>
 
-<?php if($container->getRenderContainer()): ?>
-<div <?php echo $attributes; ?>>
+<?php if($container->isRendered()): ?>
+    <div <?php echo $attributes; ?>>
 <?php endif; ?>
 
 <?php
 
 // generate before placed elements
 foreach($this->before as $child) {
-	$buffer .= $child;
+    $buffer .= $child;
 }
 
 $buffer .= $container->generateElement();
 
 // generate before placed elements
 foreach($this->after as $child) {
-	$buffer .= $child;
+    $buffer .= $child;
 }
 
 echo $buffer;
 
 ?>
-<?php if($container->getRenderContainer()): ?>
-</div>
+<?php if($container->isRendered()): ?>
+    </div>
 <?php endif; ?>

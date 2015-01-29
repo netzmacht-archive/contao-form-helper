@@ -1,1 +1,3 @@
-<?php include $this->getTemplate('form_widget');
+<?php
+
+\Netzmacht\Contao\FormHelper\Helper::generate($this);

@@ -1,6 +1,7 @@
+<div <?php echo $this->attributes; ?>>
 <?php
-echo $label; ?>
-<?php
-echo $container;
-echo $errors;
-?><br>
+echo $this->label;
+echo $this->container;
+echo $this->errors;
+?>
+</div>
