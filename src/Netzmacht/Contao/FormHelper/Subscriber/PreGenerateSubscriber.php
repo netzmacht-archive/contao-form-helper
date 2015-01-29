@@ -3,6 +3,7 @@
 /**
  * @package    dev
  * @author     David Molineus <david.molineus@netzmacht.de>
+ * @author     Tristan Lins <tristan@lins.io>
  * @copyright  2014 netzmacht creative David Molineus
  * @license    LGPL 3.0
  * @filesource
@@ -12,11 +13,9 @@
 namespace Netzmacht\Contao\FormHelper\Subscriber;
 
 
-use Netzmacht\Contao\FormHelper\Element\Checkboxes;
 use Netzmacht\Contao\FormHelper\Element\HasLabel;
 use Netzmacht\Contao\FormHelper\Element\MultipleValues;
 use Netzmacht\Contao\FormHelper\Element\Options;
-use Netzmacht\Contao\FormHelper\Element\Radios;
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\Event\ViewEvent;
 use Netzmacht\Contao\FormHelper\Util\AttributesExtractor;
