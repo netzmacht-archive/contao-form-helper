@@ -25,14 +25,13 @@
         "netzmacht/html": "~1.0"
     },
     "require-dev":{
-        "phpspec/phpspec": "2.1.x-dev",
+        "phpspec/phpspec": "~2.1",
         "henrikbjorn/phpspec-code-coverage" : "~0.2",
-        "netzmacht/contao-build-tools": "1.0.x-dev"
+        "netzmacht/contao-build-tools": "~1.1"
     },
     "autoload": {
         "psr-0": {
-            "Netzmacht\\FormHelper\\": "src/",
-            "Netzmacht\\Contao\\FormHelper\\": "src/"
+            "Netzmacht\\Contao\\FormHelper": "src/"
         }
     },
     "config": {
@@ -42,7 +41,7 @@
     "minimum-stability": "dev",
     "extra":{
         "branch-alias": {
-            "dev-develop": "1.0.x-dev"
+            "dev-master": "1.0.x-dev"
         },
         "contao": {
             "sources":{
