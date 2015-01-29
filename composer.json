@@ -34,6 +34,11 @@
             "Netzmacht\\Contao\\FormHelper": "src/"
         }
     },
+    "autoload-dev": {
+        "files": [
+            "vendor/netzmacht/contao-build-tools/autoload.php"
+        ]
+    },
     "config": {
         "bin-dir": "bin"
     },
