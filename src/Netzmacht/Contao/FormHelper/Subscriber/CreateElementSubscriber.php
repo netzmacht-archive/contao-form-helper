@@ -26,6 +26,7 @@ use Netzmacht\Contao\FormHelper\Element\Select;
 use Netzmacht\Contao\FormHelper\Event\CreateElementEvent;
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\GeneratesAnElement;
+use Netzmacht\Contao\FormHelper\View;
 use Netzmacht\Html\Element;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -65,7 +66,7 @@ class CreateElementSubscriber implements EventSubscriberInterface
     public function handleCreateElement(CreateElementEvent $event)
     {
         $widget = $event->getWidget();
-        $type   = $event->getView()->getWidgetType();
+        $type   = $this->getWidgetType($event->getView());
 
         if ($this->buildByWidget($event, $widget) || ! $type) {
             return;
@@ -229,5 +230,31 @@ class CreateElementSubscriber implements EventSubscriberInterface
         $element->setAttribute('name', $widget->name);
 
         return $element;
+    }
+
+    /**
+     * Handle widget type before return it to support 3rd party form extensions.
+     *
+     * @param View $view The view.
+     *
+     * @return string
+     */
+    private function getWidgetType(View $view)
+    {
+        $widget = $view->getWidget();
+        $type   = $view->getWidgetType();
+
+        switch ($type) {
+            case 'rocksolid_antispam':
+                if ($widget->type === 'captcha') {
+                    return $widget->type;
+                }
+                break;
+
+            default:
+                return $type;
+        }
+
+        return $type;
     }
 }

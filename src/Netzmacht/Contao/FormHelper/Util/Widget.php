@@ -36,6 +36,8 @@ class Widget
      * @param \Widget $widget The widget.
      *
      * @return string
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
     public static function getType($widget)
     {

@@ -91,8 +91,8 @@ class View
     /**
      * Construct.
      *
-     * @param \Widget    $widget     The form widget.
-     * @param \FormModel $formModel  Optional the corresponding form model.
+     * @param \Widget    $widget    The form widget.
+     * @param \FormModel $formModel Optional the corresponding form model.
      */
     public function __construct(\Widget $widget, \FormModel $formModel = null)
     {
