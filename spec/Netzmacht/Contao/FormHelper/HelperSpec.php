@@ -29,6 +29,10 @@ class HelperSpec extends ObjectBehavior
     function let(EventDispatcher $eventDispatcher, FormLocator $formLocator)
     {
         $this->beConstructedWith($eventDispatcher, $formLocator);
+
+        if (!isset($GLOBALS['TL_FFL'])) {
+            $GLOBALS['TL_FFL'] = array();
+        }
     }
 
     function it_is_initializable()

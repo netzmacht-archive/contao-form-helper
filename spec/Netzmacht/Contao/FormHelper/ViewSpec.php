@@ -37,6 +37,10 @@ class ViewSpec extends ObjectBehavior
         if(!class_exists('FrontendTemplate', false)) {
             class_alias('spec\Netzmacht\Contao\FormHelper\FrontendTemplate', 'FrontendTemplate');
         }
+
+        if (!isset($GLOBALS['TL_FFL'])) {
+            $GLOBALS['TL_FFL'] = array();
+        }
     }
 
     function it_is_initializable()
