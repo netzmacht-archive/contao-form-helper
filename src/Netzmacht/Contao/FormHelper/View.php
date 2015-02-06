@@ -14,6 +14,7 @@ namespace Netzmacht\Contao\FormHelper;
 use Netzmacht\Contao\FormHelper\Partial\Container;
 use Netzmacht\Contao\FormHelper\Partial\Errors;
 use Netzmacht\Contao\FormHelper\Partial\Label;
+use Netzmacht\Contao\FormHelper\Util\Widget as WidgetUtil;
 use Netzmacht\Html\Attributes;
 use Widget;
 
@@ -81,10 +82,17 @@ class View
     private $visible = true;
 
     /**
+     * The widget type.
+     *
+     * @var string
+     */
+    private $widgetType;
+
+    /**
      * Construct.
      *
-     * @param \Widget    $widget    The form widget.
-     * @param \FormModel $formModel Optional the corresponding form model.
+     * @param \Widget    $widget     The form widget.
+     * @param \FormModel $formModel  Optional the corresponding form model.
      */
     public function __construct(\Widget $widget, \FormModel $formModel = null)
     {
@@ -94,6 +102,7 @@ class View
         $this->container  = new Container();
         $this->label      = new Label();
         $this->errors     = new Errors($widget->getErrors());
+        $this->widgetType = WidgetUtil::getType($widget);
     }
 
     /**
@@ -104,6 +113,16 @@ class View
     public function getWidget()
     {
         return $this->widget;
+    }
+
+    /**
+     * Get widget type.
+     *
+     * @return string
+     */
+    public function getWidgetType()
+    {
+        return $this->widgetType;
     }
 
     /**

@@ -65,7 +65,7 @@ class CreateElementSubscriber implements EventSubscriberInterface
     public function handleCreateElement(CreateElementEvent $event)
     {
         $widget = $event->getWidget();
-        $type   = $this->getWidgetType($widget);
+        $type   = $event->getView()->getWidgetType();
 
         if ($this->buildByWidget($event, $widget) || ! $type) {
             return;
@@ -77,7 +77,7 @@ class CreateElementSubscriber implements EventSubscriberInterface
             $element = $this->$methodName($widget);
             $event->setElement($element);
         } elseif (in_array($type, $this->textBasedElements)) {
-            $element = $this->createTextBasedElement($widget);
+            $element = $this->createTextBasedElement($widget, $type);
             $event->setElement($element);
         }
     }
@@ -229,35 +229,5 @@ class CreateElementSubscriber implements EventSubscriberInterface
         $element->setAttribute('name', $widget->name);
 
         return $element;
-    }
-
-    /**
-     * Get widget type.
-     *
-     * @param \Widget $widget Current widget.
-     *
-     * @return string|null
-     *
-     * @SuppressWarnings(PHPMD.Superglobals)
-     */
-    private function getWidgetType($widget)
-    {
-        // try to get widget type from class
-        if (!$widget->type) {
-            $elements    = array_flip($GLOBALS['TL_FFL']);
-            $widgetClass = get_class($widget);
-
-            if (isset($elements[$widgetClass])) {
-                $widget->type = $elements[$widgetClass];
-            } elseif (strpos($widgetClass, 'Contao\\') === 0) {
-                $widgetClass = substr($widgetClass, 7);
-
-                if (isset($elements[$widgetClass])) {
-                    $widget->type = $elements[$widgetClass];
-                }
-            }
-        }
-
-        return $widget->type;
     }
 }

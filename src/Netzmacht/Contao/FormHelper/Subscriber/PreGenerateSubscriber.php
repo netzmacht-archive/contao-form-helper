@@ -84,9 +84,9 @@ class PreGenerateSubscriber implements EventSubscriberInterface
         $element->setId('ctrl_' . $widget->id);
 
         if ($element instanceof MultipleValues && $element->isElementCollection()) {
-            $element->addClass($widget->type . '_container');
+            $element->addClass($view->getWidgetType() . '_container');
         } else {
-            $element->addClass($widget->type);
+            $element->addClass($view->getWidgetType());
         }
     }
 
@@ -129,7 +129,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
         $container = $view->getContainer();
         $element   = $container->getElement();
 
-        if ($widget->type == 'submit') {
+        if ($view->getWidgetType() == 'submit') {
             if (!$element instanceof Element) {
                 return;
             }
