@@ -17,6 +17,7 @@ use Netzmacht\Contao\FormHelper\Element\MultipleValues;
 use Netzmacht\Contao\FormHelper\Element\Options;
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\Event\ViewEvent;
+use Netzmacht\Contao\FormHelper\GeneratesAnElement;
 use Netzmacht\Contao\FormHelper\Util\Widget;
 use Netzmacht\Html\Element;
 use Netzmacht\Html\Element\StaticHtml;
@@ -75,8 +76,8 @@ class PreGenerateSubscriber implements EventSubscriberInterface
         $widget  = $view->getWidget();
         $element = $view->getContainer()->getElement();
 
-        // unknown element type
-        if (!$element instanceof Element) {
+        // Unknown element type or pre rendered element.
+        if (!$element instanceof Element || $widget instanceof GeneratesAnElement) {
             return;
         }
 
@@ -102,8 +103,8 @@ class PreGenerateSubscriber implements EventSubscriberInterface
         $widget  = $view->getWidget();
         $element = $view->getContainer()->getElement();
 
-        // unknown element type
-        if (!$element instanceof Element) {
+        // Unknown element type or pre rendered element.
+        if (!$element instanceof Element || $widget instanceof GeneratesAnElement) {
             return;
         }
 
@@ -129,7 +130,8 @@ class PreGenerateSubscriber implements EventSubscriberInterface
         $element   = $container->getElement();
 
         if ($view->getWidgetType() == 'submit') {
-            if (!$element instanceof Element) {
+            // Unknown element type or pre rendered element.
+            if (!$element instanceof Element || $widget instanceof GeneratesAnElement) {
                 return;
             }
 
@@ -178,7 +180,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
         $widget  = $view->getWidget();
         $element = $view->getContainer()->getElement();
 
-        if ($element instanceof Options) {
+        if ($element instanceof Options && !$widget instanceof GeneratesAnElement) {
             $element->setValue($widget->value);
             $element->setOptions($widget->options);
         }
