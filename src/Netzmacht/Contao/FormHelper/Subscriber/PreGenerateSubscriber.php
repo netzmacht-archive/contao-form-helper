@@ -12,13 +12,12 @@
 
 namespace Netzmacht\Contao\FormHelper\Subscriber;
 
-
 use Netzmacht\Contao\FormHelper\Element\HasLabel;
 use Netzmacht\Contao\FormHelper\Element\MultipleValues;
 use Netzmacht\Contao\FormHelper\Element\Options;
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\Event\ViewEvent;
-use Netzmacht\Contao\FormHelper\Util\AttributesExtractor;
+use Netzmacht\Contao\FormHelper\Util\Widget;
 use Netzmacht\Html\Element;
 use Netzmacht\Html\Element\StaticHtml;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -318,7 +317,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
      */
     public function transformAttributes($widget, Element $element)
     {
-        $attributes = AttributesExtractor::getAttributes($widget);
+        $attributes = Widget::getAttributes($widget);
 
         if ($element instanceof MultipleValues && $element->isElementCollection()) {
             $element->getChildAttributes()->addAttributes($attributes);
