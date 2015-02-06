@@ -83,7 +83,7 @@ There are two ways for manipulating the output. The proposed way is writing your
 <?php
 // config.php
 
-$GLOBALS['TL_EVENTS'][Netzmacht\FormHelper\Event\Events::GENERATE][] = function(Netzmacht\Contao\FormHelper\Event\GenerateEvent $event) {
+$GLOBALS['TL_EVENTS'][Netzmacht\Contao\FormHelper\Event\Events::GENERATE_VIEW][] = function(Netzmacht\Contao\FormHelper\Event\ViewEvent $event) {
 	// access Contao widget and form
 	$form 	= $event->getFormModel();
 	$widget = $event->getWidget();
