@@ -113,6 +113,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
         $this->setMandatoryAttribute($widget, $element);
         $this->transformAttributes($widget, $element);
         $this->setSizeAttribute($widget, $element);
+        $this->setTextareaAttributes($widget, $element);
     }
 
     /**
@@ -340,6 +341,26 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     {
         if ($widget instanceof \FormFileUpload && $widget->size) {
             $element->setAttribute('size', $widget->size);
+        }
+    }
+
+    /**
+     * Set text area elements.
+     *
+     * @param \Widget $widget  The form widget.
+     * @param Element $element The widget element.
+     *
+     * @return void
+     */
+    private function setTextareaAttributes($widget, Element $element)
+    {
+        if ($element->getTag() === 'textarea') {
+            if ($widget->cols) {
+                $element->setAttribute('cols', $widget->cols);
+            }
+            if ($widget->rows) {
+                $element->setAttribute('rows', $widget->rows);
+            }
         }
     }
 }
