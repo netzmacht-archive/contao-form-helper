@@ -321,6 +321,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     public function transformAttributes($widget, Element $element)
     {
         $attributes = Widget::getAttributes($widget);
+        $attributes = array_filter($attributes);
 
         if ($element instanceof MultipleValues && $element->isElementCollection()) {
             $element->getChildAttributes()->addAttributes($attributes);
