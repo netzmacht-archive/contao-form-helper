@@ -302,7 +302,7 @@ class PreGenerateSubscriber implements EventSubscriberInterface
     public function setMandatoryAttribute($widget, Element $element)
     {
         if ($widget->mandatory) {
-            if ($element instanceof MultipleValues && $element->isElementCollection()) {
+            if ($element instanceof MultipleValues && $element->isElementCollection() && $widget->type !== 'checkbox') {
                 $element->getChildAttributes()->setAttribute('required', true);
             } else {
                 $element->setAttribute('required', true);
