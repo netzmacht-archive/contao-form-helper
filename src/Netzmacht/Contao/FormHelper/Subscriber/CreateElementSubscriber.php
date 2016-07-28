@@ -131,7 +131,7 @@ class CreateElementSubscriber implements EventSubscriberInterface
     public function createCheckboxElement($widget)
     {
         $name = $widget->name;
-        if (count($this->options) > 1) {
+        if (count($widget->options) > 1) {
             $name .= '[]';
         }
 
