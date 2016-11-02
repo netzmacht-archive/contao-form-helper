@@ -11,6 +11,7 @@
 
 namespace Netzmacht\Contao\FormHelper\Event;
 
+use Contao\Widget;
 use Netzmacht\Contao\FormHelper\View;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -51,7 +52,7 @@ class ViewEvent extends Event
     /**
      * Shortcut to get the widget.
      *
-     * @return \Widget
+     * @return Widget
      */
     public function getWidget()
     {
@@ -66,45 +67,5 @@ class ViewEvent extends Event
     public function getFormModel()
     {
         return $this->view->getFormModel();
-    }
-
-    /**
-     * Shortcut to get view attribtes.
-     *
-     * @return \Netzmacht\Html\Attributes
-     */
-    public function getAttributes()
-    {
-        return $this->view->getAttributes();
-    }
-
-    /**
-     * Shortcut to get the container.
-     *
-     * @return \Netzmacht\Contao\FormHelper\Partial\Container
-     */
-    public function getContainer()
-    {
-        return $this->view->getContainer();
-    }
-
-    /**
-     * Shortcut to the the label.
-     *
-     * @return \Netzmacht\Contao\FormHelper\Partial\Label
-     */
-    public function getLabel()
-    {
-        return $this->view->getLabel();
-    }
-
-    /**
-     * Shortcut to get the errors.
-     *
-     * @return \Netzmacht\Contao\FormHelper\Partial\Errors
-     */
-    public function getErrors()
-    {
-        return $this->view->getErrors();
     }
 }
