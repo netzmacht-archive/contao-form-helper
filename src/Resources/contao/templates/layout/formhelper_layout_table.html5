@@ -1,4 +1,0 @@
-<tr <?php echo $this->attributes; ?>>
-    <td class="col_0 col_first"><?php echo $this->label; ?></td>
-    <td class="col_1 col_last"><?php echo $this->container . $this->errors; ?></td>
-</tr>

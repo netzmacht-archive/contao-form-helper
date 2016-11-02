@@ -1,3 +1,0 @@
-<tr <?php echo $this->attributes; ?>>
-    <td class="col_1 col_last" colspan="2"><?php echo $this->container . $this->errors; ?></td>
-</tr>

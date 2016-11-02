@@ -1,7 +1,0 @@
-<?php if($this->errors->hasErrors()): ?>
-<ul <?php echo $this->errors->generateAttributes(); ?>>
-<?php foreach($this->errors->getErrors() as $error): ?>
-    <li><?php echo $error; ?></li>
-<?php endforeach; ?>
-</ul>
-<?php endif; ?>

@@ -19,32 +19,14 @@ namespace Netzmacht\Contao\FormHelper\Event;
 class Events
 {
     /**
-     * CREATE_VIEW event is raised first during generating the view. The event gets an default view instance and
-     * is configured during this event. The element is not available yet.
+     * CREATE_VIEW event is raised first during generating the view. It's purpose is to manipulate the widget.
      *
      * The raised event is an instance of ViewEvent.
      */
     const CREATE_VIEW = 'form-helper.create-view';
 
     /**
-     * CREATE_ELEMENT is raised after the view is created. It creates an form element instance which is used
-     * in the rendering process
-     *
-     * The raised event is an instance of CreateElementEvent.
-     */
-    const CREATE_ELEMENT = 'form-helper.create-element';
-
-    /**
-     * PRE_GENERATE_VIEW is raised after the element is created. It's purpose is to setup the element with
-     * specific configuration
-     *
-     * The raised event is an instance of ViewEvent.
-     */
-    const PRE_GENERATE_VIEW = 'form-helper.pre-generate-view';
-
-    /**
-     * GENERATE_VIEW is raised after PRE_GENERATE_VIEW. It's pupose is to make generating decisions on a
-     * fully configured view and element.
+     * GENERATE_VIEW is raised after CREATE_VIEW. It's purpose is to generate additional blocks
      *
      * The raised event is an instance of ViewEvent.
      */

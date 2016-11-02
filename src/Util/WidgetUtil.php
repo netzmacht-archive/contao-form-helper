@@ -11,17 +11,19 @@
 
 namespace Netzmacht\Contao\FormHelper\Util;
 
+use Contao\Widget;
+
 /**
  * Widget util provides access to widget attributes.
  *
  * @package Netzmacht\Contao\FormHelper\Util
  */
-class Widget
+class WidgetUtil
 {
     /**
      * Get all attributes of the widget.
      *
-     * @param \Widget $widget The widget.
+     * @param Widget $widget The widget.
      *
      * @return array
      */
@@ -33,7 +35,7 @@ class Widget
     /**
      * Get the widget type.
      *
-     * @param \Widget $widget The widget.
+     * @param Widget $widget The widget.
      *
      * @return string
      *

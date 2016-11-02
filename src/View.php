@@ -11,12 +11,9 @@
 
 namespace Netzmacht\Contao\FormHelper;
 
-use Netzmacht\Contao\FormHelper\Partial\Container;
-use Netzmacht\Contao\FormHelper\Partial\Errors;
-use Netzmacht\Contao\FormHelper\Partial\Label;
-use Netzmacht\Contao\FormHelper\Util\Widget as WidgetUtil;
-use Netzmacht\Html\Attributes;
-use Widget;
+use Contao\FormModel;
+use Contao\Widget;
+use Netzmacht\Contao\FormHelper\Util\WidgetUtil;
 
 /**
  * Class View handles the widget rendering process.
@@ -25,6 +22,11 @@ use Widget;
  */
 class View
 {
+    const BLOCK_BEFORE_LABEL = 'before-label';
+    const BLOCK_AFTER_LABEL  = 'after-label';
+    const BLOCK_BEFORE_FIELD = 'before-field';
+    const BLOCK_AFTER_FIELD  = 'after-field';
+    
     /**
      * The form widget.
      *
@@ -33,18 +35,11 @@ class View
     private $widget;
 
     /**
-     * View attributes are used for a wrapping element.
+     * Block.
      *
-     * @var Attributes
+     * @var array
      */
-    private $attributes;
-
-    /**
-     * The chosen view layout.
-     *
-     * @var string
-     */
-    private $layout;
+    private $blocks = [];
 
     /**
      * Form model if widget is part of the form generator.
@@ -52,27 +47,6 @@ class View
      * @var \FormModel
      */
     private $formModel;
-
-    /**
-     * The container component.
-     *
-     * @var Container
-     */
-    private $container;
-
-    /**
-     * The widget label.
-     *
-     * @var Label
-     */
-    private $label;
-
-    /**
-     * The widget error messages.
-     *
-     * @var Errors
-     */
-    private $errors;
 
     /**
      * State of visibility. A view can be hidden completely.
@@ -91,17 +65,13 @@ class View
     /**
      * Construct.
      *
-     * @param \Widget    $widget    The form widget.
-     * @param \FormModel $formModel Optional the corresponding form model.
+     * @param Widget    $widget    The form widget.
+     * @param FormModel $formModel Optional the corresponding form model.
      */
-    public function __construct(\Widget $widget, \FormModel $formModel = null)
+    public function __construct(Widget $widget, FormModel $formModel = null)
     {
         $this->widget     = $widget;
         $this->formModel  = $formModel;
-        $this->attributes = new Attributes();
-        $this->container  = new Container();
-        $this->label      = new Label();
-        $this->errors     = new Errors($widget->getErrors());
         $this->widgetType = WidgetUtil::getType($widget);
     }
 
@@ -123,40 +93,6 @@ class View
     public function getWidgetType()
     {
         return $this->widgetType;
-    }
-
-    /**
-     * Set the view layout.
-     *
-     * @param string $layout The layout name.
-     *
-     * @return $this
-     */
-    public function setLayout($layout)
-    {
-        $this->layout = $layout;
-
-        return $this;
-    }
-
-    /**
-     * Get the layout name.
-     *
-     * @return string
-     */
-    public function getLayout()
-    {
-        return $this->layout;
-    }
-
-    /**
-     * Get the view attributes.
-     *
-     * @return Attributes
-     */
-    public function getAttributes()
-    {
-        return $this->attributes;
     }
 
     /**
@@ -183,30 +119,6 @@ class View
         return $this;
     }
 
-
-    /**
-     * Render the view.
-     *
-     * @return string
-     */
-    public function render()
-    {
-        if (!$this->isVisible()) {
-            return '';
-        }
-
-        $name     = 'formhelper_layout_' . $this->getLayout();
-        $template = new \FrontendTemplate($name);
-
-        $template->widget     = $this->widget;
-        $template->container  = $this->container;
-        $template->label      = $this->label;
-        $template->attributes = $this->attributes;
-        $template->errors     = $this->errors;
-
-        return $template->parse();
-    }
-
     /**
      * Get the form model.
      *
@@ -228,46 +140,39 @@ class View
     }
 
     /**
-     * Get the container.
+     * Add a block content.
      *
-     * @return Container
-     */
-    public function getContainer()
-    {
-        return $this->container;
-    }
-
-    /**
-     * Get the view errors.
-     *
-     * @return Errors
-     */
-    public function getErrors()
-    {
-        return $this->errors;
-    }
-
-    /**
-     * Get the label.
-     *
-     * @return Label
-     */
-    public function getLabel()
-    {
-        return $this->label;
-    }
-
-    /**
-     * Set the view label.
-     *
-     * @param Label $label The view label.
+     * @param string   $blockName Block name.
+     * @param string   $content   Content being added to a block.
+     * @param int|null $position  Position of the content.
      *
      * @return $this
      */
-    public function setLabel(Label $label)
+    public function addBlockContent($blockName, $content, $position = null)
     {
-        $this->label = $label;
+        $this->blocks[$blockName][] = $content;
 
         return $this;
+    }
+
+    /**
+     * Get content of a block.
+     *
+     * @param string $blockName The block name.
+     * @param bool   $flatten   If false an array instead of a string is returned.
+     *
+     * @return array|string
+     */
+    public function block($blockName, $flatten = true)
+    {
+        if (!isset($this->blocks[$blockName])) {
+            return $flatten ? '' : [];
+        }
+
+        if ($flatten) {
+            return implode("\n", $this->blocks[$blockName]);
+        }
+
+        return $this->blocks[$blockName];
     }
 }

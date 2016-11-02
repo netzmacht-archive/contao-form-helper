@@ -1,3 +1,0 @@
-<?php
-
-\Netzmacht\Contao\FormHelper\Helper::generate($this);

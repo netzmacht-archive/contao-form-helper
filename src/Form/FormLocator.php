@@ -11,6 +11,8 @@
 
 namespace Netzmacht\Contao\FormHelper\Form;
 
+use Contao\FormModel;
+
 /**
  * Class FormLocator is loading the form models.
  *
@@ -23,10 +25,10 @@ class FormLocator
      *
      * @param int $formId The form id.
      *
-     * @return \FormModel|null
+     * @return FormModel|null
      */
     public function getForm($formId)
     {
-        return \FormModel::findByPk($formId);
+        return FormModel::findByPk($formId);
     }
 }

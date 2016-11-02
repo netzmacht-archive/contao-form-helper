@@ -11,11 +11,9 @@
 
 namespace Netzmacht\Contao\FormHelper;
 
-use Netzmacht\Contao\FormHelper\Event\CreateElementEvent;
 use Netzmacht\Contao\FormHelper\Event\Events;
 use Netzmacht\Contao\FormHelper\Event\ViewEvent;
 use Netzmacht\Contao\FormHelper\Form\FormLocator;
-use Netzmacht\Html\Element\StaticHtml;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -58,30 +56,9 @@ class Helper
      *
      * @SuppressWarnings(Superglobals)
      */
-    public static function getInstance()
+    private static function getInstance()
     {
-        return $GLOBALS['container']['form-helper'];
-    }
-
-    /**
-     * Generate a widet.
-     *
-     * @param \Widget $widget The form widget.
-     * @param bool    $return If true the output won't be echoed. Instead it will be returned.
-     *
-     * @return string|void
-     */
-    public static function generate(\Widget $widget, $return = false)
-    {
-        $helper = static::getInstance();
-        $view   = $helper->createView($widget);
-        $buffer = $view->render();
-
-        if ($return) {
-            return $buffer;
-        }
-
-        echo $buffer;
+        return \Controller::getContainer()->get('form_helper');
     }
 
     /**
@@ -91,42 +68,13 @@ class Helper
      *
      * @return View
      */
-    public function createView(\Widget $widget)
+    public static function createView(\Widget $widget)
     {
-        $form    = $this->formLocator->getForm($widget->pid);
-        $view    = $this->buildView($widget, $form);
-        $element = $this->buildElement($widget, $view);
-
-        $view->getContainer()->setElement($element);
-
-        $this->dispatchPreGenerate($view);
-        $this->dispatchGenerate($view);
+        $helper    = static::getInstance();
+        $formModel = $helper->formLocator->getForm($widget->pid);
+        $view      = $helper->buildView($widget, $formModel);
 
         return $view;
-    }
-
-    /**
-     * Build the element.
-     *
-     * @param \Widget $widget The form widget.
-     * @param View    $view   The view instance.
-     *
-     * @return \Netzmacht\Html\Element|\Netzmacht\Html\Element\StaticHtml
-     */
-    private function buildElement(\Widget $widget, View $view)
-    {
-        // build the element
-        $event = new CreateElementEvent($view);
-        $this->eventDispatcher->dispatch(Events::CREATE_ELEMENT, $event);
-
-        $element = $event->getElement();
-
-        // no element given by build event. generate form widget instead
-        if (!$element) {
-            $element = new StaticHtml($widget->generate());
-        }
-
-        return $element;
     }
 
     /**
@@ -145,32 +93,9 @@ class Helper
         $event = new ViewEvent($view);
         $this->eventDispatcher->dispatch(Events::CREATE_VIEW, $event);
 
-        return $view;
-    }
-
-    /**
-     * Dispatch the pre generate event.
-     *
-     * @param View $view The widget view.
-     *
-     * @return void
-     */
-    private function dispatchPreGenerate(View $view)
-    {
-        $event = new ViewEvent($view);
-        $this->eventDispatcher->dispatch(Events::PRE_GENERATE_VIEW, $event);
-    }
-
-    /**
-     * Dispatches the generate event.
-     *
-     * @param View $view The widget view.
-     *
-     * @return void
-     */
-    public function dispatchGenerate(View $view)
-    {
         $event = new ViewEvent($view);
         $this->eventDispatcher->dispatch(Events::GENERATE_VIEW, $event);
+
+        return $view;
     }
 }

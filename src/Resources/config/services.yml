@@ -1,0 +1,9 @@
+services:
+  form_helper:
+    class: Netzmacht\Contao\FormHelper\Helper
+    arguments:
+      - "@event_dispatcher"
+      - "@form_helper.form_locator"
+
+  form_helper.form_locator:
+    class: Netzmacht\Contao\FormHelper\Form\FormLocator

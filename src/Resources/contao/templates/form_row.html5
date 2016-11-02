@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @package    contao-form-helper
+ * @author     David Molineus <david.molineus@netzmacht.de>
+ * @copyright  2014-2015 netzmacht creative David Molineus
+ * @license    LGPL 3.0
+ * @filesource
+ *
+ */
+
+use Netzmacht\Contao\FormHelper\Helper;
+use Netzmacht\Contao\FormHelper\View;
+
+$view = Helper::createView($this);
+
+?>
+<div class="<?= $this->prefix ?><?php if ($this->class) echo ' ' . $this->class; ?>">
+    <?php $this->block('label-before'); ?>
+    <?= $view->block(View::BLOCK_BEFORE_LABEL); ?>
+    <?php $this->endblock(); ?>
+    <?php $this->block('label'); ?>
+    <?php $this->endblock(); ?>
+    <?= $view->block(View::BLOCK_AFTER_LABEL); ?>
+    <?php $this->endblock(); ?>
+
+    <?php $this->block('field-before'); ?>
+    <?= $view->block(View::BLOCK_BEFORE_FIELD); ?>
+    <?php $this->endblock(); ?>
+    <?php $this->block('field'); ?>
+    <?php $this->endblock(); ?>
+    <?php $this->block('field-after'); ?>
+    <?= $view->block(View::BLOCK_AFTER_FIELD); ?>
+    <?php $this->endblock(); ?>
+</div>

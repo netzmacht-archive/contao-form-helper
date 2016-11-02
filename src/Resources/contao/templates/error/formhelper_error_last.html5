@@ -1,3 +1,0 @@
-<?php if($this->errors->hasErrors()): ?>
-<p <?php echo $this->errors->generateAttributes(); ?>><?php echo $this->errors->getError(); ?></p>
-<?php endif; ?>
