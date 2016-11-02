@@ -30,8 +30,8 @@
         "netzmacht/contao-build-tools": "~1.1"
     },
     "autoload": {
-        "psr-0": {
-            "Netzmacht\\Contao\\FormHelper": "src/"
+        "psr-4": {
+            "Netzmacht\\Contao\\FormHelper\\": "src/"
         }
     },
     "autoload-dev": {
