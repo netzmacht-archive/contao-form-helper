@@ -14,6 +14,7 @@ namespace Netzmacht\Contao\FormHelper;
 use Contao\FormModel;
 use Contao\Widget;
 use Netzmacht\Contao\FormHelper\Util\WidgetUtil;
+use Netzmacht\Html\Attributes;
 
 /**
  * Class View handles the widget rendering process.
@@ -63,16 +64,25 @@ class View
     private $widgetType;
 
     /**
+     * Html attributes of the wrapper element.
+     *
+     * @var Attributes
+     */
+    private $attributes;
+
+    /**
      * Construct.
      *
-     * @param Widget    $widget    The form widget.
-     * @param FormModel $formModel Optional the corresponding form model.
+     * @param Widget     $widget     The form widget.
+     * @param FormModel  $formModel  Optional the corresponding form model.
+     * @param Attributes $attributes Html attributes of the wrapper element.
      */
-    public function __construct(Widget $widget, FormModel $formModel = null)
+    public function __construct(Widget $widget, FormModel $formModel = null, Attributes $attributes = null)
     {
         $this->widget     = $widget;
         $this->formModel  = $formModel;
         $this->widgetType = WidgetUtil::getType($widget);
+        $this->attributes = $attributes ?: new Attributes();
     }
 
     /**
@@ -137,6 +147,16 @@ class View
     public function hasFormModel()
     {
         return ($this->formModel !== null);
+    }
+
+    /**
+     * Get html attributes of the wrapper element.
+     *
+     * @return Attributes
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
     }
 
     /**

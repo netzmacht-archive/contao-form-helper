@@ -58,7 +58,7 @@ class Helper
      */
     private static function getInstance()
     {
-        return \Controller::getContainer()->get('form_helper');
+        return \Controller::getContainer()->get('form_helper.helper');
     }
 
     /**

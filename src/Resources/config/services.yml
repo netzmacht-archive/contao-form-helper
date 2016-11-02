@@ -1,5 +1,5 @@
 services:
-  form_helper:
+  form_helper.helper:
     class: Netzmacht\Contao\FormHelper\Helper
     arguments:
       - "@event_dispatcher"
@@ -7,3 +7,8 @@ services:
 
   form_helper.form_locator:
     class: Netzmacht\Contao\FormHelper\Form\FormLocator
+
+  form_helper.listener.wrapper_css_classes_listener:
+    class: Netzmacht\Contao\FormHelper\EventListener\WrapperCssClassesListener
+    tags:
+      - { name: kernel.event_listener, event: form_helper.create_view, method: onCreateView}

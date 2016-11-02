@@ -23,12 +23,12 @@ class Events
      *
      * The raised event is an instance of ViewEvent.
      */
-    const CREATE_VIEW = 'form-helper.create-view';
+    const CREATE_VIEW = 'form_helper.create_view';
 
     /**
      * GENERATE_VIEW is raised after CREATE_VIEW. It's purpose is to generate additional blocks
      *
      * The raised event is an instance of ViewEvent.
      */
-    const GENERATE_VIEW = 'form-helper.generate-view';
+    const GENERATE_VIEW = 'form_helper.generate_view';
 }

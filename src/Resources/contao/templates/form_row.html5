@@ -15,7 +15,7 @@ use Netzmacht\Contao\FormHelper\View;
 $view = Helper::createView($this);
 
 ?>
-<div class="<?= $this->prefix ?><?php if ($this->class) echo ' ' . $this->class; ?>">
+<div <?= $view->getAttributes() ?>>
     <?php $this->block('label-before'); ?>
     <?= $view->block(View::BLOCK_BEFORE_LABEL); ?>
     <?php $this->endblock(); ?>
